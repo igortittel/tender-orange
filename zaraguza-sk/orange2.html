@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Orange Internet — Je tam!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --orange: #FF6600;
+    --orange-deep: #E65100;
+    --orange-glow: #FF8A3D;
+    --ink: #14110F;
+    --ink-soft: #4A4540;
+    --paper: #FAF8F5;
+    --paper-dim: #F0ECE6;
+    --tint: #FFE4CC;
+    --line: #E3DDD3;
+    --ok: #1F7A4D;
+    --night: #100E0C;
+    --night-2: #1C1712;
+    --radius: 18px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper) !important;
+    color:var(--ink) !important;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{ font-family:'Sora', sans-serif; letter-spacing:-0.02em; }
+  ul{ list-style:none; }
+  button{ font-family:'Inter'; }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .je-tam{
+    display:inline-block; font-family:'Sora'; font-weight:800; color:var(--orange);
+    transform:skewX(-6deg); text-shadow:0 0 26px rgba(255,102,0,.55); letter-spacing:-0.01em;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    padding:16px 20px; background:rgba(16,14,12,0.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .logo{ font-family:'Sora'; font-weight:800; font-size:22px; color:var(--orange); }
+  .menu-dot{width:22px;height:22px;display:flex;flex-direction:column;justify-content:center;gap:4px;}
+  .menu-dot span{display:block;height:2px;background:#fff;border-radius:2px;}
+
+  section{ max-width:560px; margin:0 auto; padding:0 20px; }
+  .sec{ padding:44px 20px; }
+  .sec-head{ margin-bottom:20px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12.5px; font-weight:600; color:var(--orange-deep);
+    background:var(--tint); padding:6px 12px; border-radius:100px; margin-bottom:14px;
+  }
+  .sec-head .eyebrow{ background:var(--paper-dim); color:var(--ink-soft); }
+  .sec-head h2{ font-size:23px; margin:0 0 6px; color:var(--ink); }
+  .sec-head p{ color:var(--ink-soft); font-size:14.5px; line-height:1.5; }
+  .sec-head.center{ text-align:center; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 0%, rgba(255,102,0,0.22), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 20%, rgba(255,138,61,0.12), transparent 60%),
+      linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
+    color:#fff; max-width:none; padding:44px 20px 40px;
+  }
+  .hero-inner{ max-width:560px; margin:0 auto; }
+  .hero .eyebrow{ color:var(--orange-glow); background:rgba(255,102,0,0.14); border:1px solid rgba(255,102,0,0.3); }
+  .hero h1{ font-size:33px; line-height:1.1; font-weight:800; margin-bottom:14px; color:#fff; }
+  .hero h1 .je-tam{ font-size:38px; display:block; margin-top:2px; }
+  .hero p{ color:rgba(255,255,255,0.72); font-size:15.5px; line-height:1.55; margin-bottom:24px; }
+  .hero p b{ color:#fff; }
+
+  .address-box{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:12px; backdrop-filter:blur(6px);
+  }
+  .address-box label{ color:#fff; font-size:13px; font-weight:600; opacity:.9; }
+  .address-row{ display:flex; gap:8px; }
+  .address-row input{
+    flex:1; border:none; border-radius:12px; padding:14px 16px; font-size:15px; outline:none;
+    background:#fff; color:var(--ink); font-family:'Inter';
+  }
+  .address-row input::placeholder{ color:#9A9388; }
+  .address-row button{
+    background:var(--orange); color:#fff; border:none; border-radius:12px;
+    padding:0 18px; font-weight:700; font-size:15px; cursor:pointer; transition:background .15s ease;
+  }
+  .address-row button:hover{ background:var(--orange-deep); }
+  .address-hint{ color:#fff; opacity:.55; font-size:12px; }
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+    margin:26px 0 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .stat{ text-align:center; }
+  .stat b{ display:block; font-family:'Sora'; font-weight:800; font-size:18px; color:#fff; }
+  .stat span{ display:block; font-size:10px; color:rgba(255,255,255,0.55); margin-top:2px; line-height:1.25; }
+
+  /* ---------- HOCKEY CHALLENGE GAME ---------- */
+  .challenge{
+    max-width:none; background:linear-gradient(160deg, var(--night) 0%, #241A10 100%); color:#fff; padding:44px 20px;
+  }
+  .challenge-inner{ max-width:560px; margin:0 auto; }
+  .challenge .eyebrow{ background:rgba(255,102,0,0.16); color:var(--orange-glow); border:1px solid rgba(255,102,0,0.3); }
+  .challenge h2{ color:#fff; font-size:24px; margin:0 0 8px; }
+  .challenge > .challenge-inner > p{ color:rgba(255,255,255,0.72); font-size:14.5px; line-height:1.55; margin-bottom:8px; }
+  .reward-row{ display:flex; gap:8px; margin:16px 0 22px; flex-wrap:wrap; }
+  .reward-chip{
+    display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12); border-radius:100px; padding:7px 12px; font-size:11.5px;
+  }
+  .reward-chip .ic{ font-size:14px; }
+
+  .game-box{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius); padding:26px 20px; text-align:center; position:relative; overflow:hidden; min-height:280px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .puck-btn{
+    width:150px; height:150px; border:none; background:none; cursor:pointer; padding:0;
+    transition:transform .08s ease;
+  }
+  .puck-btn:active{ transform:scale(.94); }
+  .puck-btn svg .fo-circle{ stroke:var(--orange); stroke-width:3.5; fill:none; transition:stroke .3s ease, filter .3s ease; }
+  .puck-btn svg .fo-tick{ stroke:var(--orange); stroke-width:4; transition:stroke .3s ease; }
+  .puck-btn svg .fo-cross{ stroke:var(--orange); stroke-width:4; transition:stroke .3s ease; }
+  .puck-btn svg .fo-dot{ fill:var(--orange); transition:fill .3s ease, r .3s ease; }
+  .puck-btn.ready svg .fo-circle{ stroke:var(--orange-glow); filter:drop-shadow(0 0 14px rgba(255,102,0,.8)); }
+  .puck-btn.ready svg .fo-tick{ stroke:var(--orange-glow); }
+  .puck-btn.ready svg .fo-cross{ stroke:var(--orange-glow); }
+  .puck-btn.ready svg .fo-dot{ fill:#fff; animation:dotPulse .6s ease-in-out infinite; }
+  @keyframes dotPulse{ 0%,100%{ r:6; } 50%{ r:9; } }
+  .puck-label{ font-family:'Sora'; font-weight:800; font-size:12px; color:rgba(255,255,255,.5); margin-top:14px; letter-spacing:.03em; text-transform:uppercase; }
+  .game-msg{ font-family:'Sora'; font-weight:800; font-size:19px; margin-bottom:20px; min-height:26px; }
+  .game-sub{ font-size:12.5px; color:rgba(255,255,255,0.55); margin-top:16px; }
+
+  .result-panel{ display:none; width:100%; }
+  .result-panel.show{ display:block; animation:fadeUp .4s ease; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  .result-time{ font-family:'Sora'; font-weight:800; font-size:44px; color:var(--orange-glow); line-height:1; margin-bottom:4px; }
+  .result-time span{ font-size:16px; color:rgba(255,255,255,.6); font-weight:600; }
+  .result-tier{ font-family:'Sora'; font-weight:700; font-size:16px; margin-bottom:6px; }
+  .result-percentile{ font-size:12.5px; color:rgba(255,255,255,.6); margin-bottom:18px; }
+  .result-perks{ text-align:left; display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+  .perk{ display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:rgba(255,255,255,.85); background:rgba(255,255,255,0.05); border-radius:10px; padding:10px 12px; }
+  .perk .ic{ font-size:16px; flex-shrink:0; }
+  .perk.locked{ opacity:.45; }
+  .game-ctas{ display:flex; gap:8px; }
+
+  .lb-save{ display:none; flex-direction:column; gap:8px; margin-bottom:14px; }
+  .lb-save.show{ display:flex; }
+  .lb-save input{
+    border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.06); color:#fff;
+    border-radius:12px; padding:12px 14px; font-size:14px; outline:none; font-family:'Inter';
+  }
+  .lb-save input::placeholder{ color:rgba(255,255,255,.4); }
+  .lb-note{ font-size:10.5px; color:rgba(255,255,255,.45); text-align:center; line-height:1.4; }
+  .lb-saved{ display:none; text-align:center; font-size:13px; color:#7CD98A; font-weight:600; margin-bottom:14px; }
+  .lb-saved.show{ display:block; }
+
+  .leaderboard-box{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius); padding:20px; margin-top:16px;
+  }
+  .lb-head{
+    display:flex; align-items:center; gap:8px; font-family:'Sora'; font-weight:700; font-size:15px;
+    color:#fff; margin-bottom:14px; flex-wrap:wrap;
+  }
+  .lb-loading{ text-align:center; font-size:12.5px; color:rgba(255,255,255,.5); padding:16px 0; }
+  .lb-row{
+    display:flex; align-items:center; gap:10px; padding:9px 4px;
+    border-bottom:1px solid rgba(255,255,255,0.07); font-size:13px; color:rgba(255,255,255,.9);
+  }
+  .lb-row:last-child{ border-bottom:none; }
+  .lb-rank{
+    width:24px; flex-shrink:0; font-family:'Sora'; font-weight:800; font-size:12.5px;
+    color:rgba(255,255,255,.5); text-align:center;
+  }
+  .lb-row:nth-child(1) .lb-rank, .lb-row.r1 .lb-rank{ color:#FFD54A; }
+  .lb-row.r2 .lb-rank{ color:#CFE0EA; }
+  .lb-row.r3 .lb-rank{ color:#E3A063; }
+  .lb-name{ flex:1; font-weight:600; }
+  .lb-time{ font-family:'Sora'; font-weight:800; color:var(--orange-glow); }
+  .lb-empty{ text-align:center; font-size:12.5px; color:rgba(255,255,255,.5); padding:16px 0; }
+  .cta-primary{
+    width:100%; background:var(--orange); color:#fff; border:none; border-radius:14px;
+    padding:15px; font-size:15px; font-weight:700; cursor:pointer; transition:background .15s ease;
+  }
+  .cta-primary:hover{ background:var(--orange-deep); }
+  .cta-outline{
+    width:100%; background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.25); border-radius:14px;
+    padding:13px; font-size:13.5px; font-weight:600; cursor:pointer;
+  }
+
+  /* ---------- COVERAGE / MAP ---------- */
+  .coverage-form{ display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
+  .coverage-form .address-row input{
+    background:#fff; border:1.5px solid var(--line); color:var(--ink);
+  }
+  .coverage-form .address-row button{ background:var(--orange); }
+
+  .map-wrap{
+    background:var(--night); border-radius:var(--radius); padding:20px; position:relative;
+  }
+  .map-legend{ display:flex; gap:16px; margin-bottom:14px; }
+  .map-legend .li{ display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(255,255,255,.7); }
+  .map-legend .dot{ width:9px; height:9px; border-radius:3px; }
+  .dot.on{ background:var(--orange); }
+  .dot.soon{ background:rgba(255,255,255,0.2); }
+
+  .map-wrap svg.sk-map{ width:100%; height:auto; display:block; margin-bottom:4px; }
+  .sk-outline{ fill:none; stroke:rgba(255,255,255,0.18); stroke-width:1.4; }
+  .sk-dot{ fill:var(--orange); }
+  .sk-dot.soon{ fill:rgba(255,255,255,0.16); }
+  .city-dot{ fill:#fff; stroke:var(--orange); stroke-width:2; cursor:pointer; }
+  .city-dot.active{ fill:var(--orange); }
+
+  .city-pins{ display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .pin{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff;
+    border-radius:100px; padding:8px 13px; font-size:12px; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; gap:5px;
+  }
+  .pin.active{ background:var(--orange); border-color:var(--orange); }
+  .pin-info{
+    margin-top:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px; padding:14px; font-size:12.5px; color:rgba(255,255,255,.85); display:none;
+  }
+  .pin-info.show{ display:block; animation:fadeUp .3s ease; }
+  .pin-info b{ color:#fff; }
+
+  /* ---------- PRICING ---------- */
+  .plans{ display:flex; flex-direction:column; gap:14px; }
+  .plan{ background:#fff; border:1.5px solid var(--line); border-radius:16px; padding:20px; position:relative; }
+  .plan.reco{ border-color:var(--orange); box-shadow:0 0 0 3px var(--tint); }
+  .plan .ribbon{
+    position:absolute; top:-11px; left:20px; background:var(--orange); color:#fff;
+    font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
+  }
+  .plan-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .plan-name2{ font-family:'Sora'; font-weight:700; font-size:16px; }
+  .plan-speed2{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+  .plan-price{ text-align:right; }
+  .plan-price .was{ font-size:12px; color:var(--ink-soft); text-decoration:line-through; }
+  .plan-price .now{ font-family:'Sora'; font-weight:800; font-size:22px; }
+  .plan-price .now span{ font-size:12px; font-weight:600; }
+  .plan-desc{ font-size:13px; color:var(--ink-soft); line-height:1.5; margin-bottom:14px; }
+  .plan-benefits{ display:flex; gap:14px; border-top:1px solid var(--line); padding-top:12px; margin-top:2px; }
+  .plan-benefits .benefit{ text-align:center; flex:1; font-size:10px; color:var(--ink-soft); }
+  .plan-benefits .bic{ font-size:16px; display:block; margin-bottom:3px; }
+  .plan-ctas{ display:flex; gap:8px; margin-top:14px; }
+  .plan-ctas button{ flex:1; padding:12px; font-size:13.5px; }
+  .cta-secondary{
+    background:#fff; color:var(--ink); border:1.5px solid var(--line); border-radius:14px; font-weight:600; cursor:pointer;
+  }
+
+  /* ---------- ASSESSMENT ---------- */
+  .quiz-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 22px; overflow:hidden; }
+  .gauge-wrap{ display:flex; justify-content:center; margin-bottom:22px; }
+  svg#gauge{ width:180px; height:110px; overflow:visible; }
+  .gauge-track{ fill:none; stroke:var(--paper-dim); stroke-width:14; stroke-linecap:round; }
+  .gauge-fill{ fill:none; stroke:var(--orange); stroke-width:14; stroke-linecap:round;
+    transition: stroke-dasharray .6s cubic-bezier(.65,0,.35,1); }
+  .gauge-num{ font-family:'Sora'; font-weight:800; font-size:30px; }
+  .gauge-unit{ font-family:'Inter'; font-size:12px; fill:var(--ink-soft); }
+
+  .progress-dots{ display:flex; justify-content:center; gap:6px; margin-bottom:20px; }
+  .progress-dots span{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .2s ease, transform .2s ease;}
+  .progress-dots span.active{ background:var(--orange); transform:scale(1.3); }
+  .progress-dots span.done{ background:var(--orange-deep); }
+
+  .q-title{ font-size:18px; font-weight:700; text-align:center; margin-bottom:18px; font-family:'Sora'; }
+  .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opts.single-col{ grid-template-columns:1fr; }
+  .opt{
+    border:1.5px solid var(--line); border-radius:14px; padding:14px 12px; text-align:center; cursor:pointer; background:#fff;
+    transition:border-color .15s ease, background .15s ease, transform .1s ease; font-size:13.5px; font-weight:600;
+  }
+  .opt .ic{ font-size:22px; display:block; margin-bottom:6px; }
+  .opt:hover{ border-color:var(--orange); }
+  .opt:active{ transform:scale(.97); }
+
+  .q-nav{ display:flex; justify-content:space-between; margin-top:20px; }
+  .btn-ghost{ background:none; border:none; color:var(--ink-soft); font-size:14px; font-weight:600; cursor:pointer; padding:8px; }
+  .btn-ghost:disabled{ opacity:0; pointer-events:none; }
+
+  .result{ display:none; }
+  .result.show{ display:block; animation:fadeUp .5s ease; }
+  .result-badge{
+    display:inline-block; background:var(--ok); color:#fff; font-size:12px; font-weight:700;
+    padding:5px 12px; border-radius:100px; margin-bottom:14px;
+  }
+  .result h3{ font-size:22px; margin-bottom:4px; }
+  .result .why{ color:var(--ink-soft); font-size:14px; margin-bottom:18px; }
+
+  .price-card{ background:var(--night); color:#fff; border-radius:16px; padding:22px 22px 18px; margin-bottom:14px; }
+  .price-card .top-row{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+  .price-card .plan-name{ font-family:'Sora'; font-weight:700; font-size:16px; margin-bottom:4px; }
+  .price-card .plan-speed{ font-size:12.5px; opacity:.7; }
+  .price-card .price{ text-align:right; }
+  .price-card .price .was{ font-size:12px; opacity:.55; text-decoration:line-through; }
+  .price-card .price .first-month{ font-family:'Sora'; font-weight:800; font-size:26px; color:var(--orange); line-height:1.15; }
+  .price-card .price .then{ font-size:11.5px; opacity:.65; margin-top:4px; }
+  .price-card .benefits{ display:flex; gap:16px; border-top:1px solid rgba(255,255,255,0.12); padding-top:14px; }
+  .price-card .benefit{ text-align:center; flex:1; font-size:10.5px; opacity:.85; }
+  .price-card .benefit .bic{ font-size:17px; display:block; margin-bottom:4px; }
+
+  .addon{
+    display:flex; gap:10px; align-items:flex-start; background:var(--paper-dim);
+    border-radius:12px; padding:12px 14px; margin-bottom:16px; font-size:13px; color:var(--ink-soft);
+  }
+  .binding-note{ font-size:11.5px; color:var(--ink-soft); text-align:center; margin-bottom:14px; }
+  .restart{ text-align:center; margin-top:12px; }
+  .restart button{ background:none; border:none; color:var(--ink-soft); font-size:12.5px; text-decoration:underline; cursor:pointer; }
+
+  /* ---------- PROCESS ---------- */
+  .steps{ display:flex; flex-direction:column; gap:18px; }
+  .step{ display:flex; gap:14px; align-items:flex-start; }
+  .step .num{
+    flex-shrink:0; width:34px; height:34px; border-radius:50%; background:var(--tint); color:var(--orange-deep);
+    font-family:'Sora'; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .step .txt b{ display:block; font-size:14.5px; margin-bottom:2px; }
+  .step .txt span{ font-size:13px; color:var(--ink-soft); line-height:1.45; }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; padding:16px 4px;
+    display:flex; justify-content:space-between; align-items:center; cursor:pointer;
+    font-family:'Sora'; font-weight:600; font-size:14.5px; color:var(--ink);
+  }
+  .faq-q .chev{ transition:transform .2s ease; color:var(--orange); font-size:16px; flex-shrink:0; margin-left:12px; }
+  .faq-item.open .faq-q .chev{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+  .faq-item.open .faq-a{ max-height:220px; }
+  .faq-a p{ padding:0 4px 16px; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  /* ---------- STICKY CTA ---------- */
+  .sticky-cta{
+    position:fixed; bottom:0; left:0; right:0; z-index:40;
+    background:#fff; border-top:1px solid var(--line);
+    padding:12px 20px; box-shadow:0 -8px 24px rgba(0,0,0,0.06);
+  }
+  .sticky-cta-inner{ display:flex; gap:10px; align-items:center; }
+  .sticky-cta .txt{ flex:1; }
+  .sticky-cta .txt b{ display:block; font-size:13px; font-family:'Sora'; }
+  .sticky-cta .txt span{ font-size:11px; color:var(--ink-soft); }
+  .sticky-cta button{
+    background:var(--orange); color:#fff; border:none; border-radius:10px;
+    padding:12px 16px; font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap;
+  }
+  footer.pad{ height:90px; }
+
+  /* =========================================================
+     RESPONSIVE — DESKTOP / TABLET
+     Mobile styles above stay the default (mobile-first).
+     These media queries widen things out on bigger screens.
+  ========================================================= */
+  @media (min-width: 720px){
+    section{ max-width:700px; }
+
+    .hero-inner, .challenge-inner{ max-width:700px; }
+
+    /* pricing cards go 2-up on tablet */
+    .plans{ display:grid; grid-template-columns:1fr 1fr; align-items:start; }
+    .plan.reco{ grid-column:1 / -1; }
+
+    .opts{ grid-template-columns:1fr 1fr; }
+
+    .steps{ max-width:640px; margin:0 auto; }
+  }
+
+  @media (min-width: 1080px){
+    nav{ padding:18px 48px; }
+    .nav-inner{ max-width:1200px; }
+    .sec, section{ max-width:1100px; padding:0 48px; }
+    .hero{ padding:72px 48px; }
+    .challenge{ padding:72px 48px; }
+
+    /* HERO becomes a real two-column layout */
+    .hero-inner{
+      max-width:1200px; display:grid;
+      grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;
+    }
+    .hero-copy{ padding-right:8px; }
+    .hero h1{ font-size:48px; line-height:1.08; }
+    .hero h1 .je-tam{ font-size:56px; }
+    .hero p{ font-size:17px; max-width:440px; }
+    .hero-visual{ max-width:420px; }
+    .stat-row{ margin-top:30px; }
+
+    /* CHALLENGE becomes two columns: pitch left, game+leaderboard right */
+    .challenge-inner{
+      max-width:1200px; display:grid;
+      grid-template-columns:.85fr 1.15fr; gap:56px; align-items:start;
+    }
+    .challenge-copy{ padding-top:12px; }
+    .challenge h2{ font-size:30px; }
+    .challenge-copy p{ font-size:16px; max-width:420px; }
+    .reward-row{ flex-direction:column; align-items:flex-start; }
+    .challenge-visual{ max-width:480px; }
+
+    /* COVERAGE: form + legend stay readable width, map gets a cap so it doesn't sprawl */
+    #coverage-anchor .sec-head{ max-width:560px; }
+    #coverage-anchor .coverage-form{ max-width:480px; margin:0 0 24px; }
+    .map-wrap{ max-width:900px; padding:28px; margin:0 auto; }
+
+    /* PRICING: three balanced columns, no more full-width ribbon override */
+    #plans-anchor .sec-head{ max-width:640px; }
+    .plans{ grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .plan.reco{ grid-column:auto; transform:translateY(-8px); }
+    .plan{ display:flex; flex-direction:column; height:100%; }
+    .plan-ctas{ margin-top:auto; }
+
+    /* ASSESSMENT: keep the card at a comfortable reading/interaction width */
+    #quiz-anchor{ max-width:1100px; }
+    #quiz-anchor .sec-head{ max-width:560px; margin-left:auto; margin-right:auto; }
+    .quiz-card{ max-width:520px; margin:0 auto; padding:36px 40px; }
+
+    /* PROCESS: horizontal timeline instead of a long vertical list */
+    .sec .sec-head{ max-width:640px; }
+    .steps{ max-width:1100px; flex-direction:row; gap:20px; }
+    .step{ flex-direction:column; text-align:center; flex:1; align-items:center; }
+    .step .txt{ margin-top:2px; }
+
+    /* FAQ: comfortable reading width, centered */
+    #faq{ max-width:760px; margin:0 auto; }
+
+    .sticky-cta{ padding:16px 48px; }
+    .sticky-cta-inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:10px; width:100%; }
+  }
+
+  @media (min-width: 1080px) and (max-width: 1300px){
+    .hero-inner{ gap:48px; }
+  }
+
+  /* ---------- UTILITY BAR ---------- */
+  /* Sticky wrapper — handles both util-bar + nav together */
+  #site-header{
+    position:sticky; top:0; z-index:51;
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    will-change:transform;
+  }
+  #site-header.nav-scrolled{ transform:translateY(0); } /* mobile: no partial hide */
+  @media(min-width:720px){
+    #site-header.nav-scrolled{ transform:translateY(-36px); } /* hides util-bar (36px), nav stays visible */
+  }
+  @media(prefers-reduced-motion:reduce){ #site-header{ transition:none; } }
+
+  .util-bar{
+    display:none; background:#0a0806;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    padding:0 20px;
+  }
+  .util-bar-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:1200px; margin:0 auto; height:36px;
+  }
+  .util-bar-left,.util-bar-right{ display:flex; }
+  .util-link{
+    font-size:12px; font-weight:500; color:rgba(255,255,255,.42);
+    text-decoration:none; padding:0 10px; height:36px;
+    display:inline-flex; align-items:center; gap:5px;
+    border-bottom:2px solid transparent; transition:color .15s, border-color .15s;
+  }
+  .util-link:hover{ color:rgba(255,255,255,.8); }
+  .util-link--active{ color:#fff; border-bottom-color:var(--orange); }
+  .util-divider{ width:1px; background:rgba(255,255,255,.1); margin:10px 4px; }
+  @media(min-width:720px){ .util-bar{ display:block; } }
+
+  /* ---------- NAV INNER LAYOUT ---------- */
+  /* nav is no longer sticky on its own — #site-header handles that */
+  nav{ top:0; }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; width:100%; max-width:1200px; margin:0 auto;
+  }
+  .nav-logo{ display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
+  .nav-logo img{ height:32px; width:auto; display:block; }
+
+  /* Nav links with animated underline */
+  .nav-links{ display:none; list-style:none; gap:0; margin:0 auto; align-items:center; }
+  .nav-links li{ position:relative; }
+  .nav-links a, .nav-mega-trigger{
+    color:rgba(255,255,255,.68); font-size:14px; font-weight:500;
+    text-decoration:none; transition:color .15s;
+    padding:0 10px; height:57px; display:inline-flex; align-items:center; gap:4px;
+    position:relative; white-space:nowrap; cursor:pointer;
+  }
+  .nav-links a::after, .nav-mega-trigger::after{
+    content:''; position:absolute; bottom:0; left:10px; right:10px; height:2px;
+    background:var(--orange); transform:scaleX(0); transform-origin:left;
+    transition:transform .22s ease; border-radius:2px;
+  }
+  .nav-links a:hover, .nav-mega-trigger:hover{ color:#fff; }
+  .nav-links a:hover::after, .nav-mega-trigger:hover::after{ transform:scaleX(1); }
+
+  /* Mega menu trigger button */
+  .has-mega{ position:relative; }
+  .nav-mega-trigger{
+    background:none; border:none; font-family:'Inter';
+  }
+  .nav-mega-trigger .chev{
+    font-size:8px; display:inline-block; transition:transform .2s ease; margin-left:1px;
+  }
+  .has-mega:hover .nav-mega-trigger .chev,
+  .has-mega:focus-within .nav-mega-trigger .chev{ transform:rotate(180deg); }
+
+  /* Mega menu panel */
+  .mega-menu{
+    position:absolute; top:calc(100% + 1px); left:50%;
+    transform:translateX(-50%) translateY(8px);
+    background:#1a1410; border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px; padding:24px 28px; min-width:480px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    opacity:0; visibility:hidden;
+    transition:opacity .2s ease, transform .2s ease, visibility .2s;
+    pointer-events:none; box-shadow:0 24px 60px rgba(0,0,0,.75); z-index:20;
+  }
+  .has-mega:hover .mega-menu,
+  .has-mega:focus-within .mega-menu{
+    opacity:1; visibility:visible;
+    transform:translateX(-50%) translateY(0); pointer-events:auto;
+  }
+  .mega-col-title{
+    display:block; font-family:'Sora'; font-weight:700; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.09em; color:rgba(255,255,255,.3);
+    margin-bottom:10px;
+  }
+  .mega-menu a{
+    display:block; font-size:13.5px; color:rgba(255,255,255,.62);
+    text-decoration:none; padding:5px 0; transition:color .12s;
+  }
+  .mega-menu a::after{ display:none; }
+  .mega-menu a:hover{ color:var(--orange); }
+
+  /* Right nav area */
+  .nav-right{ display:flex; align-items:center; gap:6px; flex-shrink:0; }
+  .nav-search-btn{
+    background:none; border:none; cursor:pointer; padding:7px;
+    color:rgba(255,255,255,.5); display:none; align-items:center;
+    transition:color .15s; border-radius:6px;
+  }
+  .nav-search-btn:hover{ color:#fff; background:rgba(255,255,255,.07); }
+  .nav-moj-orange{
+    display:none; color:#fff; border:1.5px solid rgba(255,255,255,.25);
+    border-radius:8px; padding:7px 14px; font-size:13px; font-weight:600;
+    text-decoration:none; white-space:nowrap;
+    transition:border-color .15s, background .15s;
+  }
+  .nav-moj-orange:hover{ border-color:var(--orange); background:rgba(255,102,0,.1); }
+  button.menu-dot{ background:none; border:none; cursor:pointer; padding:4px; }
+  .menu-dot span{ transition:transform .22s ease, opacity .15s ease; }
+  body.nav-open .menu-dot span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  body.nav-open .menu-dot span:nth-child(2){ opacity:0; }
+  body.nav-open .menu-dot span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  @media(min-width:720px){
+    .nav-links{ display:flex; }
+    .nav-moj-orange{ display:block; }
+    .menu-dot{ display:none !important; }
+  }
+  @media(min-width:1080px){
+    .nav-search-btn{ display:flex; }
+    .nav-links a, .nav-mega-trigger{ height:64px; }
+  }
+
+  /* ---------- MOBILE MENU ---------- */
+  #mobile-menu{
+    position:fixed; top:57px; left:0; right:0; z-index:49;
+    background:rgba(12,9,7,0.98); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    transform:translateY(-110%); visibility:hidden;
+    transition:transform .28s ease, visibility .28s;
+  }
+  body.nav-open #mobile-menu{ transform:translateY(0); visibility:visible; }
+  .mobile-nav-links{ list-style:none; padding:12px 20px 8px; }
+  .mobile-nav-links a{
+    display:block; padding:13px 4px; color:rgba(255,255,255,.82); font-size:15px;
+    font-weight:500; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.07);
+    transition:color .15s;
+  }
+  .mobile-nav-links a:hover{ color:#fff; }
+  .mobile-nav-links li:last-child a{ border-bottom:none; }
+  .mobile-nav-cta{
+    display:block; width:calc(100% - 40px); margin:8px 20px 20px;
+    background:var(--orange); color:#fff; border:none; border-radius:10px;
+    padding:13px; font-size:15px; font-weight:700; cursor:pointer;
+    font-family:'Inter'; text-align:center;
+  }
+  .mobile-nav-cta:hover{ background:var(--orange-deep); }
+
+  /* ---------- PLAN BENEFITS LIST ---------- */
+  .plan-benefits-list{ list-style:none; display:flex; flex-direction:column; gap:6px; margin:12px 0 16px; }
+  .plan-benefits-list li{ display:flex; gap:7px; align-items:flex-start; font-size:12px; color:var(--ink-soft); line-height:1.4; }
+  .plan-benefits-list .bik{ flex-shrink:0; font-size:13px; margin-top:1px; }
+  .plan-promo-note{ font-size:11.5px; color:var(--ink-soft); margin-bottom:10px; line-height:1.4; }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer{
+    background:#0a0806; border-top:1px solid rgba(255,255,255,0.08);
+    padding:52px 20px 0;
+  }
+  .site-footer-inner{
+    max-width:1200px; margin:0 auto;
+    display:grid; grid-template-columns:1fr; gap:36px; padding-bottom:48px;
+  }
+  .footer-brand-logo{
+    display:flex; align-items:center; text-decoration:none; margin-bottom:14px;
+  }
+  .footer-brand-logo img{ height:34px; width:auto; }
+  .footer-tagline{ font-size:13px; color:rgba(255,255,255,.4); line-height:1.6; max-width:210px; margin-bottom:20px; }
+  .footer-social{ display:flex; gap:8px; margin-bottom:20px; }
+  .footer-social a{
+    width:34px; height:34px; border-radius:7px; border:1px solid rgba(255,255,255,.12);
+    display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800;
+    color:rgba(255,255,255,.48); text-decoration:none; transition:border-color .15s, color .15s;
+    font-family:'Sora'; letter-spacing:-.01em;
+  }
+  .footer-social a:hover{ border-color:var(--orange); color:var(--orange); }
+  .footer-apps{ display:flex; gap:8px; flex-wrap:wrap; }
+  .footer-app-btn{
+    display:inline-flex; align-items:center; gap:9px;
+    border:1px solid rgba(255,255,255,.15); border-radius:9px;
+    padding:8px 13px; text-decoration:none; transition:border-color .15s;
+    background:rgba(255,255,255,.04);
+  }
+  .footer-app-btn:hover{ border-color:rgba(255,255,255,.35); }
+  .footer-app-ic{ font-size:18px; }
+  .footer-app-text{ display:flex; flex-direction:column; }
+  .footer-app-text small{ font-size:8.5px; color:rgba(255,255,255,.38); letter-spacing:.04em; text-transform:uppercase; line-height:1; }
+  .footer-app-text span{ font-size:12.5px; font-weight:600; color:#fff; line-height:1.3; }
+  .footer-col-title{
+    display:block; font-family:'Sora'; font-weight:700; font-size:11px;
+    text-transform:uppercase; letter-spacing:.09em;
+    color:rgba(255,255,255,.33); margin-bottom:14px;
+  }
+  .footer-links{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .footer-links a{ color:rgba(255,255,255,.56); font-size:13.5px; text-decoration:none; transition:color .15s; }
+  .footer-links a:hover{ color:#fff; }
+  .footer-divider{
+    max-width:1200px; margin:0 auto;
+    border:none; border-top:1px solid rgba(255,255,255,.07);
+  }
+  .footer-bottom{
+    max-width:1200px; margin:0 auto; padding:18px 0 28px;
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;
+    font-size:11.5px; color:rgba(255,255,255,.28);
+  }
+  .footer-bottom a{ color:rgba(255,255,255,.28); text-decoration:none; transition:color .15s; }
+  .footer-bottom a:hover{ color:rgba(255,255,255,.7); }
+  .footer-bottom-links{ display:flex; gap:16px; flex-wrap:wrap; }
+  @media(min-width:720px){
+    .site-footer-inner{ grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
+  }
+  @media(min-width:1080px){
+    .site-footer{ padding:60px 48px 0; }
+    .site-footer-inner{ padding-bottom:56px; }
+    .footer-bottom{ padding:20px 0 32px; }
+    #mobile-menu{ top:calc(36px + 57px); }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+<!-- Utility bar -->
+<div class="util-bar" role="navigation" aria-label="Segment navigácia">
+  <div class="util-bar-inner">
+    <div class="util-bar-left">
+      <a class="util-link util-link--active" href="#">Pre vás</a>
+      <a class="util-link" href="#">Pre biznis</a>
+    </div>
+    <div class="util-bar-right">
+      <a class="util-link" href="#">Kontakt</a>
+      <span class="util-divider" aria-hidden="true"></span>
+      <a class="util-link" href="#">Predajne</a>
+      <span class="util-divider" aria-hidden="true"></span>
+      <a class="util-link" href="#">Online benefity</a>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Hlavná navigácia">
+  <div class="nav-inner">
+
+    <a class="nav-logo" href="/" aria-label="Orange Slovensko — domov">
+      <img src="tender.lb.sk/logo.svg" alt="Orange" width="32" height="32" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#">Volania a paušály</a></li>
+
+      <li class="has-mega">
+        <button class="nav-mega-trigger" aria-expanded="false" aria-haspopup="true">
+          Internet, TV <span class="chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="mega-menu" role="menu">
+          <div>
+            <span class="mega-col-title">Internet</span>
+            <a href="#coverage-anchor" role="menuitem">Internet na doma</a>
+            <a href="#coverage-anchor" role="menuitem">Mobilný internet</a>
+            <a href="#coverage-anchor" role="menuitem">Domáci 5GNet</a>
+            <a href="#coverage-anchor" role="menuitem">Wi-Fi Mesh</a>
+          </div>
+          <div>
+            <span class="mega-col-title">Televízia</span>
+            <a href="#" role="menuitem">FiberTV</a>
+            <a href="#" role="menuitem">TV cez satelit</a>
+            <a href="#" role="menuitem">TV cez internet</a>
+          </div>
+          <div>
+            <span class="mega-col-title">Kombinácia</span>
+            <a href="#" role="menuitem">Internet + TV</a>
+            <a href="#" role="menuitem">Ponuka Love</a>
+            <a href="#" role="menuitem">Ste náš zákazník?</a>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="#">Love</a></li>
+      <li><a href="#">Telefóny a zariadenia</a></li>
+      <li><a href="#">Služby</a></li>
+      <li><a href="#faq">Pomoc</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="nav-search-btn" aria-label="Hľadať">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+      <a class="nav-moj-orange" href="#">Môj Orange</a>
+      <button class="menu-dot" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otvoriť menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+</header>
+
+<div id="mobile-menu" aria-hidden="true">
+  <ul class="mobile-nav-links" role="list">
+    <li><a href="#coverage-anchor">Pokrytie</a></li>
+    <li><a href="#plans-anchor">Balíky internetu</a></li>
+    <li><a href="#challenge-anchor">Hockey Challenge</a></li>
+    <li><a href="#faq">Časté otázky</a></li>
+  </ul>
+  <button class="mobile-nav-cta" onclick="document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'}); closeMenu()">
+    Skontrolovať dostupnosť
+  </button>
+</div>
+
+<!-- 1. HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">🏒 Hokejová sezóna · Orange Internet</div>
+      <h1>Sused kričí skôr, než to uvidíte v telke.<span class="je-tam">Je tam!</span></h1>
+      <p><b>S rýchlym Orange internetom máte vždy náskok.</b> Zadajte adresu a zistite, akú rýchlosť u vás vieme spustiť.</p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="address-box">
+        <label for="addr-hero">Vaša adresa</label>
+        <div class="address-row">
+          <input id="addr-hero" type="text" placeholder="Ulica, číslo, mesto">
+          <button onclick="document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">→</button>
+        </div>
+        <div class="address-hint">Dostupnosť zistíme okamžite, bez záväzku</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><b>500k+</b><span>domácností</span></div>
+        <div class="stat"><b>4.6★</b><span>hodnotenie</span></div>
+        <div class="stat"><b>2500</b><span>Mbit/s max</span></div>
+        <div class="stat"><b>14 dní</b><span>na vrátenie</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ORANGE HOCKEY CHALLENGE -->
+<div class="challenge" id="challenge-anchor">
+  <div class="challenge-inner">
+    <div class="challenge-copy">
+      <div class="eyebrow">Otestuj sa</div>
+      <h2>Orange Hockey Challenge</h2>
+      <p>Otestuj svoju reakčnú rýchlosť. Buď najrýchlejší a vyhraj zájazd na finále MS v hokeji IIHF 2027.</p>
+
+      <div class="reward-row">
+        <div class="reward-chip"><span class="ic">✈️</span>Zájazd na finále IIHF 2027</div>
+        <div class="reward-chip"><span class="ic">📶</span>Internet na 3 mesiace za 1 €</div>
+        <div class="reward-chip"><span class="ic">🏒</span>Šanca na dres s podpisom</div>
+      </div>
+    </div>
+
+    <div class="challenge-visual">
+    <div class="game-box" id="gameBox">
+      <div id="gameActive">
+        <div class="game-msg" id="gameMsg">Klikni na vhadzovací kruh a spusti výzvu</div>
+        <button class="puck-btn" id="puckBtn" onclick="handlePuckClick()">
+          <svg viewBox="0 0 200 200">
+            <line class="fo-tick" x1="80" y1="0" x2="80" y2="26"/>
+            <line class="fo-tick" x1="120" y1="0" x2="120" y2="26"/>
+            <line class="fo-tick" x1="80" y1="174" x2="80" y2="200"/>
+            <line class="fo-tick" x1="120" y1="174" x2="120" y2="200"/>
+            <circle class="fo-circle" cx="100" cy="100" r="88"/>
+            <line class="fo-cross" x1="70" y1="80" x2="88" y2="80"/>
+            <line class="fo-cross" x1="70" y1="80" x2="70" y2="98"/>
+            <line class="fo-cross" x1="130" y1="80" x2="112" y2="80"/>
+            <line class="fo-cross" x1="130" y1="80" x2="130" y2="98"/>
+            <line class="fo-cross" x1="70" y1="120" x2="88" y2="120"/>
+            <line class="fo-cross" x1="70" y1="120" x2="70" y2="102"/>
+            <line class="fo-cross" x1="130" y1="120" x2="112" y2="120"/>
+            <line class="fo-cross" x1="130" y1="120" x2="130" y2="102"/>
+            <circle class="fo-dot" cx="100" cy="100" r="6"/>
+          </svg>
+        </button>
+        <div class="puck-label" id="puckLabel">Štart</div>
+        <div class="game-sub">Keď kruh zažiari, klikni čo najrýchlejšie</div>
+      </div>
+
+      <div class="result-panel" id="resultPanel">
+        <div class="result-time" id="resultTime">—<span>ms</span></div>
+        <div class="result-tier" id="resultTier">—</div>
+        <div class="result-percentile" id="resultPercentile">—</div>
+        <div class="result-perks" id="resultPerks"></div>
+
+        <div class="lb-save" id="lbSave">
+          <input id="lbName" type="text" maxlength="20" placeholder="Tvoja prezývka (napr. Fanúšik76)">
+          <button class="cta-outline" onclick="saveScore()">🏆 Uložiť do TOP 10</button>
+          <div class="lb-note">Rebríček je verejný — prezývka a čas budú viditeľné pre všetkých hráčov.</div>
+        </div>
+        <div class="lb-saved" id="lbSaved">✓ Tvoj čas je zapísaný v rebríčku</div>
+
+        <div class="game-ctas" style="flex-direction:column;">
+          <button class="cta-primary" onclick="alert('Demo: prihlásenie do súťaže o dres s podpisom')">🏒 Zapojiť sa do súťaže o dres</button>
+          <button class="cta-outline" id="claimBtn" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
+        </div>
+        <div class="restart" style="margin-top:14px;"><button onclick="resetGame()" style="color:rgba(255,255,255,.6);">Skúsiť znova</button></div>
+      </div>
+    </div>
+
+    <div class="leaderboard-box">
+      <div class="lb-head">
+        <span class="ic">🏆</span>TOP 10 najrýchlejších
+      </div>
+      <div id="lbList" class="lb-list"><div class="lb-loading">Načítavam rebríček…</div></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. COVERAGE + MAP -->
+<section class="sec" id="coverage-anchor">
+  <div class="sec-head">
+    <div class="eyebrow">Dostupnosť</div>
+    <h2>Overte si pokrytie vo vašej lokalite</h2>
+    <p>Zadajte adresu alebo si pozrite orientačnú mapu pokrytia nižšie.</p>
+  </div>
+
+  <div class="coverage-form">
+    <div class="address-row">
+      <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
+      <button onclick="alert('Demo: kontrola dostupnosti pre zadanú adresu')">Skontrolovať</button>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-legend">
+      <div class="li"><span class="dot on"></span>Pokryté optikou</div>
+      <div class="li"><span class="dot soon"></span>Pripravujeme</div>
+    </div>
+    <svg class="sk-map" id="skMap" viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="skClip">
+          <path d="M20,60 L35,40 L50,25 L70,15 L90,10 L110,8 L130,18 L150,10 L170,15 L190,10 L210,20 L230,15 L255,25 L270,45 L260,65 L245,80 L220,95 L195,110 L170,120 L145,115 L120,110 L95,105 L70,95 L50,85 L35,75 Z"/>
+        </clipPath>
+      </defs>
+      <path class="sk-outline" d="M20,60 L35,40 L50,25 L70,15 L90,10 L110,8 L130,18 L150,10 L170,15 L190,10 L210,20 L230,15 L255,25 L270,45 L260,65 L245,80 L220,95 L195,110 L170,120 L145,115 L120,110 L95,105 L70,95 L50,85 L35,75 Z"/>
+      <g clip-path="url(#skClip)" id="skDots"></g>
+      <g id="skCities"></g>
+    </svg>
+    <div class="city-pins" id="cityPins"></div>
+    <div class="pin-info" id="pinInfo"></div>
+  </div>
+</section>
+
+<!-- 4. BALÍKY INTERNETU -->
+<section class="sec" id="plans-anchor">
+  <div class="sec-head">
+    <div class="eyebrow">Optický FiberNet</div>
+    <h2>Internet na doma</h2>
+    <p>Štyri plány pre každú domácnosť. Neobmedzený objem dát, Wi-Fi 7 router a online zľava. Viazanosť 24 mesiacov.</p>
+  </div>
+
+  <div class="plans">
+
+    <!-- Internet M -->
+    <div class="plan">
+      <div class="plan-top">
+        <div><div class="plan-name2">Internet M</div><div class="plan-speed2">100 / 40 Mbit/s</div></div>
+        <div class="plan-price"><div class="now" style="font-size:18px;">od 18 € <span>/mes.</span></div></div>
+      </div>
+      <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
+      <ul class="plan-benefits-list">
+        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">🔒</span>Online ochrana Doma</li>
+        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+      </ul>
+      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
+      <div class="plan-ctas">
+        <button class="cta-primary">Vybrať</button>
+        <button class="cta-secondary">Viac info</button>
+      </div>
+    </div>
+
+    <!-- Internet L — Odporúčame -->
+    <div class="plan reco">
+      <div class="ribbon">Odporúčame</div>
+      <div class="plan-top">
+        <div><div class="plan-name2">Internet L</div><div class="plan-speed2">600 / 150 Mbit/s</div></div>
+        <div class="plan-price"><div class="now" style="font-size:18px;">od 22 € <span>/mes.</span></div></div>
+      </div>
+      <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
+      <ul class="plan-benefits-list">
+        <li><span class="bik">🎁</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">🔒</span>Online ochrana Doma</li>
+        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+      </ul>
+      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+      <div class="plan-ctas">
+        <button class="cta-primary">Vybrať</button>
+        <button class="cta-secondary">Viac info</button>
+      </div>
+    </div>
+
+    <!-- Internet XL -->
+    <div class="plan">
+      <div class="plan-top">
+        <div><div class="plan-name2">Internet XL</div><div class="plan-speed2">1 000 / 500 Mbit/s</div></div>
+        <div class="plan-price"><div class="now" style="font-size:18px;">od 26 € <span>/mes.</span></div></div>
+      </div>
+      <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
+      <ul class="plan-benefits-list">
+        <li><span class="bik">🎁</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">🔒</span>Online ochrana Doma</li>
+        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+      </ul>
+      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+      <div class="plan-ctas">
+        <button class="cta-primary">Vybrať</button>
+        <button class="cta-secondary">Viac info</button>
+      </div>
+    </div>
+
+    <!-- Internet XL Extra -->
+    <div class="plan" style="border-color:var(--orange-deep); box-shadow:0 0 0 3px rgba(255,102,0,.15);">
+      <div class="plan-top" style="margin-bottom:6px;">
+        <div>
+          <div class="plan-name2">Internet XL Extra</div>
+          <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
+        </div>
+        <div class="plan-price">
+          <div class="now">23 € <span>/ 3 mes.</span></div>
+          <div class="was" style="font-size:11px;">potom 30 €/mes.</div>
+        </div>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
+        ⚡ Online zľava · Prémiová inštalácia zadarmo
+      </div>
+      <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
+      <ul class="plan-benefits-list">
+        <li><span class="bik">⭐</span>3 mesiace za 23 €, potom 30 €/mes.</li>
+        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">🔧</span>Zriadenie pripojenia zadarmo</li>
+        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">🛠️</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
+        <li><span class="bik">🔒</span>Online ochrana Doma</li>
+        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+      </ul>
+      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
+      <div class="plan-ctas">
+        <button class="cta-primary">Vybrať</button>
+        <button class="cta-secondary">Viac info</button>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;font-size:12px;color:var(--ink-soft);margin-top:20px;">
+    Všetky ceny sú s DPH. Online zľava platí pri objednávke cez orange.sk. Viazanosť 24 mesiacov.
+  </p>
+</section>
+
+<!-- 5. AK SI NEVIETE PORADIŤ -->
+<section class="sec" id="quiz-anchor">
+  <div class="sec-head center">
+    <div class="eyebrow">2 minúty</div>
+    <h2>Ak si neviete poradiť, my vám poradíme.</h2>
+    <p>Odpovedzte na 4 krátke otázky a odporučíme vám presne ten balík, ktorý vaša domácnosť potrebuje.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div id="quiz-active">
+      <div class="gauge-wrap">
+        <svg id="gauge" viewBox="0 0 200 120">
+          <path class="gauge-track" d="M20,110 A80,80 0 0,1 180,110"/>
+          <path class="gauge-fill" id="gaugeFill" d="M20,110 A80,80 0 0,1 180,110" stroke-dasharray="0 251"/>
+          <text x="100" y="90" text-anchor="middle" class="gauge-num" id="gaugeNum">0</text>
+          <text x="100" y="106" text-anchor="middle" class="gauge-unit">odhad Mbit/s</text>
+        </svg>
+      </div>
+      <div class="progress-dots" id="dots"></div>
+      <div id="q-container"></div>
+      <div class="q-nav">
+        <button class="btn-ghost" id="backBtn" onclick="goBack()">← späť</button>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="result" id="result">
+      <span class="result-badge">✓ Odporúčanie pripravené</span>
+      <h3 id="resPlanName">—</h3>
+      <p class="why" id="resWhy">—</p>
+      <div class="price-card">
+        <div class="top-row">
+          <div>
+            <div class="plan-name" id="resPlanName2">—</div>
+            <div class="plan-speed" id="resSpeed">—</div>
+          </div>
+          <div class="price">
+            <div class="was" id="resWas">—</div>
+            <div class="first-month" id="resPromo">1 € / 1. mesiac</div>
+            <div class="then" id="resThen">potom bežná cena</div>
+          </div>
+        </div>
+        <div class="benefits">
+          <div class="benefit"><span class="bic">%</span>Zľava z poplatku</div>
+          <div class="benefit"><span class="bic">🎁</span>Kupón na zariadenie</div>
+          <div class="benefit"><span class="bic">🛠️</span>Zriadenie zadarmo</div>
+        </div>
+      </div>
+      <div class="addon" id="addonBox" style="display:none;">
+        🔒 <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
+      </div>
+      <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
+      <button class="cta-primary" onclick="alert('Demo: tu by pokračovala objednávka s predvyplneným balíkom '+state.result.name)">Objednať s 1 € na prvý mesiac</button>
+      <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PROCES -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow">Proces</div>
+    <h2>Ako funguje online objednávka internetu</h2>
+    <p>Transparentne — vrátane toho, kedy k vám príde človek, nie len router poštou.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><div class="txt"><b>Objednáte si internet online</b><span>Cez výzvu, quiz alebo priamym výberom balíka — trvá pár minút.</span></div></div>
+    <div class="step"><div class="num">2</div><div class="txt"><b>Kuriér prinesie zmluvu</b><span>Do 3 pracovných dní vám doručí dokumenty na podpis.</span></div></div>
+    <div class="step"><div class="num">3</div><div class="txt"><b>Technik vás kontaktuje</b><span>Dohodnete si presný termín inštalácie, ktorý vám vyhovuje.</span></div></div>
+    <div class="step"><div class="num">4</div><div class="txt"><b>Pripojenie a nastavenie Wi-Fi</b><span>Technik zapojí router priamo u vás a overí funkčnosť signálu.</span></div></div>
+    <div class="step"><div class="num">5</div><div class="txt"><b>14 dní na rozmyslenie</b><span>Ak nebudete spokojní, môžete službu bezplatne vrátiť.</span></div></div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow">Časté otázky</div>
+    <h2>Najčastejšie otázky</h2>
+  </div>
+  <div id="faq"></div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+
+    <!-- Brand + social + apps -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="/" aria-label="Orange Slovensko — domov">
+        <img src="tender.lb.sk/logo.svg" alt="Orange" width="38" height="38" />
+      </a>
+      <p class="footer-tagline">Rýchly optický internet, TV a mobilné služby pre celé Slovensko.</p>
+
+      <nav class="footer-social" aria-label="Sociálne siete">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Twitter / X">𝕏</a>
+      </nav>
+
+      <div class="footer-apps">
+        <a class="footer-app-btn" href="#" aria-label="Stiahnuť z App Store">
+          <span class="footer-app-ic">🍎</span>
+          <span class="footer-app-text">
+            <small>Dostupné na</small>
+            <span>App Store</span>
+          </span>
+        </a>
+        <a class="footer-app-btn" href="#" aria-label="Stiahnuť z Google Play">
+          <span class="footer-app-ic">▶</span>
+          <span class="footer-app-text">
+            <small>Získať na</small>
+            <span>Google Play</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- E-shop -->
+    <div>
+      <span class="footer-col-title">E-shop</span>
+      <ul class="footer-links" role="list">
+        <li><a href="#">Telefóny</a></li>
+        <li><a href="#">Prenos čísla</a></li>
+        <li><a href="#plans-anchor">Optický internet</a></li>
+        <li><a href="#">Orange TV</a></li>
+        <li><a href="#">Akciové ponuky</a></li>
+        <li><a href="#">Sledovanie objednávky</a></li>
+      </ul>
+    </div>
+
+    <!-- Služby -->
+    <div>
+      <span class="footer-col-title">Služby</span>
+      <ul class="footer-links" role="list">
+        <li><a href="#">Predajne</a></li>
+        <li><a href="#">Porovnanie paušálov</a></li>
+        <li><a href="#">Roaming</a></li>
+        <li><a href="#">Môj Orange</a></li>
+        <li><a href="#coverage-anchor">Mapa pokrytia</a></li>
+        <li><a href="#">Online benefity</a></li>
+      </ul>
+    </div>
+
+    <!-- Pomoc + O nás -->
+    <div>
+      <span class="footer-col-title">Pomoc & O nás</span>
+      <ul class="footer-links" role="list">
+        <li><a href="#faq">Časté otázky</a></li>
+        <li><a href="#">Cenník</a></li>
+        <li><a href="#">Reklamácie</a></li>
+        <li><a href="#">GDPR</a></li>
+        <li><a href="#">Kariéra</a></li>
+        <li><a href="#">Spoločenská zodpovednosť</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <hr class="footer-divider" />
+
+  <div class="footer-bottom">
+    <span>© 1997 – 2026 Orange Slovensko a.s.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Kontakt</a>
+      <a href="#">Predajne</a>
+      <a href="#">Správa osobných údajov</a>
+      <a href="#">Všeobecné podmienky</a>
+      <a href="#">Informácie pre koncových užívateľov</a>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="sticky-cta-inner">
+    <div class="txt"><b>Prvý mesiac za 1 €</b><span>Overte dostupnosť a vyberte balík</span></div>
+    <button onclick="document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť</button>
+  </div>
+</div>
+
+<script>
+/* ================= HOCKEY CHALLENGE GAME ================= */
+let gameState = 'idle'; // idle | waiting | ready
+let startTime = 0;
+let waitTimeout = null;
+
+function handlePuckClick(){
+  const btn = document.getElementById('puckBtn');
+  const msg = document.getElementById('gameMsg');
+  const label = document.getElementById('puckLabel');
+
+  if(gameState === 'idle'){
+    gameState = 'waiting';
+    label.textContent = '...';
+    msg.textContent = 'Priprav sa...';
+    const delay = 1000 + Math.random()*2000;
+    waitTimeout = setTimeout(()=>{
+      gameState = 'ready';
+      btn.classList.add('ready');
+      label.textContent = 'Teraz!';
+      msg.innerHTML = '<span class="je-tam" style="font-size:19px;">JE TAM!</span>';
+      startTime = performance.now();
+    }, delay);
+  } else if(gameState === 'waiting'){
+    clearTimeout(waitTimeout);
+    gameState = 'idle';
+    label.textContent = 'Štart';
+    btn.classList.remove('ready');
+    msg.textContent = 'Predčasný štart! Skús to znova.';
+  } else if(gameState === 'ready'){
+    const reaction = Math.round(performance.now() - startTime);
+    clearTimeout(waitTimeout);
+    gameState = 'idle';
+    btn.classList.remove('ready');
+    label.textContent = 'Štart';
+    msg.textContent = 'Klikni na vhadzovací kruh a spusti výzvu';
+    showGameResult(reaction);
+  }
+}
+
+function showGameResult(reaction){
+  document.getElementById('gameActive').style.display = 'none';
+  const panel = document.getElementById('resultPanel');
+  panel.classList.add('show');
+  lastReaction = reaction;
+
+  document.getElementById('resultTime').innerHTML = reaction + '<span>ms</span>';
+
+  let tier, percentile, perks;
+  if(reaction <= 350){
+    tier = 'Elitná rýchlosť 🏆';
+    percentile = 'Rýchlejšie ako väčšina hráčov výzvy';
+    perks = [
+      {ic:'✈️', txt:'Postupuješ do žrebovania o zájazd na finále MS IIHF 2027', locked:false},
+      {ic:'📶', txt:'Internet na 3 mesiace za 1 € pri aktivácii', locked:false},
+      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+    ];
+  } else if(reaction <= 600){
+    tier = 'Slušný čas 👍';
+    percentile = 'Nad priemerom väčšiny hráčov';
+    perks = [
+      {ic:'✈️', txt:'Zájazd na IIHF 2027 — skús znova pre lepší čas', locked:true},
+      {ic:'📶', txt:'1. mesiac internetu za 1 € pri aktivácii', locked:false},
+      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+    ];
+  } else {
+    tier = 'Skús to znova ⏱️';
+    percentile = 'O chvíľu môžeš byť rýchlejší';
+    perks = [
+      {ic:'✈️', txt:'Zájazd na IIHF 2027 — potrebuješ rýchlejší čas', locked:true},
+      {ic:'📶', txt:'1. mesiac internetu za 1 € pri aktivácii', locked:false},
+      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+    ];
+  }
+
+  document.getElementById('resultTier').textContent = tier;
+  document.getElementById('resultPercentile').textContent = percentile;
+  document.getElementById('resultPerks').innerHTML = perks.map(p=>`
+    <div class="perk ${p.locked?'locked':''}"><span class="ic">${p.ic}</span>${p.txt}</div>
+  `).join('');
+
+  document.getElementById('lbSave').classList.add('show');
+  document.getElementById('lbSaved').classList.remove('show');
+}
+
+function resetGame(){
+  document.getElementById('resultPanel').classList.remove('show');
+  document.getElementById('gameActive').style.display = 'block';
+  document.getElementById('lbSave').classList.remove('show');
+  document.getElementById('lbSaved').classList.remove('show');
+  gameState = 'idle';
+}
+
+/* ---------- LEADERBOARD (shared, persists across everyone who opens this page) ---------- */
+let lastReaction = null;
+const LB_KEY = 'orange-hockey-challenge-leaderboard';
+
+async function loadLeaderboard(){
+  try{
+    const res = await window.storage.get(LB_KEY, true);
+    const arr = res && res.value ? JSON.parse(res.value) : [];
+    renderLeaderboard(arr.length ? arr : sampleLeaderboard);
+  } catch(err){
+    renderLeaderboard(sampleLeaderboard);
+  }
+}
+
+function renderLeaderboard(arr){
+  const listEl = document.getElementById('lbList');
+  const top = arr.slice(0, 10);
+  if(top.length === 0){
+    listEl.innerHTML = '<div class="lb-empty">Zatiaľ nikto — buď prvý v rebríčku!</div>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  listEl.innerHTML = top.map((e,i)=>`
+    <div class="lb-row ${i===0?'r1':i===1?'r2':i===2?'r3':''}">
+      <div class="lb-rank">${medals[i] || (i+1)}</div>
+      <div class="lb-name">${escapeHtml(e.name)}</div>
+      <div class="lb-time">${e.time} ms</div>
+    </div>
+  `).join('');
+}
+
+const sampleLeaderboard = [
+  { name:'PospisilFan76', time:214 },
+  { name:'RychlyKosice',  time:239 },
+  { name:'HokejovyOco',   time:251 },
+  { name:'Zilina_Ultra',  time:268 },
+  { name:'MamaNaTribune', time:284 },
+  { name:'PukPreletel',   time:297 },
+  { name:'BratislavaBoys',time:312 },
+  { name:'DresCislo76',   time:329 },
+  { name:'NitraNaJe',     time:341 },
+  { name:'PomalyAleVerny',time:478 },
+];
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+async function saveScore(){
+  if(lastReaction === null) return;
+  const nameInput = document.getElementById('lbName');
+  const name = (nameInput.value || '').trim().slice(0,20) || ('Fanúšik' + Math.floor(Math.random()*9000+1000));
+
+  try{
+    let arr = [];
+    try{
+      const res = await window.storage.get(LB_KEY, true);
+      arr = res && res.value ? JSON.parse(res.value) : [];
+    } catch(err){ arr = []; }
+
+    arr.push({ name, time: lastReaction, ts: Date.now() });
+    arr.sort((a,b)=>a.time - b.time);
+    arr = arr.slice(0, 50); // keep a buffer beyond top 10
+
+    await window.storage.set(LB_KEY, JSON.stringify(arr), true);
+    renderLeaderboard(arr);
+
+    document.getElementById('lbSave').classList.remove('show');
+    document.getElementById('lbSaved').classList.add('show');
+  } catch(err){
+    alert('Rebríček sa nepodarilo uložiť, skús to prosím znova.');
+  }
+}
+
+loadLeaderboard();
+
+/* ================= COVERAGE MAP (Slovakia-shaped) ================= */
+(function(){
+  const dotsG = document.getElementById('skDots');
+  let html = '';
+  for(let x = 4; x <= 296; x += 7){
+    for(let y = 4; y <= 136; y += 7){
+      const r = Math.random();
+      const cls = r > 0.15 ? 'sk-dot' : 'sk-dot soon';
+      html += `<rect class="${cls}" x="${x-2}" y="${y-2}" width="4" height="4" rx="1"/>`;
+    }
+  }
+  dotsG.innerHTML = html;
+})();
+
+const cities = [
+  { name:'Bratislava', cx:25, cy:63, info:'Optický internet aj FiberNet dostupné v celom meste. Max. rýchlosť 2 500 Mbit/s.' },
+  { name:'Žilina', cx:118, cy:34, info:'Pokrytie sa priebežne rozširuje. V centre už dostupný optický internet.' },
+  { name:'Košice', cx:248, cy:50, info:'Optický internet dostupný vo väčšine mestských častí. Max. rýchlosť 1 000 Mbit/s.' },
+];
+document.getElementById('skCities').innerHTML = cities.map((c,i)=>
+  `<circle class="city-dot" id="citydot-${i}" cx="${c.cx}" cy="${c.cy}" r="4.5" onclick="selectPin(${i})"/>`
+).join('');
+const pinsEl = document.getElementById('cityPins');
+pinsEl.innerHTML = cities.map((c,i)=>`<button class="pin" id="pin-${i}" onclick="selectPin(${i})">📍 ${c.name}</button>`).join('');
+function selectPin(i){
+  cities.forEach((_,j)=>{
+    document.getElementById('pin-'+j).classList.toggle('active', j===i);
+    document.getElementById('citydot-'+j).classList.toggle('active', j===i);
+  });
+  const info = document.getElementById('pinInfo');
+  info.innerHTML = `<b>${cities[i].name}:</b> ${cities[i].info}`;
+  info.classList.add('show');
+}
+
+/* ================= QUIZ ================= */
+const questions = [
+  { key:'usage', title:'Čo u vás doma najčastejšie internet rieši?', cols:2, opts:[
+      {ic:'🎬', label:'Streaming filmov a seriálov', v:'stream'},
+      {ic:'🎮', label:'Hranie hier online', v:'gaming'},
+      {ic:'🏒', label:'Šport a hokej naživo', v:'sport'},
+      {ic:'🌐', label:'Bežné surfovanie, email', v:'basic'},
+  ]},
+  { key:'devices', title:'Koľko zariadení máte doma pripojených na Wi-Fi?', cols:2, opts:[
+      {ic:'📱', label:'1 – 3 zariadenia', v:1},
+      {ic:'💻', label:'4 – 6 zariadení', v:2},
+      {ic:'🖥️', label:'7 – 10 zariadení', v:3},
+      {ic:'📡', label:'Viac ako 10', v:4},
+  ]},
+  { key:'connection', title:'Pripájate sa väčšinou cez kábel, alebo Wi-Fi?', cols:1, opts:[
+      {ic:'🔌', label:'Prevažne kábel (PC, konzola, TV)', v:'cable'},
+      {ic:'📶', label:'Prevažne Wi-Fi', v:'wifi'},
+      {ic:'🔀', label:'Oboje rovnako', v:'both'},
+  ]},
+  { key:'security', title:'Je pre vás dôležitá bezpečnosť a rodičovská kontrola?', cols:1, opts:[
+      {ic:'🔒', label:'Áno, chcem ochranu pre celú domácnosť', v:'yes'},
+      {ic:'🤷', label:'Nie som si istý / zatiaľ neriešim', v:'unsure'},
+      {ic:'➖', label:'Nie, neriešim', v:'no'},
+  ]}
+];
+const state = { step:0, answers:{}, result:null };
+
+function renderQuestion(){
+  const q = questions[state.step];
+  const container = document.getElementById('q-container');
+  container.innerHTML = `
+    <div class="q-title">${q.title}</div>
+    <div class="opts ${q.cols===1?'single-col':''}">
+      ${q.opts.map(o=>`
+        <div class="opt" onclick="answer('${q.key}', ${typeof o.v === 'string' ? `'${o.v}'` : o.v})">
+          <span class="ic">${o.ic}</span>${o.label}
+        </div>`).join('')}
+    </div>
+  `;
+  document.getElementById('backBtn').disabled = state.step === 0;
+  renderDots();
+  updateGauge();
+}
+function renderDots(){
+  const dots = document.getElementById('dots');
+  dots.innerHTML = questions.map((_,i)=>{
+    let cls = '';
+    if(i < state.step) cls = 'done';
+    if(i === state.step) cls = 'active';
+    return `<span class="${cls}"></span>`;
+  }).join('');
+}
+function updateGauge(progressOverride){
+  const fill = document.getElementById('gaugeFill');
+  const num = document.getElementById('gaugeNum');
+  const total = 251;
+  const progress = progressOverride !== undefined ? progressOverride : state.step / questions.length;
+  const val = Math.round(progress * (state.result ? state.result.speed : 300));
+  fill.setAttribute('stroke-dasharray', `${total*progress} ${total}`);
+  num.textContent = state.result ? state.result.speed : val;
+}
+function answer(key, value){
+  state.answers[key] = value;
+  if(state.step < questions.length - 1){
+    state.step++;
+    renderQuestion();
+  } else {
+    computeResult();
+    showResult();
+  }
+}
+function goBack(){ if(state.step > 0){ state.step--; renderQuestion(); } }
+function computeResult(){
+  const a = state.answers;
+  let score = 0;
+  if(a.usage === 'stream') score += 2;
+  if(a.usage === 'gaming') score += 3;
+  if(a.usage === 'sport') score += 2;
+  score += (a.devices || 1);
+  if(a.connection === 'wifi' || a.connection === 'both') score += 1;
+
+  let plan;
+  if(score >= 7){
+    plan = { name:'Internet XL Extra', speed_display:'2500/1000 Mbit/s', speed:2500, was:'30 €/mes.', why:'Veľa zariadení naraz + hranie hier alebo streamy si žiadajú maximálnu rýchlosť a stabilitu bez výpadkov.', then:'30 €/mes. od 4. mesiaca' };
+  } else if(score >= 4){
+    plan = { name:'Internet XL', speed_display:'300/30 Mbit/s', speed:300, was:'23 €/mes.', why:'Kombinácia streamovania, hokeja naživo a viacerých zariadení — ideálny pomer rýchlosti a ceny.', then:'23 €/mes. od 4. mesiaca' };
+  } else {
+    plan = { name:'Internet Basic', speed_display:'50/10 Mbit/s', speed:50, was:'15 €/mes.', why:'Na bežné surfovanie, email a menej zariadení vám táto rýchlosť bohato postačí.', then:'15 €/mes. od 4. mesiaca' };
+  }
+  plan.security = a.security === 'yes';
+  state.result = plan;
+}
+function showResult(){
+  document.getElementById('quiz-active').style.display = 'none';
+  const r = document.getElementById('result');
+  r.classList.add('show');
+  document.getElementById('resPlanName').textContent = state.result.name;
+  document.getElementById('resPlanName2').textContent = state.result.name;
+  document.getElementById('resSpeed').textContent = state.result.speed_display;
+  document.getElementById('resWhy').textContent = state.result.why;
+  document.getElementById('resThen').textContent = state.result.then;
+  document.getElementById('resWas').textContent = state.result.was;
+  if(state.result.security){ document.getElementById('addonBox').style.display = 'flex'; }
+  updateGauge(1);
+}
+function restartQuiz(){
+  state.step = 0; state.answers = {}; state.result = null;
+  document.getElementById('result').classList.remove('show');
+  document.getElementById('quiz-active').style.display = 'block';
+  renderQuestion();
+}
+renderQuestion();
+
+/* ================= FAQ ================= */
+const faqData = [
+  { q:'Aký je rozdiel medzi Internetom XL a XL Extra?', a:'XL Extra ponúka až 2 500 Mbit/s a symetrické odosielanie do 1 000 Mbit/s — hodí sa pri viacerých 4K streamoch, hraní online hier a plne pripojenej smart domácnosti naraz. XL s 300 Mbit/s pokryje bežné potreby rodiny bez kompromisov.' },
+  { q:'Ako funguje Orange Hockey Challenge?', a:'Otestujete si reakčnú rýchlosť priamo na stránke. Najrýchlejší účastníci postupujú do žrebovania o zájazd na finále MS IIHF 2027 a získavajú internet na 3 mesiace za 1 €. Každý účastník má zároveň šancu na dres s podpisom.' },
+  { q:'Ako dlho trvá inštalácia od objednávky?', a:'Kuriér vám doručí zmluvu do 3 pracovných dní. Termín inštalácie si následne dohodnete s technikom podľa toho, čo vám vyhovuje.' },
+  { q:'Čo ak optický internet u mňa nie je dostupný?', a:'Overíme to hneď po zadaní adresy. Ak optika nie je dostupná, ponúkneme alternatívne technológie alebo vás upozorníme, keď bude pokrytie k dispozícii.' },
+  { q:'Platí zľava 1 € aj bez viazanosti?', a:'Zvýhodnená cena prvého mesiaca je viazaná na zmluvu na 24 mesiacov. Bez viazanosti je dostupná bežná cenová ponuka.' },
+  { q:'Môžem si internet vyskúšať a vrátiť ho?', a:'Áno — do 14 dní od aktivácie máte možnosť službu bezplatne vrátiť bez udania dôvodu.' },
+];
+document.getElementById('faq').innerHTML = faqData.map((item,i)=>`
+  <div class="faq-item" id="faq-${i}">
+    <button class="faq-q" onclick="toggleFaq(${i})">${item.q}<span class="chev">+</span></button>
+    <div class="faq-a"><p>${item.a}</p></div>
+  </div>
+`).join('');
+function toggleFaq(i){ document.getElementById('faq-'+i).classList.toggle('open'); }
+
+/* ================= SCROLL HIDE NAV ================= */
+(function(){
+  var header = document.getElementById('site-header');
+  var lastY = 0;
+  var ticking = false;
+
+  function update(){
+    var y = window.scrollY;
+    if(y < 60){
+      header.classList.remove('nav-scrolled');
+    } else if(y > lastY){
+      header.classList.add('nav-scrolled');    /* scrolling down → hide util-bar */
+    } else {
+      header.classList.remove('nav-scrolled'); /* scrolling up → show full header */
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive:true });
+})();
+
+/* ================= HAMBURGER MENU ================= */
+(function(){
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if(!btn || !menu) return;
+
+  function closeMenu(){
+    document.body.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+  }
+  window.closeMenu = closeMenu;
+
+  btn.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.setAttribute('aria-hidden',  open ? 'false' : 'true');
+  });
+
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', function(e){
+    if(document.body.classList.contains('nav-open')
+       && !e.target.closest('nav')
+       && !e.target.closest('#mobile-menu')){
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
+
+</body>
+</html>
