@@ -47,7 +47,7 @@
 
   /* ---------- NAV ---------- */
   nav{
-    padding:16px 20px; background:rgba(16,14,12,0.92); backdrop-filter:blur(10px);
+    padding:16px 20px; background:#000000;
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
   .logo{ font-family:'Sora'; font-weight:800; font-size:22px; color:var(--orange); }
@@ -461,7 +461,7 @@
   @media(prefers-reduced-motion:reduce){ #site-header{ transition:none; } }
 
   .util-bar{
-    display:none; background:#0a0806;
+    display:none; background:#000000;
     border-bottom:1px solid rgba(255,255,255,0.07);
     padding:0 20px;
   }
@@ -611,7 +611,7 @@
 
   /* ---------- FOOTER ---------- */
   .site-footer{
-    background:#0a0806; border-top:1px solid rgba(255,255,255,0.08);
+    background:#000000; border-top:1px solid rgba(255,255,255,0.08);
     padding:52px 20px 0;
   }
   .site-footer-inner{
@@ -769,26 +769,23 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="eyebrow">🏒 Hokejová sezóna · Orange Internet</div>
-      <h1>Sused kričí skôr, než to uvidíte v telke.<span class="je-tam">Je tam!</span></h1>
-      <p><b>S rýchlym Orange internetom máte vždy náskok.</b> Zadajte adresu a zistite, akú rýchlosť u vás vieme spustiť.</p>
+      <div class="eyebrow">Orange fandí našim hokejistom</div>
+      <h1>Buďte prvý, kto zakričí <span class="je-tam">JE TAM!</span></h1>
+      <p>Pomalé pripojenie dokáže pokaziť aj ten najlepší zápas. Prejdite na Orange internet, majte bleskovú odozvu a oslavujte každý gól bez meškania.</p>
+      <a href="#plans-anchor" class="cta-primary" style="display:inline-block;text-decoration:none;margin-bottom:28px;">Pozrieť akčné hokejové balíky</a>
     </div>
 
     <div class="hero-visual">
-      <div class="address-box">
-        <label for="addr-hero">Vaša adresa</label>
-        <div class="address-row">
-          <input id="addr-hero" type="text" placeholder="Ulica, číslo, mesto">
-          <button onclick="document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">→</button>
-        </div>
-        <div class="address-hint">Dostupnosť zistíme okamžite, bez záväzku</div>
-      </div>
+      <img src="images/fan.jpg"
+           alt="Fanúšik v drese Pospíšil #76 sleduje hokej v TV"
+           class="hero-fan-img"
+           style="width:100%;border-radius:18px;object-fit:cover;max-height:420px;" />
 
       <div class="stat-row">
-        <div class="stat"><b>500k+</b><span>domácností</span></div>
-        <div class="stat"><b>4.6★</b><span>hodnotenie</span></div>
-        <div class="stat"><b>2500</b><span>Mbit/s max</span></div>
-        <div class="stat"><b>14 dní</b><span>na vrátenie</span></div>
+        <div class="stat"><b>500k+</b><span>pripojených domácností</span></div>
+        <div class="stat"><b>4.6★</b><span>hodnotenie zákazníkov</span></div>
+        <div class="stat"><b>až 2.5 Gbit/s</b><span>blesková rýchlosť internetu</span></div>
+        <div class="stat"><b>14 dní</b><span>na vyskúšanie bez rizika</span></div>
       </div>
     </div>
   </div>
@@ -798,14 +795,13 @@
 <div class="challenge" id="challenge-anchor">
   <div class="challenge-inner">
     <div class="challenge-copy">
-      <div class="eyebrow">Otestuj sa</div>
-      <h2>Orange Hockey Challenge</h2>
-      <p>Otestuj svoju reakčnú rýchlosť. Buď najrýchlejší a vyhraj zájazd na finále MS v hokeji IIHF 2027.</p>
+      <div class="eyebrow">Hokejová online výzva</div>
+      <h2>Vybojuj si zľavu na internet a leť na MS v hokeji!</h2>
+      <p>Získaj okamžitú zľavu na bleskový Orange internet až do 120 € priamo do e-mailu a automaticky hraj o exkluzívny zájazd na Majstrovstvá sveta v hokeji!</p>
 
       <div class="reward-row">
-        <div class="reward-chip"><span class="ic">✈️</span>Zájazd na finále IIHF 2027</div>
-        <div class="reward-chip"><span class="ic">📶</span>Internet na 3 mesiace za 1 €</div>
-        <div class="reward-chip"><span class="ic">🏒</span>Šanca na dres s podpisom</div>
+        <div class="reward-chip">Zájazd na MS v hokeji pre 2 osoby</div>
+        <div class="reward-chip">Zľava až 120 € ročne na internet</div>
       </div>
     </div>
 
@@ -841,27 +837,14 @@
         <div class="result-percentile" id="resultPercentile">—</div>
         <div class="result-perks" id="resultPerks"></div>
 
-        <div class="lb-save" id="lbSave">
-          <input id="lbName" type="text" maxlength="20" placeholder="Tvoja prezývka (napr. Fanúšik76)">
-          <button class="cta-outline" onclick="saveScore()">🏆 Uložiť do TOP 10</button>
-          <div class="lb-note">Rebríček je verejný — prezývka a čas budú viditeľné pre všetkých hráčov.</div>
-        </div>
-        <div class="lb-saved" id="lbSaved">✓ Tvoj čas je zapísaný v rebríčku</div>
-
         <div class="game-ctas" style="flex-direction:column;">
-          <button class="cta-primary" onclick="alert('Demo: prihlásenie do súťaže o dres s podpisom')">🏒 Zapojiť sa do súťaže o dres</button>
+          <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Pozrieť akčné hokejové balíky</button>
           <button class="cta-outline" id="claimBtn" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
         </div>
         <div class="restart" style="margin-top:14px;"><button onclick="resetGame()" style="color:rgba(255,255,255,.6);">Skúsiť znova</button></div>
       </div>
     </div>
 
-    <div class="leaderboard-box">
-      <div class="lb-head">
-        <span class="ic">🏆</span>TOP 10 najrýchlejších
-      </div>
-      <div id="lbList" class="lb-list"><div class="lb-loading">Načítavam rebríček…</div></div>
-    </div>
     </div>
   </div>
 </div>
@@ -919,9 +902,9 @@
       </div>
       <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">🔒</span>Online ochrana Doma</li>
-        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">+</span>Online ochrana Doma</li>
+        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
       </ul>
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
       <div class="plan-ctas">
@@ -939,12 +922,12 @@
       </div>
       <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">🎁</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
-        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">🔒</span>Online ochrana Doma</li>
-        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+        <li><span class="bik">+</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">+</span>Online ochrana Doma</li>
+        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
       </ul>
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
       <div class="plan-ctas">
@@ -961,12 +944,12 @@
       </div>
       <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">🎁</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
-        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">🔒</span>Online ochrana Doma</li>
-        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+        <li><span class="bik">+</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">+</span>Online ochrana Doma</li>
+        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
       </ul>
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
       <div class="plan-ctas">
@@ -988,18 +971,18 @@
         </div>
       </div>
       <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
-        ⚡ Online zľava · Prémiová inštalácia zadarmo
+        Online zľava · Prémiová inštalácia zadarmo
       </div>
       <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">⭐</span>3 mesiace za 23 €, potom 30 €/mes.</li>
-        <li><span class="bik">💳</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">🔧</span>Zriadenie pripojenia zadarmo</li>
-        <li><span class="bik">📺</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">💸</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">🛠️</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
-        <li><span class="bik">🔒</span>Online ochrana Doma</li>
-        <li><span class="bik">❤️</span>Love — zľava 10 % pri kombinácii služieb</li>
+        <li><span class="bik">+</span>3 mesiace za 23 €, potom 30 €/mes.</li>
+        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+        <li><span class="bik">+</span>Zriadenie pripojenia zadarmo</li>
+        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+        <li><span class="bik">+</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
+        <li><span class="bik">+</span>Online ochrana Doma</li>
+        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
       </ul>
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
       <div class="plan-ctas">
@@ -1059,12 +1042,12 @@
         </div>
         <div class="benefits">
           <div class="benefit"><span class="bic">%</span>Zľava z poplatku</div>
-          <div class="benefit"><span class="bic">🎁</span>Kupón na zariadenie</div>
-          <div class="benefit"><span class="bic">🛠️</span>Zriadenie zadarmo</div>
+          <div class="benefit"><span class="bic">+</span>Kupón na zariadenie</div>
+          <div class="benefit"><span class="bic">+</span>Zriadenie zadarmo</div>
         </div>
       </div>
       <div class="addon" id="addonBox" style="display:none;">
-        🔒 <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
+        <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
       </div>
       <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
       <button class="cta-primary" onclick="alert('Demo: tu by pokračovala objednávka s predvyplneným balíkom '+state.result.name)">Objednať s 1 € na prvý mesiac</button>
@@ -1118,7 +1101,7 @@
 
       <div class="footer-apps">
         <a class="footer-app-btn" href="#" aria-label="Stiahnuť z App Store">
-          <span class="footer-app-ic">🍎</span>
+          <span class="footer-app-ic" style="font-size:13px;font-weight:700;">iOS</span>
           <span class="footer-app-text">
             <small>Dostupné na</small>
             <span>App Store</span>
@@ -1246,28 +1229,25 @@ function showGameResult(reaction){
 
   let tier, percentile, perks;
   if(reaction <= 350){
-    tier = 'Elitná rýchlosť 🏆';
+    tier = 'Elitná rýchlosť';
     percentile = 'Rýchlejšie ako väčšina hráčov výzvy';
     perks = [
-      {ic:'✈️', txt:'Postupuješ do žrebovania o zájazd na finále MS IIHF 2027', locked:false},
-      {ic:'📶', txt:'Internet na 3 mesiace za 1 € pri aktivácii', locked:false},
-      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+      {ic:'+', txt:'Postupuješ do žrebovania o zájazd na MS v hokeji pre 2 osoby', locked:false},
+      {ic:'+', txt:'Zľava až 120 € ročne na internet priamo do e-mailu', locked:false},
     ];
   } else if(reaction <= 600){
-    tier = 'Slušný čas 👍';
+    tier = 'Slušný čas';
     percentile = 'Nad priemerom väčšiny hráčov';
     perks = [
-      {ic:'✈️', txt:'Zájazd na IIHF 2027 — skús znova pre lepší čas', locked:true},
-      {ic:'📶', txt:'1. mesiac internetu za 1 € pri aktivácii', locked:false},
-      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+      {ic:'+', txt:'Zájazd na MS v hokeji — skús znova pre lepší čas', locked:true},
+      {ic:'+', txt:'Zľava až 120 € ročne na internet priamo do e-mailu', locked:false},
     ];
   } else {
-    tier = 'Skús to znova ⏱️';
+    tier = 'Skús to znova';
     percentile = 'O chvíľu môžeš byť rýchlejší';
     perks = [
-      {ic:'✈️', txt:'Zájazd na IIHF 2027 — potrebuješ rýchlejší čas', locked:true},
-      {ic:'📶', txt:'1. mesiac internetu za 1 € pri aktivácii', locked:false},
-      {ic:'🏒', txt:'Šanca na dres s podpisom', locked:false},
+      {ic:'+', txt:'Zájazd na MS v hokeji — potrebuješ rýchlejší čas', locked:true},
+      {ic:'+', txt:'Zľava až 120 € ročne na internet priamo do e-mailu', locked:false},
     ];
   }
 
@@ -1289,83 +1269,7 @@ function resetGame(){
   gameState = 'idle';
 }
 
-/* ---------- LEADERBOARD (shared, persists across everyone who opens this page) ---------- */
 let lastReaction = null;
-const LB_KEY = 'orange-hockey-challenge-leaderboard';
-
-async function loadLeaderboard(){
-  try{
-    const res = await window.storage.get(LB_KEY, true);
-    const arr = res && res.value ? JSON.parse(res.value) : [];
-    renderLeaderboard(arr.length ? arr : sampleLeaderboard);
-  } catch(err){
-    renderLeaderboard(sampleLeaderboard);
-  }
-}
-
-function renderLeaderboard(arr){
-  const listEl = document.getElementById('lbList');
-  const top = arr.slice(0, 10);
-  if(top.length === 0){
-    listEl.innerHTML = '<div class="lb-empty">Zatiaľ nikto — buď prvý v rebríčku!</div>';
-    return;
-  }
-  const medals = ['🥇','🥈','🥉'];
-  listEl.innerHTML = top.map((e,i)=>`
-    <div class="lb-row ${i===0?'r1':i===1?'r2':i===2?'r3':''}">
-      <div class="lb-rank">${medals[i] || (i+1)}</div>
-      <div class="lb-name">${escapeHtml(e.name)}</div>
-      <div class="lb-time">${e.time} ms</div>
-    </div>
-  `).join('');
-}
-
-const sampleLeaderboard = [
-  { name:'PospisilFan76', time:214 },
-  { name:'RychlyKosice',  time:239 },
-  { name:'HokejovyOco',   time:251 },
-  { name:'Zilina_Ultra',  time:268 },
-  { name:'MamaNaTribune', time:284 },
-  { name:'PukPreletel',   time:297 },
-  { name:'BratislavaBoys',time:312 },
-  { name:'DresCislo76',   time:329 },
-  { name:'NitraNaJe',     time:341 },
-  { name:'PomalyAleVerny',time:478 },
-];
-
-function escapeHtml(str){
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
-async function saveScore(){
-  if(lastReaction === null) return;
-  const nameInput = document.getElementById('lbName');
-  const name = (nameInput.value || '').trim().slice(0,20) || ('Fanúšik' + Math.floor(Math.random()*9000+1000));
-
-  try{
-    let arr = [];
-    try{
-      const res = await window.storage.get(LB_KEY, true);
-      arr = res && res.value ? JSON.parse(res.value) : [];
-    } catch(err){ arr = []; }
-
-    arr.push({ name, time: lastReaction, ts: Date.now() });
-    arr.sort((a,b)=>a.time - b.time);
-    arr = arr.slice(0, 50); // keep a buffer beyond top 10
-
-    await window.storage.set(LB_KEY, JSON.stringify(arr), true);
-    renderLeaderboard(arr);
-
-    document.getElementById('lbSave').classList.remove('show');
-    document.getElementById('lbSaved').classList.add('show');
-  } catch(err){
-    alert('Rebríček sa nepodarilo uložiť, skús to prosím znova.');
-  }
-}
-
-loadLeaderboard();
 
 /* ================= COVERAGE MAP (Slovakia-shaped) ================= */
 (function(){
@@ -1390,7 +1294,7 @@ document.getElementById('skCities').innerHTML = cities.map((c,i)=>
   `<circle class="city-dot" id="citydot-${i}" cx="${c.cx}" cy="${c.cy}" r="4.5" onclick="selectPin(${i})"/>`
 ).join('');
 const pinsEl = document.getElementById('cityPins');
-pinsEl.innerHTML = cities.map((c,i)=>`<button class="pin" id="pin-${i}" onclick="selectPin(${i})">📍 ${c.name}</button>`).join('');
+pinsEl.innerHTML = cities.map((c,i)=>`<button class="pin" id="pin-${i}" onclick="selectPin(${i})">${c.name}</button>`).join('');
 function selectPin(i){
   cities.forEach((_,j)=>{
     document.getElementById('pin-'+j).classList.toggle('active', j===i);
@@ -1404,26 +1308,26 @@ function selectPin(i){
 /* ================= QUIZ ================= */
 const questions = [
   { key:'usage', title:'Čo u vás doma najčastejšie internet rieši?', cols:2, opts:[
-      {ic:'🎬', label:'Streaming filmov a seriálov', v:'stream'},
-      {ic:'🎮', label:'Hranie hier online', v:'gaming'},
-      {ic:'🏒', label:'Šport a hokej naživo', v:'sport'},
-      {ic:'🌐', label:'Bežné surfovanie, email', v:'basic'},
+      {ic:'', label:'Streaming filmov a seriálov', v:'stream'},
+      {ic:'', label:'Hranie hier online', v:'gaming'},
+      {ic:'', label:'Šport a hokej naživo', v:'sport'},
+      {ic:'', label:'Bežné surfovanie, email', v:'basic'},
   ]},
   { key:'devices', title:'Koľko zariadení máte doma pripojených na Wi-Fi?', cols:2, opts:[
-      {ic:'📱', label:'1 – 3 zariadenia', v:1},
-      {ic:'💻', label:'4 – 6 zariadení', v:2},
-      {ic:'🖥️', label:'7 – 10 zariadení', v:3},
-      {ic:'📡', label:'Viac ako 10', v:4},
+      {ic:'', label:'1 – 3 zariadenia', v:1},
+      {ic:'', label:'4 – 6 zariadení', v:2},
+      {ic:'', label:'7 – 10 zariadení', v:3},
+      {ic:'', label:'Viac ako 10', v:4},
   ]},
   { key:'connection', title:'Pripájate sa väčšinou cez kábel, alebo Wi-Fi?', cols:1, opts:[
-      {ic:'🔌', label:'Prevažne kábel (PC, konzola, TV)', v:'cable'},
-      {ic:'📶', label:'Prevažne Wi-Fi', v:'wifi'},
-      {ic:'🔀', label:'Oboje rovnako', v:'both'},
+      {ic:'', label:'Prevažne kábel (PC, konzola, TV)', v:'cable'},
+      {ic:'', label:'Prevažne Wi-Fi', v:'wifi'},
+      {ic:'', label:'Oboje rovnako', v:'both'},
   ]},
   { key:'security', title:'Je pre vás dôležitá bezpečnosť a rodičovská kontrola?', cols:1, opts:[
-      {ic:'🔒', label:'Áno, chcem ochranu pre celú domácnosť', v:'yes'},
-      {ic:'🤷', label:'Nie som si istý / zatiaľ neriešim', v:'unsure'},
-      {ic:'➖', label:'Nie, neriešim', v:'no'},
+      {ic:'', label:'Áno, chcem ochranu pre celú domácnosť', v:'yes'},
+      {ic:'', label:'Nie som si istý / zatiaľ neriešim', v:'unsure'},
+      {ic:'', label:'Nie, neriešim', v:'no'},
   ]}
 ];
 const state = { step:0, answers:{}, result:null };
