@@ -55,8 +55,8 @@
   .menu-dot span{display:block;height:2px;background:#fff;border-radius:2px;}
 
   section{ max-width:560px; margin:0 auto; padding:0 20px; }
-  .sec{ padding:44px 20px; }
-  .sec-head{ margin-bottom:20px; }
+  .sec{ padding:52px 20px; }
+  .sec-head{ margin-bottom:28px; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:6px;
     font-size:12.5px; font-weight:600; color:var(--orange-deep);
@@ -254,8 +254,14 @@
   .pin-info b{ color:#fff; }
 
   /* ---------- PRICING ---------- */
-  .plans{ display:flex; flex-direction:column; gap:14px; }
-  .plan{ background:#fff; border:1.5px solid var(--line); border-radius:16px; padding:20px; position:relative; }
+  .plans{
+    display:flex; flex-direction:row; gap:14px;
+    overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding-bottom:12px; scrollbar-width:none;
+  }
+  .plans::-webkit-scrollbar{ display:none; }
+  .plan{ background:#fff; border:1.5px solid var(--line); border-radius:16px; padding:20px; position:relative;
+    min-width:280px; flex-shrink:0; scroll-snap-align:start; }
   .plan.reco{ border-color:var(--orange); box-shadow:0 0 0 3px var(--tint); }
   .plan .ribbon{
     position:absolute; top:-11px; left:20px; background:var(--orange); color:#fff;
@@ -338,14 +344,22 @@
   .restart button{ background:none; border:none; color:var(--ink-soft); font-size:12.5px; text-decoration:underline; cursor:pointer; }
 
   /* ---------- PROCESS ---------- */
-  .steps{ display:flex; flex-direction:column; gap:18px; }
-  .step{ display:flex; gap:14px; align-items:flex-start; }
-  .step .num{
-    flex-shrink:0; width:34px; height:34px; border-radius:50%; background:var(--tint); color:var(--orange-deep);
-    font-family:'Sora'; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;
+  .steps{ display:flex; flex-direction:column; gap:14px; }
+  .step{
+    background:var(--paper-dim); border-radius:var(--radius); padding:20px 20px 20px 20px;
+    display:flex; flex-direction:column; gap:0; position:relative; overflow:hidden;
   }
-  .step .txt b{ display:block; font-size:14.5px; margin-bottom:2px; }
-  .step .txt span{ font-size:13px; color:var(--ink-soft); line-height:1.45; }
+  .step::before{
+    content:attr(data-n); position:absolute; right:16px; top:10px;
+    font-family:'Sora'; font-weight:800; font-size:56px; color:rgba(255,102,0,0.08); line-height:1;
+  }
+  .step .num{
+    font-family:'Sora'; font-weight:800; font-size:11px; color:var(--orange-deep);
+    background:var(--tint); border-radius:100px; padding:3px 10px; display:inline-block;
+    margin-bottom:10px; text-transform:uppercase; letter-spacing:.04em;
+  }
+  .step .txt b{ display:block; font-size:15px; font-weight:700; margin-bottom:5px; color:var(--ink); }
+  .step .txt span{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; display:block; }
 
   /* ---------- FAQ ---------- */
   .faq-item{ border-bottom:1px solid var(--line); }
@@ -365,7 +379,11 @@
     position:fixed; bottom:0; left:0; right:0; z-index:40;
     background:#fff; border-top:1px solid var(--line);
     padding:12px 20px; box-shadow:0 -8px 24px rgba(0,0,0,0.06);
+    transition:background .3s ease, border-color .3s ease;
   }
+  .sticky-cta.sales-mode{ background:var(--night); border-top-color:rgba(255,255,255,0.1); }
+  .sticky-cta.sales-mode .txt b{ color:#fff; }
+  .sticky-cta.sales-mode .txt span{ color:rgba(255,255,255,.6); }
   .sticky-cta-inner{ display:flex; gap:10px; align-items:center; }
   .sticky-cta .txt{ flex:1; }
   .sticky-cta .txt b{ display:block; font-size:13px; font-family:'Sora'; }
@@ -375,6 +393,38 @@
     padding:12px 16px; font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap;
   }
   footer.pad{ height:90px; }
+
+  /* ---------- PLAN BADGE ---------- */
+  .plan-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    background:var(--orange); color:#fff;
+    font-size:11px; font-weight:700; padding:4px 10px;
+    border-radius:100px; margin-bottom:10px;
+  }
+
+  /* ---------- PROMO STRIP ---------- */
+  .promo-strip{
+    background:var(--tint); border:1px solid rgba(255,102,0,.25);
+    border-radius:14px; padding:14px 18px; margin-top:20px;
+    font-size:13px; color:var(--ink); line-height:1.55;
+  }
+  .promo-strip b{ color:var(--orange-deep); }
+  .promo-strip .ps-label{ font-family:'Sora'; font-weight:700; font-size:12px; color:var(--orange-deep); display:block; margin-bottom:4px; }
+
+  /* ---------- COVERAGE SUCCESS ---------- */
+  .coverage-success{
+    display:none; background:var(--night); border-radius:var(--radius);
+    padding:28px 22px; color:#fff; text-align:center; margin-top:20px;
+  }
+  .coverage-success.show{ display:block; animation:fadeUp .4s ease; }
+  .coverage-success .cs-check{
+    width:52px; height:52px; border-radius:50%; background:#22c55e;
+    color:#fff; font-size:24px; font-weight:800;
+    display:flex; align-items:center; justify-content:center; margin:0 auto 14px;
+  }
+  .coverage-success h3{ font-family:'Sora'; font-weight:800; font-size:19px; margin-bottom:8px; line-height:1.25; }
+  .coverage-success p{ font-size:13.5px; color:rgba(255,255,255,.7); line-height:1.55; margin-bottom:20px; }
+  .coverage-success .cta-primary{ background:var(--orange); color:#fff; border:none; }
 
   /* =========================================================
      RESPONSIVE — DESKTOP / TABLET
@@ -386,9 +436,8 @@
 
     .hero-inner, .challenge-inner{ max-width:700px; }
 
-    /* pricing cards go 2-up on tablet */
-    .plans{ display:grid; grid-template-columns:1fr 1fr; align-items:start; }
-    .plan.reco{ grid-column:1 / -1; }
+    /* pricing stays scroll on tablet too, just wider cards */
+    .plan{ min-width:320px; }
 
     .opts{ grid-template-columns:1fr 1fr; }
 
@@ -425,11 +474,11 @@
     #coverage-anchor .coverage-form{ max-width:480px; margin:0 0 24px; }
     .map-wrap{ max-width:900px; padding:28px; margin:0 auto; }
 
-    /* PRICING: three balanced columns, no more full-width ribbon override */
+    /* PRICING: desktop — switch scroll to a proper 4-col grid */
     #plans-anchor .sec-head{ max-width:640px; }
-    .plans{ grid-template-columns:1fr 1fr 1fr; gap:20px; }
-    .plan.reco{ grid-column:auto; transform:translateY(-8px); }
-    .plan{ display:flex; flex-direction:column; height:100%; }
+    .plans{ overflow:visible; display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .plan{ min-width:0; flex-shrink:1; display:flex; flex-direction:column; height:100%; }
+    .plan.reco{ transform:translateY(-6px); }
     .plan-ctas{ margin-top:auto; }
 
     /* ASSESSMENT: keep the card at a comfortable reading/interaction width */
@@ -437,10 +486,10 @@
     #quiz-anchor .sec-head{ max-width:560px; margin-left:auto; margin-right:auto; }
     .quiz-card{ max-width:520px; margin:0 auto; padding:36px 40px; }
 
-    /* PROCESS: horizontal timeline instead of a long vertical list */
+    /* PROCESS: horizontal 3-col layout */
     .sec .sec-head{ max-width:640px; }
-    .steps{ max-width:1100px; flex-direction:row; gap:20px; }
-    .step{ flex-direction:column; text-align:center; flex:1; align-items:center; }
+    .steps{ max-width:1100px; flex-direction:row; gap:18px; }
+    .step{ flex:1; }
     .step .txt{ margin-top:2px; }
 
     /* FAQ: comfortable reading width, centered */
@@ -874,15 +923,15 @@
 <!-- 3. COVERAGE + MAP -->
 <section class="sec" id="coverage-anchor">
   <div class="sec-head">
-    <div class="eyebrow">Dostupnosť</div>
-    <h2>Overte si pokrytie vo vašej lokalite</h2>
-    <p>Zadajte adresu alebo si pozrite orientačnú mapu pokrytia nižšie.</p>
+    <div class="eyebrow">Krok 1: Overenie dostupnosti</div>
+    <h2>Zistite, či k vám vieme zaviesť bleskovú optiku</h2>
+    <p>Zadajte svoju adresu a zistite možnosti najrýchlejšieho pripojenia. Váš vybojovaný promo kód si jednoducho uplatníte pri výbere balíka v ďalšom kroku.</p>
   </div>
 
   <div class="coverage-form">
     <div class="address-row">
       <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
-      <button onclick="alert('Demo: kontrola dostupnosti pre zadanú adresu')">Skontrolovať</button>
+      <button onclick="checkCoverage()">Preveriť</button>
     </div>
   </div>
 
@@ -891,27 +940,34 @@
       <div class="li"><span class="dot on"></span>Pokryté optikou</div>
       <div class="li"><span class="dot soon"></span>Pripravujeme</div>
     </div>
-    <svg class="sk-map" id="skMap" viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+    <svg class="sk-map" id="skMap" viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <clipPath id="skClip">
-          <path d="M20,60 L35,40 L50,25 L70,15 L90,10 L110,8 L130,18 L150,10 L170,15 L190,10 L210,20 L230,15 L255,25 L270,45 L260,65 L245,80 L220,95 L195,110 L170,120 L145,115 L120,110 L95,105 L70,95 L50,85 L35,75 Z"/>
+          <path d="M14,78 C16,68 20,56 28,46 C36,36 46,28 58,21 C72,14 86,9 100,7 C114,5 128,5 140,8 C150,5 160,4 170,7 C182,4 194,6 204,4 C218,2 232,4 244,8 C256,4 268,3 280,6 C292,4 304,7 314,12 C326,8 338,7 350,10 C362,8 374,10 384,14 C394,18 402,24 408,32 C414,40 416,50 414,60 C412,68 406,76 398,84 C386,94 372,102 356,108 C340,114 322,118 304,120 C286,122 268,122 250,120 C232,118 214,115 196,112 C178,109 160,106 142,103 C124,100 106,98 88,95 C70,92 52,90 36,88 C26,87 14,86 14,78 Z"/>
         </clipPath>
       </defs>
-      <path class="sk-outline" d="M20,60 L35,40 L50,25 L70,15 L90,10 L110,8 L130,18 L150,10 L170,15 L190,10 L210,20 L230,15 L255,25 L270,45 L260,65 L245,80 L220,95 L195,110 L170,120 L145,115 L120,110 L95,105 L70,95 L50,85 L35,75 Z"/>
+      <path class="sk-outline" d="M14,78 C16,68 20,56 28,46 C36,36 46,28 58,21 C72,14 86,9 100,7 C114,5 128,5 140,8 C150,5 160,4 170,7 C182,4 194,6 204,4 C218,2 232,4 244,8 C256,4 268,3 280,6 C292,4 304,7 314,12 C326,8 338,7 350,10 C362,8 374,10 384,14 C394,18 402,24 408,32 C414,40 416,50 414,60 C412,68 406,76 398,84 C386,94 372,102 356,108 C340,114 322,118 304,120 C286,122 268,122 250,120 C232,118 214,115 196,112 C178,109 160,106 142,103 C124,100 106,98 88,95 C70,92 52,90 36,88 C26,87 14,86 14,78 Z"/>
       <g clip-path="url(#skClip)" id="skDots"></g>
       <g id="skCities"></g>
     </svg>
     <div class="city-pins" id="cityPins"></div>
     <div class="pin-info" id="pinInfo"></div>
   </div>
+
+  <div class="coverage-success" id="coverageSuccess">
+    <div class="cs-check">✓</div>
+    <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
+    <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
+    <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+  </div>
 </section>
 
 <!-- 4. BALÍKY INTERNETU -->
 <section class="sec" id="plans-anchor">
   <div class="sec-head">
-    <div class="eyebrow">Optický FiberNet</div>
-    <h2>Internet na doma</h2>
-    <p>Štyri plány pre každú domácnosť. Neobmedzený objem dát, Wi-Fi 7 router a online zľava. Viazanosť 24 mesiacov.</p>
+    <div class="eyebrow">Krok 2: Výber balíka</div>
+    <h2>Vyberte si internet, s ktorým budete mať pred susedmi náskok</h2>
+    <p>Sledujte hokej v 4K kvalite a bez jediného zaseknutia. Zvoľte si program pre vašu domácnosť a v košíku jednoducho uplatnite zľavový kód, ktorý sme vám práve poslali do e-mailu.</p>
   </div>
 
   <div class="plans">
@@ -938,6 +994,7 @@
     <!-- Internet L — Odporúčame -->
     <div class="plan reco">
       <div class="ribbon">Odporúčame</div>
+      <div class="plan-badge">Favorit fanúšikov</div>
       <div class="plan-top">
         <div><div class="plan-name2">Internet L</div><div class="plan-speed2">600 / 150 Mbit/s</div></div>
         <div class="plan-price"><div class="now" style="font-size:18px;">od 22 € <span>/mes.</span></div></div>
@@ -960,6 +1017,7 @@
 
     <!-- Internet XL -->
     <div class="plan">
+      <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
       <div class="plan-top">
         <div><div class="plan-name2">Internet XL</div><div class="plan-speed2">1 000 / 500 Mbit/s</div></div>
         <div class="plan-price"><div class="now" style="font-size:18px;">od 26 € <span>/mes.</span></div></div>
@@ -1015,7 +1073,12 @@
 
   </div>
 
-  <p style="text-align:center;font-size:12px;color:var(--ink-soft);margin-top:20px;">
+  <div class="promo-strip">
+    <span class="ps-label">Ako uplatniť zľavu z hry?</span>
+    Vyberte si balík a v prvom kroku košíka zadajte <b>promo kód, ktorý sme vám poslali na e-mail</b>. Zľava sa vám okamžite odpočíta z mesačnej platby.
+  </div>
+
+  <p style="text-align:center;font-size:12px;color:var(--ink-soft);margin-top:16px;">
     Všetky ceny sú s DPH. Online zľava platí pri objednávke cez orange.sk. Viazanosť 24 mesiacov.
   </p>
 </section>
@@ -1081,24 +1144,40 @@
 <!-- 6. PROCES -->
 <section class="sec">
   <div class="sec-head">
-    <div class="eyebrow">Proces</div>
-    <h2>Ako funguje online objednávka internetu</h2>
-    <p>Transparentne — vrátane toho, kedy k vám príde človek, nie len router poštou.</p>
+    <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
+    <h2>Ako prebieha zriadenie Orange internetu</h2>
+    <p>Celú objednávku vybavíte online za 2 minúty. O všetko ostatné – od zmluvy až po sprevádzkovanie routra – sa kompletne postaráme my.</p>
   </div>
   <div class="steps">
-    <div class="step"><div class="num">1</div><div class="txt"><b>Objednáte si internet online</b><span>Cez výzvu, quiz alebo priamym výberom balíka — trvá pár minút.</span></div></div>
-    <div class="step"><div class="num">2</div><div class="txt"><b>Kuriér prinesie zmluvu</b><span>Do 3 pracovných dní vám doručí dokumenty na podpis.</span></div></div>
-    <div class="step"><div class="num">3</div><div class="txt"><b>Technik vás kontaktuje</b><span>Dohodnete si presný termín inštalácie, ktorý vám vyhovuje.</span></div></div>
-    <div class="step"><div class="num">4</div><div class="txt"><b>Pripojenie a nastavenie Wi-Fi</b><span>Technik zapojí router priamo u vás a overí funkčnosť signálu.</span></div></div>
-    <div class="step"><div class="num">5</div><div class="txt"><b>14 dní na rozmyslenie</b><span>Ak nebudete spokojní, môžete službu bezplatne vrátiť.</span></div></div>
+    <div class="step" data-n="1">
+      <div class="num">Krok 1</div>
+      <div class="txt">
+        <b>Objednávka a podpis bez starostí</b>
+        <span>Zvolíte si balík online a do 3 dní vám kuriér prinesie pripravené dokumenty len na podpis.</span>
+      </div>
+    </div>
+    <div class="step" data-n="2">
+      <div class="num">Krok 2</div>
+      <div class="txt">
+        <b>Rýchla inštalácia naším technikom</b>
+        <span>Po podpise si dohodnete presný termín. Náš technik k vám príde, kompletne zapojí optiku aj Wi-Fi router a všetko otestuje.</span>
+      </div>
+    </div>
+    <div class="step" data-n="3">
+      <div class="num">Krok 3</div>
+      <div class="txt">
+        <b>Hokej bez sekania a 14 dní na testovanie</b>
+        <span>Okamžite si užívate stabilné pripojenie s bleskovou odozvou a 14-dňovou garanciou vrátenia peňazí bez sankcií.</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- 7. FAQ -->
-<section class="sec">
+<section class="sec" id="faq-anchor">
   <div class="sec-head">
     <div class="eyebrow">Časté otázky</div>
-    <h2>Najčastejšie otázky</h2>
+    <h2>Odpovede na najčastejšie otázky</h2>
   </div>
   <div id="faq"></div>
 </section>
@@ -1194,10 +1273,13 @@
   </div>
 </footer>
 
-<div class="sticky-cta">
+<div class="sticky-cta" id="stickyCta">
   <div class="sticky-cta-inner">
-    <div class="txt"><b>Prvý mesiac za 1 €</b><span>Overte dostupnosť a vyberte balík</span></div>
-    <button onclick="document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť</button>
+    <div class="txt" id="stickyTxt">
+      <b>Vybojujte si zľavu na internet až do 120 €</b>
+      <span>a leťte na MS v hokeji!</span>
+    </div>
+    <button id="stickyBtn" onclick="document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})">Vybojovať zľavu</button>
   </div>
 </div>
 
@@ -1313,6 +1395,18 @@ function submitForm(){
   document.getElementById('resultConsent').style.outline = '';
   document.getElementById('resultForm').style.display = 'none';
   document.getElementById('resultSuccess').style.display = 'block';
+
+  const rewardAmountEl = document.getElementById('rewardValue');
+  const rewardText = rewardAmountEl ? rewardAmountEl.textContent : '';
+  const sticky = document.getElementById('stickyCta');
+  const stickyTxt = document.getElementById('stickyTxt');
+  const stickyBtn = document.getElementById('stickyBtn');
+  if(sticky && stickyTxt && stickyBtn){
+    sticky.classList.add('sales-mode');
+    stickyTxt.innerHTML = '<b>' + rewardText.replace(/\(.*?\)/, '').trim() + ' vás čaká vo vašom e-maile!</b><span>Overte si dostupnosť a uplatnite kód pri výbere balíka.</span>';
+    stickyBtn.textContent = 'Overiť dostupnosť';
+    stickyBtn.onclick = function(){ document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'}); };
+  }
 }
 
 let lastReaction = null;
@@ -1321,20 +1415,28 @@ let lastReaction = null;
 (function(){
   const dotsG = document.getElementById('skDots');
   let html = '';
-  for(let x = 4; x <= 296; x += 7){
-    for(let y = 4; y <= 136; y += 7){
+  for(let x = 6; x <= 494; x += 10){
+    for(let y = 6; y <= 134; y += 10){
       const r = Math.random();
-      const cls = r > 0.15 ? 'sk-dot' : 'sk-dot soon';
+      const cls = r > 0.18 ? 'sk-dot' : 'sk-dot soon';
       html += `<rect class="${cls}" x="${x-2}" y="${y-2}" width="4" height="4" rx="1"/>`;
     }
   }
   dotsG.innerHTML = html;
 })();
 
+function checkCoverage(){
+  const addr = document.getElementById('addr-cov').value.trim();
+  if(!addr){ document.getElementById('addr-cov').focus(); return; }
+  const successEl = document.getElementById('coverageSuccess');
+  successEl.classList.add('show');
+  successEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
 const cities = [
-  { name:'Bratislava', cx:25, cy:63, info:'Optický internet aj FiberNet dostupné v celom meste. Max. rýchlosť 2 500 Mbit/s.' },
-  { name:'Žilina', cx:118, cy:34, info:'Pokrytie sa priebežne rozširuje. V centre už dostupný optický internet.' },
-  { name:'Košice', cx:248, cy:50, info:'Optický internet dostupný vo väčšine mestských častí. Max. rýchlosť 1 000 Mbit/s.' },
+  { name:'Bratislava', cx:40, cy:78, info:'Optický internet aj FiberNet dostupné v celom meste. Max. rýchlosť 2 500 Mbit/s.' },
+  { name:'Žilina', cx:200, cy:35, info:'Pokrytie sa priebežne rozširuje. V centre už dostupný optický internet.' },
+  { name:'Košice', cx:400, cy:60, info:'Optický internet dostupný vo väčšine mestských častí. Max. rýchlosť 1 000 Mbit/s.' },
 ];
 document.getElementById('skCities').innerHTML = cities.map((c,i)=>
   `<circle class="city-dot" id="citydot-${i}" cx="${c.cx}" cy="${c.cy}" r="4.5" onclick="selectPin(${i})"/>`
@@ -1466,12 +1568,13 @@ renderQuestion();
 
 /* ================= FAQ ================= */
 const faqData = [
-  { q:'Aký je rozdiel medzi Internetom XL a XL Extra?', a:'XL Extra ponúka až 2 500 Mbit/s a symetrické odosielanie do 1 000 Mbit/s — hodí sa pri viacerých 4K streamoch, hraní online hier a plne pripojenej smart domácnosti naraz. XL s 300 Mbit/s pokryje bežné potreby rodiny bez kompromisov.' },
-  { q:'Ako funguje Orange Hockey Challenge?', a:'Otestujete si reakčnú rýchlosť priamo na stránke. Najrýchlejší účastníci postupujú do žrebovania o zájazd na finále MS IIHF 2027 a získavajú internet na 3 mesiace za 1 €. Každý účastník má zároveň šancu na dres s podpisom.' },
-  { q:'Ako dlho trvá inštalácia od objednávky?', a:'Kuriér vám doručí zmluvu do 3 pracovných dní. Termín inštalácie si následne dohodnete s technikom podľa toho, čo vám vyhovuje.' },
-  { q:'Čo ak optický internet u mňa nie je dostupný?', a:'Overíme to hneď po zadaní adresy. Ak optika nie je dostupná, ponúkneme alternatívne technológie alebo vás upozorníme, keď bude pokrytie k dispozícii.' },
-  { q:'Platí zľava 1 € aj bez viazanosti?', a:'Zvýhodnená cena prvého mesiaca je viazaná na zmluvu na 24 mesiacov. Bez viazanosti je dostupná bežná cenová ponuka.' },
-  { q:'Môžem si internet vyskúšať a vrátiť ho?', a:'Áno — do 14 dní od aktivácie máte možnosť službu bezplatne vrátiť bez udania dôvodu.' },
+  { q:'Ako funguje zľava z Hockey Challenge?', a:'Po odohraní výzvy vám pošleme promo kód priamo na e-mail. Pri výbere balíka v košíku kód zadajte a zľava sa okamžite odpočíta z mesačnej platby. Zľava platí pri viazanosti 24 mesiacov cez orange.sk.' },
+  { q:'Čo je v stávke v žrebovaní o zájazd na MS?', a:'Každý, kto odošle e-mail po skončení výzvy, je automaticky zaradený do žrebovania o zájazd pre 2 osoby na MS v hokeji. Víťaza kontaktujeme e-mailom po skončení súťaže.' },
+  { q:'Aký je rozdiel medzi Internetom L, XL a XL Extra?', a:'Internet L (600 Mbit/s) pokryje rodinu pri streamovaní a práci z domu. XL (1 000 Mbit/s) je ideálny, ak súčasne streamujete v 4K a hráte online hry. XL Extra (2 500 Mbit/s) je pre tých, kde je pripojených veľa zariadení naraz alebo potrebujú maximálnu stabilitu.' },
+  { q:'Ako overím dostupnosť optiky na mojej adrese?', a:'Zadajte adresu do formulára v sekcii Overenie dostupnosti. Výsledok uvidíte okamžite — ak je optika dostupná, stačí si vybrať balík a pokračovať v objednávke.' },
+  { q:'Ako prebieha inštalácia internetu?', a:'Kuriér vám doručí zmluvu do 3 pracovných dní. Termín inštalácie si dohodnete s technikom podľa vašej dostupnosti — technik príde priamo k vám, zapojí optiku aj Wi-Fi router a všetko otestuje.' },
+  { q:'Môžem internet vyskúšať a vrátiť ho?', a:'Áno — do 14 dní od aktivácie môžete službu bezplatne vrátiť bez udania dôvodu a bez akýchkoľvek sankcií.' },
+  { q:'Čo ak optika na mojej adrese nie je dostupná?', a:'Ak optické pripojenie ešte na vašej adrese nie je, ponúkneme vám alternatívu — napríklad 5GNet alebo bezdrôtový internet. Môžete nás tiež požiadať o upozornenie, keď bude optika k dispozícii.' },
 ];
 document.getElementById('faq').innerHTML = faqData.map((item,i)=>`
   <div class="faq-item" id="faq-${i}">
