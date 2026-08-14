@@ -249,10 +249,9 @@
     position:absolute; top:-11px; left:20px; background:var(--orange); color:#fff;
     font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
   }
-  .plan-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
-  .plan-name2{ font-family:'Sora'; font-weight:700; font-size:16px; }
-  .plan-speed2{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
-  .plan-price{ text-align:right; }
+  .plan-name2{ font-family:'Sora'; font-weight:700; font-size:16px; margin:8px 0 2px; }
+  .plan-speed2{ font-size:12.5px; color:var(--ink-soft); margin-bottom:8px; }
+  .plan-price{ margin-bottom:10px; }
   .plan-price .was{ font-size:12px; color:var(--ink-soft); text-decoration:line-through; }
   .plan-price .now{ font-family:'Sora'; font-weight:800; font-size:22px; }
   .plan-price .now span{ font-size:12px; font-weight:600; }
@@ -343,6 +342,17 @@
   .step .txt b{ display:block; font-size:15px; font-weight:700; margin-bottom:5px; color:var(--ink); }
   .step .txt span{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; display:block; }
 
+  /* ---------- DARK SECTION ---------- */
+  .sec--dark{ background:var(--night); }
+  .sec--dark .sec-head h2{ color:#fff; }
+  .sec--dark .sec-head p{ color:rgba(255,255,255,.72); }
+  .sec--dark .sec-head .eyebrow{ background:rgba(255,102,0,.16); color:var(--orange-glow); border:1px solid rgba(255,102,0,.3); }
+  .sec--dark .step{ background:rgba(255,255,255,.06); }
+  .sec--dark .step .num{ background:rgba(255,102,0,.16); color:var(--orange-glow); }
+  .sec--dark .step .txt b{ color:#fff; }
+  .sec--dark .step .txt span{ color:rgba(255,255,255,.65); }
+  .sec--dark .step::before{ color:rgba(255,102,0,.06); }
+
   /* ---------- FAQ ---------- */
   .faq-item{ border-bottom:1px solid var(--line); }
   .faq-q{
@@ -381,8 +391,9 @@
     display:inline-flex; align-items:center; gap:5px;
     background:var(--orange); color:#fff;
     font-size:11px; font-weight:700; padding:4px 10px;
-    border-radius:100px; margin-bottom:10px;
+    border-radius:100px; margin-bottom:0;
   }
+  .plan-badge--empty{ visibility:hidden; pointer-events:none; }
 
   /* ---------- PROMO STRIP ---------- */
   .promo-strip{
@@ -429,8 +440,9 @@
   @media (min-width: 1080px){
     nav{ padding:18px 48px; }
     .nav-inner{ max-width:1200px; }
-    .sec, section{ max-width:1100px; padding:60px 48px; }
+    .sec, section{ max-width:none; margin:0; padding:60px 48px; }
     section:not(.sec){ padding-top:0; padding-bottom:0; }
+    .sec-head{ max-width:700px; }
     .challenge{ padding:72px 48px; }
 
     /* HERO desktop */
@@ -455,7 +467,7 @@
     /* COVERAGE: form + legend stay readable width, map gets a cap so it doesn't sprawl */
     #coverage-anchor .sec-head{ max-width:560px; }
     #coverage-anchor .coverage-form{ max-width:480px; margin:0 0 24px; }
-    .map-wrap{ max-width:900px; margin:0 auto; }
+    .map-wrap{ max-width:none; margin:0; }
     #coverageMap{ height:440px; }
 
     /* PRICING: desktop — switch scroll to a proper 4-col grid */
@@ -467,19 +479,19 @@
 
     /* ASSESSMENT: keep the card at a comfortable reading/interaction width */
     #quiz-anchor{ max-width:1100px; }
-    #quiz-anchor .sec-head{ max-width:640px; margin-left:auto; margin-right:auto; }
+    #quiz-anchor .sec-head{ max-width:640px; margin-left:0; margin-right:auto; }
     .quiz-card{ max-width:none; margin:0; padding:40px 48px; }
     .opts{ grid-template-columns:1fr 1fr 1fr 1fr; }
     .opts.single-col{ grid-template-columns:1fr 1fr; }
 
     /* PROCESS: horizontal 3-col layout */
     .sec .sec-head{ max-width:640px; }
-    .steps{ max-width:1100px; flex-direction:row; gap:18px; }
+    .steps{ max-width:none; flex-direction:row; gap:18px; }
     .step{ flex:1; }
     .step .txt{ margin-top:2px; }
 
-    /* FAQ: comfortable reading width, centered */
-    #faq{ max-width:760px; margin:0 auto; }
+    /* FAQ: full width, left-aligned */
+    #faq{ max-width:none; margin:0; }
 
     .sticky-cta{ padding:16px 48px; }
     .sticky-cta-inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:10px; width:100%; }
@@ -949,10 +961,10 @@
 
     <!-- Internet M -->
     <div class="plan">
-      <div class="plan-top">
-        <div><div class="plan-name2">Internet M</div><div class="plan-speed2">100 / 40 Mbit/s</div></div>
-        <div class="plan-price"><div class="now" style="font-size:18px;">od 18 € <span>/mes.</span></div></div>
-      </div>
+      <div class="plan-badge plan-badge--empty">—</div>
+      <div class="plan-name2">Internet M</div>
+      <div class="plan-speed2">100 / 40 Mbit/s</div>
+      <div class="plan-price"><div class="now" style="font-size:18px;">od 18 € <span>/mes.</span></div></div>
       <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
       <ul class="plan-benefits-list">
         <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
@@ -968,10 +980,9 @@
     <!-- Internet L — hero produkt -->
     <div class="plan reco">
       <div class="plan-badge">Favorit fanúšikov</div>
-      <div class="plan-top">
-        <div><div class="plan-name2">Internet L</div><div class="plan-speed2">600 / 150 Mbit/s</div></div>
-        <div class="plan-price"><div class="now" style="font-size:18px;">od 22 € <span>/mes.</span></div></div>
-      </div>
+      <div class="plan-name2">Internet L</div>
+      <div class="plan-speed2">600 / 150 Mbit/s</div>
+      <div class="plan-price"><div class="now" style="font-size:18px;">od 22 € <span>/mes.</span></div></div>
       <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
       <ul class="plan-benefits-list">
         <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
@@ -989,10 +1000,10 @@
 
     <!-- Internet XL -->
     <div class="plan">
-      <div class="plan-top">
-        <div><div class="plan-name2">Internet XL</div><div class="plan-speed2">1 000 / 500 Mbit/s</div></div>
-        <div class="plan-price"><div class="now" style="font-size:18px;">od 26 € <span>/mes.</span></div></div>
-      </div>
+      <div class="plan-badge plan-badge--empty">—</div>
+      <div class="plan-name2">Internet XL</div>
+      <div class="plan-speed2">1 000 / 500 Mbit/s</div>
+      <div class="plan-price"><div class="now" style="font-size:18px;">od 26 € <span>/mes.</span></div></div>
       <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
       <ul class="plan-benefits-list">
         <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
@@ -1011,15 +1022,11 @@
     <!-- Internet XL Extra -->
     <div class="plan">
       <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
-      <div class="plan-top" style="margin-bottom:6px;">
-        <div>
-          <div class="plan-name2">Internet XL Extra</div>
-          <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
-        </div>
-        <div class="plan-price">
-          <div class="now">23 € <span>/ 3 mes.</span></div>
-          <div class="was" style="font-size:11px;">potom 30 €/mes.</div>
-        </div>
+      <div class="plan-name2">Internet XL Extra</div>
+      <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
+      <div class="plan-price">
+        <div class="now">23 € <span>/ 3 mes.</span></div>
+        <div class="was" style="font-size:11px;text-decoration:none;color:var(--ink-soft);">potom 30 €/mes.</div>
       </div>
       <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
         Online zľava · Prémiová inštalácia zadarmo
@@ -1055,7 +1062,7 @@
 
 <!-- 5. AK SI NEVIETE PORADIŤ -->
 <section class="sec" id="quiz-anchor">
-  <div class="sec-head center">
+  <div class="sec-head">
     <div class="eyebrow">Poradíme vám</div>
     <h2>Ak si neviete poradiť, my vám poradíme.</h2>
     <p>Odpovedzte na 4 krátke otázky a odporučíme vám presne ten balík, ktorý vaša domácnosť potrebuje.</p>
@@ -1090,9 +1097,7 @@
             <div class="plan-speed" id="resSpeed">—</div>
           </div>
           <div class="price">
-            <div class="was" id="resWas">—</div>
-            <div class="first-month" id="resPromo">1 € / 1. mesiac</div>
-            <div class="then" id="resThen">potom bežná cena</div>
+            <div class="first-month" id="resPromo">—</div>
           </div>
         </div>
         <div class="benefits">
@@ -1104,15 +1109,20 @@
       <div class="addon" id="addonBox" style="display:none;">
         <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
       </div>
+      <div class="promo-strip" style="margin-bottom:14px;">
+        <span class="ps-label">Ušetrite ešte viac</span>
+        Vybojujte si zľavu na internet <b>v Hokejovej online výzve</b> — zľava až 120 € ročne.
+        <a href="#challenge-anchor" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})" style="color:var(--orange-deep);font-weight:600;text-decoration:none;display:block;margin-top:6px;">Hrať výzvu →</a>
+      </div>
       <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
-      <button class="cta-primary" onclick="alert('Demo: tu by pokračovala objednávka s predvyplneným balíkom '+state.result.name)">Objednať s 1 € na prvý mesiac</button>
+      <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
       <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
     </div>
   </div>
 </section>
 
 <!-- 6. PROCES -->
-<section class="sec">
+<section class="sec sec--dark">
   <div class="sec-head">
     <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
     <h2>Ako prebieha zriadenie Orange internetu</h2>
@@ -1624,11 +1634,17 @@ function computeResult(){
 
   let plan;
   if(score >= 7){
-    plan = { name:'Internet XL Extra', speed_display:'2500/1000 Mbit/s', speed:2500, was:'30 €/mes.', why:'Veľa zariadení naraz + hranie hier alebo streamy si žiadajú maximálnu rýchlosť a stabilitu bez výpadkov.', then:'30 €/mes. od 4. mesiaca' };
-  } else if(score >= 4){
-    plan = { name:'Internet XL', speed_display:'300/30 Mbit/s', speed:300, was:'23 €/mes.', why:'Kombinácia streamovania, hokeja naživo a viacerých zariadení — ideálny pomer rýchlosti a ceny.', then:'23 €/mes. od 4. mesiaca' };
+    plan = { name:'Internet XL Extra', speed_display:'2 500 / 1 000 Mbit/s', speed:2500,
+      promo:'od 30 €/mes.', why:'Veľa zariadení a gaming si žiadajú maximálnu rýchlosť bez výpadkov.' };
+  } else if(score >= 5){
+    plan = { name:'Internet XL', speed_display:'1 000 / 500 Mbit/s', speed:1000,
+      promo:'od 26 €/mes.', why:'Streamy, hokej naživo a viacero zariadení — ideálny pomer rýchlosti a ceny.' };
+  } else if(score >= 3){
+    plan = { name:'Internet L', speed_display:'600 / 150 Mbit/s', speed:600,
+      promo:'od 22 €/mes.', why:'Najobľúbenejší balík pre celú domácnosť — zvládne streamy aj prácu.' };
   } else {
-    plan = { name:'Internet Basic', speed_display:'50/10 Mbit/s', speed:50, was:'15 €/mes.', why:'Na bežné surfovanie, email a menej zariadení vám táto rýchlosť bohato postačí.', then:'15 €/mes. od 4. mesiaca' };
+    plan = { name:'Internet M', speed_display:'100 / 40 Mbit/s', speed:100,
+      promo:'od 18 €/mes.', why:'Na bežné surfovanie, e-mail a videohovory vám táto rýchlosť postačí.' };
   }
   plan.security = a.security === 'yes';
   state.result = plan;
@@ -1641,8 +1657,7 @@ function showResult(){
   document.getElementById('resPlanName2').textContent = state.result.name;
   document.getElementById('resSpeed').textContent = state.result.speed_display;
   document.getElementById('resWhy').textContent = state.result.why;
-  document.getElementById('resThen').textContent = state.result.then;
-  document.getElementById('resWas').textContent = state.result.was;
+  document.getElementById('resPromo').textContent = state.result.promo;
   if(state.result.security){ document.getElementById('addonBox').style.display = 'flex'; }
   updateGauge(1);
 }
