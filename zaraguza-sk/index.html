@@ -390,26 +390,42 @@
     nav{ padding:18px 48px; }
     .nav-inner{ max-width:1200px; }
     .sec, section{ max-width:1100px; padding:0 48px; }
-    .hero{ padding:72px 48px; }
     .challenge{ padding:72px 48px; }
 
     /* HERO: text left, image full-height right with gradient blend */
-    .hero-inner{ max-width:600px; display:block; position:relative; z-index:2; }
+    .hero{
+      padding:0 48px;
+      min-height:90vh;
+      display:flex; align-items:center;
+    }
+    .hero-inner{
+      max-width:1200px; width:100%; display:block;
+      position:relative; z-index:2;
+      padding:80px 0;
+    }
     .hero-copy{ max-width:520px; }
     .hero h1{ font-size:48px; line-height:1.08; }
     .hero h1 .je-tam{ font-size:56px; }
     .hero p{ font-size:17px; max-width:440px; }
-    .stat-row{ margin-top:30px; }
+    .stat-row{ margin-top:36px; max-width:520px; }
     .hero-visual{
-      position:absolute; right:0; top:0; bottom:0; width:60%;
+      position:absolute; right:0; top:0; bottom:0; width:62%;
       z-index:0;
     }
     .hero-visual::before{
       content:''; position:absolute; inset:0;
-      background:linear-gradient(to right, #100E0C 0%, rgba(16,14,12,0.85) 25%, rgba(16,14,12,0.3) 60%, transparent 100%);
+      background:linear-gradient(to right,
+        #100E0C 0%,
+        rgba(16,14,12,0.95) 15%,
+        rgba(16,14,12,0.7) 38%,
+        rgba(16,14,12,0.15) 65%,
+        transparent 100%);
       z-index:1; pointer-events:none;
     }
-    .hero-fan-img{ width:100%; height:100%; max-height:none; border-radius:0; object-fit:cover; display:block; }
+    .hero-fan-img{
+      width:100%; height:100%; max-height:none;
+      border-radius:0; object-fit:cover; object-position:top center; display:block;
+    }
 
     /* CHALLENGE becomes two columns: pitch left, game+leaderboard right */
     .challenge-inner{
