@@ -8,6 +8,8 @@
 <title>Orange Internet — Je tam!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
 <style>
   :root{
     color-scheme: light;
@@ -223,35 +225,15 @@
   }
   .coverage-form .address-row button{ background:var(--orange); }
 
-  .map-wrap{
-    background:var(--night); border-radius:var(--radius); padding:20px; position:relative;
-  }
-  .map-legend{ display:flex; gap:16px; margin-bottom:14px; }
+  .map-wrap{ border-radius:var(--radius); overflow:hidden; }
+  #coverageMap{ width:100%; height:320px; }
+  .map-legend{ display:flex; gap:16px; padding:12px 16px; background:var(--night); }
   .map-legend .li{ display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(255,255,255,.7); }
   .map-legend .dot{ width:9px; height:9px; border-radius:3px; }
   .dot.on{ background:var(--orange); }
   .dot.soon{ background:rgba(255,255,255,0.2); }
-
-  .map-wrap svg.sk-map{ width:100%; height:auto; display:block; margin-bottom:4px; }
-  .sk-outline{ fill:none; stroke:rgba(255,255,255,0.18); stroke-width:1.4; }
-  .sk-dot{ fill:var(--orange); }
-  .sk-dot.soon{ fill:rgba(255,255,255,0.16); }
-  .city-dot{ fill:#fff; stroke:var(--orange); stroke-width:2; cursor:pointer; }
-  .city-dot.active{ fill:var(--orange); }
-
-  .city-pins{ display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
-  .pin{
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff;
-    border-radius:100px; padding:8px 13px; font-size:12px; font-weight:600; cursor:pointer;
-    display:flex; align-items:center; gap:5px;
-  }
-  .pin.active{ background:var(--orange); border-color:var(--orange); }
-  .pin-info{
-    margin-top:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
-    border-radius:12px; padding:14px; font-size:12.5px; color:rgba(255,255,255,.85); display:none;
-  }
-  .pin-info.show{ display:block; animation:fadeUp .3s ease; }
-  .pin-info b{ color:#fff; }
+  .mapboxgl-popup-content{ background:var(--night); color:#fff; border-radius:10px; padding:10px 14px; font-size:13px; font-family:'Inter'; }
+  .mapboxgl-popup-tip{ border-top-color:var(--night) !important; }
 
   /* ---------- PRICING ---------- */
   .plans{
@@ -473,7 +455,8 @@
     /* COVERAGE: form + legend stay readable width, map gets a cap so it doesn't sprawl */
     #coverage-anchor .sec-head{ max-width:560px; }
     #coverage-anchor .coverage-form{ max-width:480px; margin:0 0 24px; }
-    .map-wrap{ max-width:900px; padding:28px; margin:0 auto; }
+    .map-wrap{ max-width:900px; margin:0 auto; }
+    #coverageMap{ height:440px; }
 
     /* PRICING: desktop — switch scroll to a proper 4-col grid */
     #plans-anchor .sec-head{ max-width:640px; }
@@ -937,22 +920,11 @@
   </div>
 
   <div class="map-wrap">
+    <div id="coverageMap"></div>
     <div class="map-legend">
       <div class="li"><span class="dot on"></span>Pokryté optikou</div>
       <div class="li"><span class="dot soon"></span>Pripravujeme</div>
     </div>
-    <svg class="sk-map" id="skMap" viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="skClip">
-          <path d="M14,78 C16,68 20,56 28,46 C36,36 46,28 58,21 C72,14 86,9 100,7 C114,5 128,5 140,8 C150,5 160,4 170,7 C182,4 194,6 204,4 C218,2 232,4 244,8 C256,4 268,3 280,6 C292,4 304,7 314,12 C326,8 338,7 350,10 C362,8 374,10 384,14 C394,18 402,24 408,32 C414,40 416,50 414,60 C412,68 406,76 398,84 C386,94 372,102 356,108 C340,114 322,118 304,120 C286,122 268,122 250,120 C232,118 214,115 196,112 C178,109 160,106 142,103 C124,100 106,98 88,95 C70,92 52,90 36,88 C26,87 14,86 14,78 Z"/>
-        </clipPath>
-      </defs>
-      <path class="sk-outline" d="M14,78 C16,68 20,56 28,46 C36,36 46,28 58,21 C72,14 86,9 100,7 C114,5 128,5 140,8 C150,5 160,4 170,7 C182,4 194,6 204,4 C218,2 232,4 244,8 C256,4 268,3 280,6 C292,4 304,7 314,12 C326,8 338,7 350,10 C362,8 374,10 384,14 C394,18 402,24 408,32 C414,40 416,50 414,60 C412,68 406,76 398,84 C386,94 372,102 356,108 C340,114 322,118 304,120 C286,122 268,122 250,120 C232,118 214,115 196,112 C178,109 160,106 142,103 C124,100 106,98 88,95 C70,92 52,90 36,88 C26,87 14,86 14,78 Z"/>
-      <g clip-path="url(#skClip)" id="skDots"></g>
-      <g id="skCities"></g>
-    </svg>
-    <div class="city-pins" id="cityPins"></div>
-    <div class="pin-info" id="pinInfo"></div>
   </div>
 
   <div class="coverage-success" id="coverageSuccess">
@@ -1412,46 +1384,122 @@ function submitForm(){
 
 let lastReaction = null;
 
-/* ================= COVERAGE MAP (Slovakia-shaped) ================= */
-(function(){
-  const dotsG = document.getElementById('skDots');
-  let html = '';
-  for(let x = 6; x <= 494; x += 10){
-    for(let y = 6; y <= 134; y += 10){
-      const r = Math.random();
-      const cls = r > 0.18 ? 'sk-dot' : 'sk-dot soon';
-      html += `<rect class="${cls}" x="${x-2}" y="${y-2}" width="4" height="4" rx="1"/>`;
+/* ================= MAPBOX COVERAGE MAP ================= */
+const MAPBOX_TOKEN = 'pk.eyJ1IjoidGhldGl0dGVscyIsImEiOiJjbXN0MmV1YXcwMm5uMnlzaWZrNThjZGdnIn0.wCaZm0_3xGwjDPhA3LHHnA';
+mapboxgl.accessToken = MAPBOX_TOKEN;
+
+const coverageMap = new mapboxgl.Map({
+  container: 'coverageMap',
+  style: 'mapbox://styles/mapbox/dark-v11',
+  center: [19.5, 48.72],
+  zoom: 7.0,
+  minZoom: 6,
+  maxZoom: 14,
+  scrollZoom: false,
+  attributionControl: false
+});
+
+coverageMap.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+
+const coverageData = {
+  type: 'FeatureCollection',
+  features: [
+    { type:'Feature', properties:{ covered:true,  name:'Bratislava',        info:'Optický internet dostupný v celom meste. Max. rýchlosť 2 500 Mbit/s.' }, geometry:{ type:'Point', coordinates:[17.107, 48.149] } },
+    { type:'Feature', properties:{ covered:true,  name:'Trnava',            info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[17.588, 48.378] } },
+    { type:'Feature', properties:{ covered:true,  name:'Trenčín',           info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[18.044, 48.894] } },
+    { type:'Feature', properties:{ covered:true,  name:'Nitra',             info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[18.089, 48.306] } },
+    { type:'Feature', properties:{ covered:true,  name:'Žilina',            info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[18.741, 49.223] } },
+    { type:'Feature', properties:{ covered:true,  name:'Banská Bystrica',   info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[19.153, 48.736] } },
+    { type:'Feature', properties:{ covered:true,  name:'Prešov',            info:'Optický internet dostupný. Max. rýchlosť 1 000 Mbit/s.' },              geometry:{ type:'Point', coordinates:[21.239, 49.001] } },
+    { type:'Feature', properties:{ covered:true,  name:'Košice',            info:'Optický internet dostupný vo väčšine mestských častí. Max. rýchlosť 1 000 Mbit/s.' }, geometry:{ type:'Point', coordinates:[21.261, 48.716] } },
+    { type:'Feature', properties:{ covered:false, name:'Poprad',            info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[20.299, 49.059] } },
+    { type:'Feature', properties:{ covered:false, name:'Zvolen',            info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[19.118, 48.576] } },
+    { type:'Feature', properties:{ covered:false, name:'Liptovský Mikuláš', info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[19.611, 49.084] } },
+  ]
+};
+
+coverageMap.on('load', () => {
+  coverageMap.addSource('coverage', { type:'geojson', data: coverageData });
+
+  coverageMap.addLayer({
+    id: 'coverage-glow',
+    type: 'circle',
+    source: 'coverage',
+    filter: ['==', ['get', 'covered'], true],
+    paint: {
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 22, 12, 70],
+      'circle-color': '#FF6600',
+      'circle-opacity': 0.10,
+      'circle-blur': 1
     }
-  }
-  dotsG.innerHTML = html;
-})();
-
-function checkCoverage(){
-  const addr = document.getElementById('addr-cov').value.trim();
-  if(!addr){ document.getElementById('addr-cov').focus(); return; }
-  const successEl = document.getElementById('coverageSuccess');
-  successEl.classList.add('show');
-  successEl.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-
-const cities = [
-  { name:'Bratislava', cx:40, cy:78, info:'Optický internet aj FiberNet dostupné v celom meste. Max. rýchlosť 2 500 Mbit/s.' },
-  { name:'Žilina', cx:200, cy:35, info:'Pokrytie sa priebežne rozširuje. V centre už dostupný optický internet.' },
-  { name:'Košice', cx:400, cy:60, info:'Optický internet dostupný vo väčšine mestských častí. Max. rýchlosť 1 000 Mbit/s.' },
-];
-document.getElementById('skCities').innerHTML = cities.map((c,i)=>
-  `<circle class="city-dot" id="citydot-${i}" cx="${c.cx}" cy="${c.cy}" r="4.5" onclick="selectPin(${i})"/>`
-).join('');
-const pinsEl = document.getElementById('cityPins');
-pinsEl.innerHTML = cities.map((c,i)=>`<button class="pin" id="pin-${i}" onclick="selectPin(${i})">${c.name}</button>`).join('');
-function selectPin(i){
-  cities.forEach((_,j)=>{
-    document.getElementById('pin-'+j).classList.toggle('active', j===i);
-    document.getElementById('citydot-'+j).classList.toggle('active', j===i);
   });
-  const info = document.getElementById('pinInfo');
-  info.innerHTML = `<b>${cities[i].name}:</b> ${cities[i].info}`;
-  info.classList.add('show');
+
+  coverageMap.addLayer({
+    id: 'coverage-dots',
+    type: 'circle',
+    source: 'coverage',
+    filter: ['==', ['get', 'covered'], true],
+    paint: {
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 5, 12, 14],
+      'circle-color': '#FF6600',
+      'circle-stroke-color': '#FF8A3D',
+      'circle-stroke-width': 1.5
+    }
+  });
+
+  coverageMap.addLayer({
+    id: 'coverage-soon',
+    type: 'circle',
+    source: 'coverage',
+    filter: ['==', ['get', 'covered'], false],
+    paint: {
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 4, 12, 12],
+      'circle-color': 'rgba(255,255,255,0.2)',
+      'circle-stroke-color': 'rgba(255,255,255,0.35)',
+      'circle-stroke-width': 1
+    }
+  });
+
+  ['coverage-dots', 'coverage-soon'].forEach(layer => {
+    coverageMap.on('click', layer, (e) => {
+      const { name, info } = e.features[0].properties;
+      new mapboxgl.Popup({ closeButton:false, offset:14 })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setHTML(`<b>${name}</b><br><span style="opacity:.75;font-size:11px;">${info}</span>`)
+        .addTo(coverageMap);
+    });
+    coverageMap.on('mouseenter', layer, () => coverageMap.getCanvas().style.cursor = 'pointer');
+    coverageMap.on('mouseleave', layer, () => coverageMap.getCanvas().style.cursor = '');
+  });
+});
+
+let addressMarker = null;
+
+function checkCoverage() {
+  const addr = document.getElementById('addr-cov').value.trim();
+  if (!addr) { document.getElementById('addr-cov').focus(); return; }
+
+  fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(addr)}.json?country=sk&language=sk&access_token=${MAPBOX_TOKEN}`)
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('addr-cov').style.borderColor = '';
+      if (data.features && data.features.length) {
+        const [lng, lat] = data.features[0].center;
+        if (addressMarker) addressMarker.remove();
+        addressMarker = new mapboxgl.Marker({ color: '#FF6600' })
+          .setLngLat([lng, lat])
+          .addTo(coverageMap);
+        coverageMap.flyTo({ center: [lng, lat], zoom: 13, duration: 1400 });
+      }
+      const successEl = document.getElementById('coverageSuccess');
+      successEl.classList.add('show');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    })
+    .catch(() => {
+      const successEl = document.getElementById('coverageSuccess');
+      successEl.classList.add('show');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
 }
 
 /* ================= QUIZ ================= */
