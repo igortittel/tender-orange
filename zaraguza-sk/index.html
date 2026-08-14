@@ -342,6 +342,13 @@
   .step .txt b{ display:block; font-size:15px; font-weight:700; margin-bottom:5px; color:var(--ink); }
   .step .txt span{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; display:block; }
 
+  /* ---------- PROCESS KISS ---------- */
+  .steps-3{ display:grid; grid-template-columns:1fr; gap:24px; margin-top:28px; }
+  .s3{ }
+  .s3-num{ font-family:'Sora'; font-weight:800; font-size:40px; color:rgba(255,102,0,.3); line-height:1; margin-bottom:8px; }
+  .s3-title{ font-family:'Sora'; font-weight:700; font-size:15px; color:#fff; margin-bottom:5px; }
+  .s3-desc{ font-size:13.5px; color:rgba(255,255,255,.6); line-height:1.5; }
+
   /* ---------- DARK SECTION ---------- */
   .sec--dark{ background:var(--night); }
   .sec--dark .sec-head h2{ color:#fff; }
@@ -442,7 +449,9 @@
     .nav-inner{ max-width:1200px; }
     .sec, section{ max-width:none; margin:0; padding:60px 48px; }
     section:not(.sec){ padding-top:0; padding-bottom:0; }
-    .sec-head{ max-width:700px; }
+    /* Inner wrapper — matches challenge-inner pattern */
+    .sec-inner{ max-width:1200px; margin:0 auto; }
+    .sec-head{ max-width:680px; }
     .challenge{ padding:72px 48px; }
 
     /* HERO desktop */
@@ -464,33 +473,27 @@
     .reward-row{ flex-direction:column; align-items:flex-start; }
     .challenge-visual{ max-width:480px; }
 
-    /* COVERAGE: form + legend stay readable width, map gets a cap so it doesn't sprawl */
-    #coverage-anchor .sec-head{ max-width:560px; }
-    #coverage-anchor .coverage-form{ max-width:480px; margin:0 0 24px; }
+    /* COVERAGE */
+    #coverage-anchor .coverage-form{ max-width:480px; }
     .map-wrap{ max-width:none; margin:0; }
     #coverageMap{ height:440px; }
 
     /* PRICING: desktop — switch scroll to a proper 4-col grid */
-    #plans-anchor .sec-head{ max-width:640px; }
     .plans{ overflow:visible; display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
     .plan{ min-width:0; flex-shrink:1; display:flex; flex-direction:column; height:100%; }
     .plan.reco{ transform:translateY(-6px); }
     .plan-ctas{ margin-top:auto; }
 
-    /* ASSESSMENT: keep the card at a comfortable reading/interaction width */
-    #quiz-anchor{ max-width:1100px; }
-    #quiz-anchor .sec-head{ max-width:640px; margin-left:0; margin-right:auto; }
+    /* ASSESSMENT */
     .quiz-card{ max-width:none; margin:0; padding:40px 48px; }
     .opts{ grid-template-columns:1fr 1fr 1fr 1fr; }
     .opts.single-col{ grid-template-columns:1fr 1fr; }
 
-    /* PROCESS: horizontal 3-col layout */
-    .sec .sec-head{ max-width:640px; }
-    .steps{ max-width:none; flex-direction:row; gap:18px; }
-    .step{ flex:1; }
-    .step .txt{ margin-top:2px; }
+    /* PROCESS KISS */
+    .steps-3{ grid-template-columns:1fr 1fr 1fr; gap:40px; }
+    .s3-num{ font-size:56px; }
 
-    /* FAQ: full width, left-aligned */
+    /* FAQ */
     #faq{ max-width:none; margin:0; }
 
     .sticky-cta{ padding:16px 48px; }
@@ -920,37 +923,40 @@
 
 <!-- 3. COVERAGE + MAP -->
 <section class="sec" id="coverage-anchor">
-  <div class="sec-head">
-    <div class="eyebrow">Krok 1: Overenie dostupnosti</div>
-    <h2>Zistite, či k vám vieme zaviesť bleskovú optiku</h2>
-    <p>Zadajte svoju adresu a zistite možnosti najrýchlejšieho pripojenia. Váš vybojovaný promo kód si jednoducho uplatníte pri výbere balíka v ďalšom kroku.</p>
-  </div>
-
-  <div class="coverage-form">
-    <div class="address-row">
-      <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
-      <button onclick="checkCoverage()">Preveriť</button>
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="eyebrow">Krok 1: Overenie dostupnosti</div>
+      <h2>Zistite, či k vám vieme zaviesť bleskovú optiku</h2>
+      <p>Zadajte svoju adresu a zistite možnosti najrýchlejšieho pripojenia. Váš vybojovaný promo kód si jednoducho uplatníte pri výbere balíka v ďalšom kroku.</p>
     </div>
-  </div>
 
-  <div class="map-wrap">
-    <div id="coverageMap"></div>
-    <div class="map-legend">
-      <div class="li"><span class="dot on"></span>Pokryté optikou</div>
-      <div class="li"><span class="dot soon"></span>Pripravujeme</div>
+    <div class="coverage-form">
+      <div class="address-row">
+        <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
+        <button onclick="checkCoverage()">Preveriť</button>
+      </div>
     </div>
-  </div>
 
-  <div class="coverage-success" id="coverageSuccess">
-    <div class="cs-check">✓</div>
-    <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
-    <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
-    <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+    <div class="map-wrap">
+      <div id="coverageMap"></div>
+      <div class="map-legend">
+        <div class="li"><span class="dot on"></span>Pokryté optikou</div>
+        <div class="li"><span class="dot soon"></span>Pripravujeme</div>
+      </div>
+    </div>
+
+    <div class="coverage-success" id="coverageSuccess">
+      <div class="cs-check">✓</div>
+      <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
+      <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
+      <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+    </div>
   </div>
 </section>
 
 <!-- 4. BALÍKY INTERNETU -->
 <section class="sec" id="plans-anchor">
+  <div class="sec-inner">
   <div class="sec-head">
     <div class="eyebrow">Krok 2: Výber balíka</div>
     <h2>Vyberte si internet, s ktorým budete mať pred susedmi náskok</h2>
@@ -1058,10 +1064,12 @@
   <p style="text-align:center;font-size:12px;color:var(--ink-soft);margin-top:16px;">
     Všetky ceny sú s DPH. Online zľava platí pri objednávke cez orange.sk. Viazanosť 24 mesiacov.
   </p>
+  </div><!-- /sec-inner -->
 </section>
 
 <!-- 5. AK SI NEVIETE PORADIŤ -->
 <section class="sec" id="quiz-anchor">
+  <div class="sec-inner">
   <div class="sec-head">
     <div class="eyebrow">Poradíme vám</div>
     <h2>Ak si neviete poradiť, my vám poradíme.</h2>
@@ -1118,36 +1126,32 @@
       <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
       <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
     </div>
-  </div>
+  </div><!-- /quiz-card -->
+  </div><!-- /sec-inner -->
 </section>
 
 <!-- 6. PROCES -->
 <section class="sec sec--dark">
-  <div class="sec-head">
-    <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
-    <h2>Ako prebieha zriadenie Orange internetu</h2>
-    <p>Celú objednávku vybavíte online za 2 minúty. O všetko ostatné – od zmluvy až po sprevádzkovanie routra – sa kompletne postaráme my.</p>
-  </div>
-  <div class="steps">
-    <div class="step" data-n="1">
-      <div class="num">Krok 1</div>
-      <div class="txt">
-        <b>Objednávka a podpis bez starostí</b>
-        <span>Zvolíte si balík online a do 3 dní vám kuriér prinesie pripravené dokumenty len na podpis.</span>
-      </div>
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
+      <h2>Tri kroky a internet beží</h2>
     </div>
-    <div class="step" data-n="2">
-      <div class="num">Krok 2</div>
-      <div class="txt">
-        <b>Rýchla inštalácia naším technikom</b>
-        <span>Po podpise si dohodnete presný termín. Náš technik k vám príde, kompletne zapojí optiku aj Wi-Fi router a všetko otestuje.</span>
+    <div class="steps-3">
+      <div class="s3">
+        <div class="s3-num">01</div>
+        <div class="s3-title">Objednáš online za 2 min.</div>
+        <div class="s3-desc">Vyplníš formulár, kuriér prinesie zmluvu do 3 dní — len podpíšeš.</div>
       </div>
-    </div>
-    <div class="step" data-n="3">
-      <div class="num">Krok 3</div>
-      <div class="txt">
-        <b>Hokej bez sekania a 14 dní na testovanie</b>
-        <span>Okamžite si užívate stabilné pripojenie s bleskovou odozvou a 14-dňovou garanciou vrátenia peňazí bez sankcií.</span>
+      <div class="s3">
+        <div class="s3-num">02</div>
+        <div class="s3-title">Technik nainštaluje</div>
+        <div class="s3-desc">Dohodneš termín, technik príde, zapojí optiku aj Wi-Fi router a všetko otestuje.</div>
+      </div>
+      <div class="s3">
+        <div class="s3-num">03</div>
+        <div class="s3-title">Surfuješ naplno</div>
+        <div class="s3-desc">Bleskové pripojenie ihneď. 14 dní na vyskúšanie — ak nie si spokojný, vrátime peniaze.</div>
       </div>
     </div>
   </div>
@@ -1155,11 +1159,13 @@
 
 <!-- 7. FAQ -->
 <section class="sec" id="faq-anchor">
-  <div class="sec-head">
-    <div class="eyebrow">Časté otázky</div>
-    <h2>Odpovede na najčastejšie otázky</h2>
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="eyebrow">Časté otázky</div>
+      <h2>Odpovede na najčastejšie otázky</h2>
+    </div>
+    <div id="faq"></div>
   </div>
-  <div id="faq"></div>
 </section>
 
 <footer class="site-footer" role="contentinfo">
