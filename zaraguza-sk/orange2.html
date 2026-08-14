@@ -1447,21 +1447,45 @@ const coverageData = {
   ]
 };
 
-coverageMap.on('load', () => {
-  coverageMap.addSource('coverage', { type:'geojson', data: coverageData });
+// Dense grid across Slovakia for heatmap (populated valleys & lowlands, ~80% coverage)
+const skGrid = [
+  [17.05,48.10],[17.30,47.95],[17.55,47.90],[17.80,47.95],[18.05,47.90],[18.35,48.00],[18.65,48.10],[18.95,48.15],[19.25,48.20],[19.55,48.25],[19.85,48.30],[20.15,48.35],[20.45,48.40],[20.80,48.45],[21.15,48.45],[21.45,48.50],[21.75,48.55],
+  [17.05,48.30],[17.30,48.25],[17.60,48.20],[17.90,48.20],[18.15,48.30],[18.45,48.25],[18.75,48.25],[19.05,48.30],[19.35,48.35],[19.65,48.30],[19.95,48.40],[20.25,48.50],[20.55,48.55],[20.85,48.60],[21.15,48.65],[21.45,48.65],[21.80,48.70],[22.05,48.75],
+  [17.10,48.50],[17.40,48.55],[17.70,48.50],[17.95,48.45],[18.20,48.55],[18.50,48.55],[18.75,48.60],[19.00,48.55],[19.30,48.55],[19.60,48.55],[19.90,48.60],[20.20,48.70],[20.50,48.70],[20.80,48.75],[21.10,48.80],[21.40,48.80],[21.70,48.85],[22.00,48.80],
+  [17.15,48.70],[17.45,48.75],[17.75,48.80],[18.05,48.85],[18.30,48.75],[18.60,48.80],[18.90,48.75],[19.20,48.75],[19.50,48.80],[19.80,48.85],[20.10,48.85],[20.40,48.90],[20.70,48.90],[21.00,48.95],[21.30,48.95],[21.60,49.00],[21.90,49.00],[22.10,48.95],
+  [17.50,48.95],[17.80,49.00],[18.10,49.00],[18.40,49.05],[18.70,49.10],[19.00,49.05],[19.25,49.05],[19.55,49.05],[19.85,49.00],[20.15,49.00],[20.45,49.05],[20.75,49.05],[21.05,49.10],[21.35,49.10],[21.65,49.10],[21.90,49.10],
+  [17.70,49.20],[18.00,49.20],[18.30,49.20],[18.60,49.25],[18.90,49.25],[19.15,49.25],[19.45,49.20],[19.75,49.15],[20.05,49.15],[20.35,49.15],[20.65,49.20],[20.95,49.20],[21.25,49.25],[21.55,49.20],[21.85,49.20],
+  [18.80,49.40],[19.05,49.40],[19.30,49.38],[21.35,49.35],[21.60,49.30],[21.85,49.28]
+].map(c => ({ type:'Feature', geometry:{ type:'Point', coordinates:c }, properties:{} }));
 
+coverageMap.on('load', () => {
+  // Heatmap source — dense grid for area coverage visualization
+  coverageMap.addSource('sk-grid', { type:'geojson', data:{ type:'FeatureCollection', features: skGrid } });
+
+  // Heatmap layer — shows ~80% territory coverage, fades out when zooming in
   coverageMap.addLayer({
-    id: 'coverage-glow',
-    type: 'circle',
-    source: 'coverage',
-    filter: ['==', ['get', 'covered'], true],
+    id: 'coverage-heatmap',
+    type: 'heatmap',
+    source: 'sk-grid',
+    maxzoom: 11,
     paint: {
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 22, 12, 70],
-      'circle-color': '#FF6600',
-      'circle-opacity': 0.10,
-      'circle-blur': 1
+      'heatmap-weight': 1,
+      'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 6, 1.2, 10, 2.5],
+      'heatmap-color': [
+        'interpolate', ['linear'], ['heatmap-density'],
+        0,   'rgba(255,102,0,0)',
+        0.15,'rgba(255,102,0,0.15)',
+        0.4, 'rgba(255,102,0,0.35)',
+        0.7, 'rgba(255,102,0,0.55)',
+        1,   'rgba(255,138,61,0.70)'
+      ],
+      'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 6, 38, 10, 80],
+      'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 8, 0.9, 11, 0]
     }
   });
+
+  // Named city sources — interactive dots on top of heatmap
+  coverageMap.addSource('coverage', { type:'geojson', data: coverageData });
 
   coverageMap.addLayer({
     id: 'coverage-dots',
@@ -1469,10 +1493,11 @@ coverageMap.on('load', () => {
     source: 'coverage',
     filter: ['==', ['get', 'covered'], true],
     paint: {
-      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 5, 12, 14],
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 4, 12, 12],
       'circle-color': '#FF6600',
       'circle-stroke-color': '#FF8A3D',
-      'circle-stroke-width': 1.5
+      'circle-stroke-width': 1.5,
+      'circle-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.7, 10, 1]
     }
   });
 
