@@ -1251,14 +1251,14 @@ function showGameResult(reaction){
 
   let mainText, subText, rewardText, rewardLabel, secondaryLabel, secondaryAction;
 
-  if(reaction < 200){
+  if(reaction < 300){
     mainText = 'Blesková odozva! Si rýchlejší ako sused!';
     subText = 'Toto bola blesková rýchlosť — presne taká, akú ti dáva Orange optický internet. S týmto typom pripojenia nestíha sused ani reagovať, kým ty už oslavuješ gól.';
     rewardLabel = 'Tvoja vybojovaná odmena:';
     rewardText = 'Zľava 120 € ročne na internet (-10 €/mes.)';
     secondaryLabel = 'Pozrieť akčné internetové balíčky →';
     secondaryAction = () => document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'});
-  } else if(reaction <= 350){
+  } else if(reaction <= 500){
     mainText = 'Skvelý čas! Ale sused bol o kúsok rýchlejší.';
     subText = 'Tvoja reakcia je dobrá — ale s Orange optickým internetom môžeš byť ešte rýchlejší. Pomalé pripojenie ťa spomaľuje, aj keď to necítiš. Skús to znova a získaj vyššiu zľavu.';
     rewardLabel = 'Tvoja aktuálna odmena:';
