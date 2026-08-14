@@ -467,8 +467,10 @@
 
     /* ASSESSMENT: keep the card at a comfortable reading/interaction width */
     #quiz-anchor{ max-width:1100px; }
-    #quiz-anchor .sec-head{ max-width:560px; margin-left:auto; margin-right:auto; }
-    .quiz-card{ max-width:520px; margin:0 auto; padding:36px 40px; }
+    #quiz-anchor .sec-head{ max-width:640px; margin-left:auto; margin-right:auto; }
+    .quiz-card{ max-width:none; margin:0; padding:40px 48px; }
+    .opts{ grid-template-columns:1fr 1fr 1fr 1fr; }
+    .opts.single-col{ grid-template-columns:1fr 1fr; }
 
     /* PROCESS: horizontal 3-col layout */
     .sec .sec-head{ max-width:640px; }
@@ -931,7 +933,7 @@
     <div class="cs-check">✓</div>
     <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
     <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
-    <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+    <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
   </div>
 </section>
 
@@ -960,13 +962,11 @@
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
       <div class="plan-ctas">
         <button class="cta-primary">Vybrať</button>
-        <button class="cta-secondary">Viac info</button>
       </div>
     </div>
 
-    <!-- Internet L — Odporúčame -->
+    <!-- Internet L — hero produkt -->
     <div class="plan reco">
-      <div class="ribbon">Odporúčame</div>
       <div class="plan-badge">Favorit fanúšikov</div>
       <div class="plan-top">
         <div><div class="plan-name2">Internet L</div><div class="plan-speed2">600 / 150 Mbit/s</div></div>
@@ -974,7 +974,7 @@
       </div>
       <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">+</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
         <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
         <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
         <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
@@ -984,20 +984,18 @@
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
       <div class="plan-ctas">
         <button class="cta-primary">Vybrať</button>
-        <button class="cta-secondary">Viac info</button>
       </div>
     </div>
 
     <!-- Internet XL -->
     <div class="plan">
-      <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
       <div class="plan-top">
         <div><div class="plan-name2">Internet XL</div><div class="plan-speed2">1 000 / 500 Mbit/s</div></div>
         <div class="plan-price"><div class="now" style="font-size:18px;">od 26 € <span>/mes.</span></div></div>
       </div>
       <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
       <ul class="plan-benefits-list">
-        <li><span class="bik">+</span>4 mesiace zadarmo <em>alebo</em> zľava z mesačného poplatku</li>
+        <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
         <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
         <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
         <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
@@ -1007,12 +1005,12 @@
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
       <div class="plan-ctas">
         <button class="cta-primary">Vybrať</button>
-        <button class="cta-secondary">Viac info</button>
       </div>
     </div>
 
     <!-- Internet XL Extra -->
-    <div class="plan" style="border-color:var(--orange-deep); box-shadow:0 0 0 3px rgba(255,102,0,.15);">
+    <div class="plan">
+      <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
       <div class="plan-top" style="margin-bottom:6px;">
         <div>
           <div class="plan-name2">Internet XL Extra</div>
@@ -1040,7 +1038,6 @@
       <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
       <div class="plan-ctas">
         <button class="cta-primary">Vybrať</button>
-        <button class="cta-secondary">Viac info</button>
       </div>
     </div>
 
@@ -1059,7 +1056,7 @@
 <!-- 5. AK SI NEVIETE PORADIŤ -->
 <section class="sec" id="quiz-anchor">
   <div class="sec-head center">
-    <div class="eyebrow">2 minúty</div>
+    <div class="eyebrow">Poradíme vám</div>
     <h2>Ak si neviete poradiť, my vám poradíme.</h2>
     <p>Odpovedzte na 4 krátke otázky a odporučíme vám presne ten balík, ktorý vaša domácnosť potrebuje.</p>
   </div>
@@ -1447,8 +1444,8 @@ const coverageData = {
   ]
 };
 
-// Dense grid across Slovakia for heatmap (populated valleys & lowlands, ~80% coverage)
-const skGrid = [
+// Dense anonymous grid — visual coverage dots, no popups
+const anonGrid = { type:'FeatureCollection', features: [
   [17.05,48.10],[17.30,47.95],[17.55,47.90],[17.80,47.95],[18.05,47.90],[18.35,48.00],[18.65,48.10],[18.95,48.15],[19.25,48.20],[19.55,48.25],[19.85,48.30],[20.15,48.35],[20.45,48.40],[20.80,48.45],[21.15,48.45],[21.45,48.50],[21.75,48.55],
   [17.05,48.30],[17.30,48.25],[17.60,48.20],[17.90,48.20],[18.15,48.30],[18.45,48.25],[18.75,48.25],[19.05,48.30],[19.35,48.35],[19.65,48.30],[19.95,48.40],[20.25,48.50],[20.55,48.55],[20.85,48.60],[21.15,48.65],[21.45,48.65],[21.80,48.70],[22.05,48.75],
   [17.10,48.50],[17.40,48.55],[17.70,48.50],[17.95,48.45],[18.20,48.55],[18.50,48.55],[18.75,48.60],[19.00,48.55],[19.30,48.55],[19.60,48.55],[19.90,48.60],[20.20,48.70],[20.50,48.70],[20.80,48.75],[21.10,48.80],[21.40,48.80],[21.70,48.85],[22.00,48.80],
@@ -1456,35 +1453,23 @@ const skGrid = [
   [17.50,48.95],[17.80,49.00],[18.10,49.00],[18.40,49.05],[18.70,49.10],[19.00,49.05],[19.25,49.05],[19.55,49.05],[19.85,49.00],[20.15,49.00],[20.45,49.05],[20.75,49.05],[21.05,49.10],[21.35,49.10],[21.65,49.10],[21.90,49.10],
   [17.70,49.20],[18.00,49.20],[18.30,49.20],[18.60,49.25],[18.90,49.25],[19.15,49.25],[19.45,49.20],[19.75,49.15],[20.05,49.15],[20.35,49.15],[20.65,49.20],[20.95,49.20],[21.25,49.25],[21.55,49.20],[21.85,49.20],
   [18.80,49.40],[19.05,49.40],[19.30,49.38],[21.35,49.35],[21.60,49.30],[21.85,49.28]
-].map(c => ({ type:'Feature', geometry:{ type:'Point', coordinates:c }, properties:{} }));
+].map(c => ({ type:'Feature', geometry:{ type:'Point', coordinates:c }, properties:{} })) };
 
 coverageMap.on('load', () => {
-  // Heatmap source — dense grid for area coverage visualization
-  coverageMap.addSource('sk-grid', { type:'geojson', data:{ type:'FeatureCollection', features: skGrid } });
-
-  // Heatmap layer — shows ~80% territory coverage, fades out when zooming in
+  // Anonymous grid — small background dots for area coverage
+  coverageMap.addSource('anon-grid', { type:'geojson', data: anonGrid });
   coverageMap.addLayer({
-    id: 'coverage-heatmap',
-    type: 'heatmap',
-    source: 'sk-grid',
-    maxzoom: 11,
+    id: 'coverage-area',
+    type: 'circle',
+    source: 'anon-grid',
     paint: {
-      'heatmap-weight': 1,
-      'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 6, 1.2, 10, 2.5],
-      'heatmap-color': [
-        'interpolate', ['linear'], ['heatmap-density'],
-        0,   'rgba(255,102,0,0)',
-        0.15,'rgba(255,102,0,0.15)',
-        0.4, 'rgba(255,102,0,0.35)',
-        0.7, 'rgba(255,102,0,0.55)',
-        1,   'rgba(255,138,61,0.70)'
-      ],
-      'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 6, 38, 10, 80],
-      'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 8, 0.9, 11, 0]
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 3.5, 12, 9],
+      'circle-color': '#FF6600',
+      'circle-opacity': 0.55
     }
   });
 
-  // Named city sources — interactive dots on top of heatmap
+  // Named city sources — interactive dots on top
   coverageMap.addSource('coverage', { type:'geojson', data: coverageData });
 
   coverageMap.addLayer({
