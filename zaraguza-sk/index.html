@@ -350,8 +350,8 @@
   .steps-3{ display:grid; grid-template-columns:1fr; gap:24px; margin-top:28px; }
   .s3{ }
   .s3-num{ font-family:'Sora'; font-weight:800; font-size:40px; color:rgba(255,102,0,.3); line-height:1; margin-bottom:8px; }
-  .s3-title{ font-family:'Sora'; font-weight:700; font-size:15px; color:#fff; margin-bottom:5px; }
-  .s3-desc{ font-size:13.5px; color:rgba(255,255,255,.85); line-height:1.5; }
+  .s3-title{ font-family:'Sora'; font-weight:700; font-size:15px; color:var(--ink); margin-bottom:5px; }
+  .s3-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
 
   /* ---------- DARK SECTION ---------- */
   .sec--dark{ background:var(--night); }
@@ -493,6 +493,7 @@
     .quiz-card{ max-width:none; margin:0; padding:40px 48px; }
     .opts{ grid-template-columns:1fr 1fr 1fr 1fr; }
     .opts.single-col{ grid-template-columns:1fr 1fr; }
+    .result-cols{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
 
     /* PROCESS KISS */
     .steps-3{ grid-template-columns:1fr 1fr 1fr; gap:40px; }
@@ -671,6 +672,23 @@
   .plan-benefits-list .bik{ flex-shrink:0; font-size:13px; margin-top:1px; }
   .plan-promo-note{ font-size:11.5px; color:var(--ink-soft); margin-bottom:10px; line-height:1.4; }
 
+  /* ---------- PROMO 2-COL SECTIONS ---------- */
+  .result-cols .promo-strip{ margin-top:0; }
+  .promo-2col{ display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+  @media(min-width:720px){ .promo-2col{ grid-template-columns:1fr 1fr; gap:48px; } }
+  .promo-2col img{ width:100%; border-radius:var(--radius); display:block; }
+  .promo-bullets{ display:flex; flex-direction:column; margin:22px 0 28px; }
+  .promo-bullet{ padding:13px 0; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+  .promo-bullet:last-child{ border-bottom:1px solid var(--line); }
+  .promo-bullet b{ display:block; color:var(--ink); font-weight:700; font-size:14.5px; margin-bottom:3px; }
+  .cta-inline{ display:inline-block !important; width:auto !important; padding:15px 32px !important; }
+
+  /* ---------- FOOTER META ROW ---------- */
+  .footer-meta{ max-width:1200px; margin:0 auto; padding:24px 0 32px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px; border-top:1px solid rgba(255,255,255,.07); }
+  .footer-meta-label{ font-size:11px; color:rgba(255,255,255,.35); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .footer-badges{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .footer-badges img{ height:34px; width:auto; display:block; }
+
   /* ---------- FOOTER ---------- */
   .site-footer{
     background:#000000; border-top:1px solid rgba(255,255,255,0.08);
@@ -726,7 +744,7 @@
   .footer-bottom a:hover{ color:rgba(255,255,255,.7); }
   .footer-bottom-links{ display:flex; gap:16px; flex-wrap:wrap; }
   @media(min-width:720px){
-    .site-footer-inner{ grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
+    .site-footer-inner{ grid-template-columns:1fr 1fr 1fr 1fr; gap:40px; }
   }
   @media(min-width:1080px){
     .site-footer{ padding:60px 48px 0; }
@@ -1560,7 +1578,7 @@ function odoSel(idx){
     var badge=d.fanBadge
       ?'<div style="display:inline-block;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:10px;">'+d.fanBadge+'</div>'
       :'';
-    card.innerHTML='<div class="vb-card'+(d.isReco?' is-reco':'')+'">'
+    card.innerHTML='<div class="vb-card is-reco">'
       +'<div>'
       +badge
       +'<div class="vb-plan-name">'+d.name+'</div>'
@@ -1615,40 +1633,46 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
       <span class="result-badge">✓ Odporúčanie pripravené</span>
       <h3 id="resPlanName">—</h3>
       <p class="why" id="resWhy">—</p>
-      <div class="price-card">
-        <div class="top-row">
-          <div>
-            <div class="plan-name" id="resPlanName2">—</div>
-            <div class="plan-speed" id="resSpeed">—</div>
+      <div class="result-cols">
+        <div>
+          <div class="price-card">
+            <div class="top-row">
+              <div>
+                <div class="plan-name" id="resPlanName2">—</div>
+                <div class="plan-speed" id="resSpeed">—</div>
+              </div>
+              <div class="price">
+                <div class="first-month" id="resPromo">—</div>
+              </div>
+            </div>
+            <div class="benefits">
+              <div class="benefit"><span class="bic">%</span>Zľava z poplatku</div>
+              <div class="benefit"><span class="bic">+</span>Kupón na zariadenie</div>
+              <div class="benefit"><span class="bic">+</span>Zriadenie zadarmo</div>
+            </div>
           </div>
-          <div class="price">
-            <div class="first-month" id="resPromo">—</div>
+          <div class="addon" id="addonBox" style="display:none;">
+            <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
+          </div>
+          <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
+          <button class="cta-primary cta-inline" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
+          <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
+        </div>
+        <div>
+          <div class="promo-strip">
+            <span class="ps-label">Ušetrite ešte viac</span>
+            Vybojujte si zľavu na internet <b>v Hokejovej online výzve</b> — zľava až 120 € ročne.
+            <a href="#challenge-anchor" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})" style="color:var(--orange-deep);font-weight:600;text-decoration:none;display:block;margin-top:6px;">Hrať výzvu →</a>
           </div>
         </div>
-        <div class="benefits">
-          <div class="benefit"><span class="bic">%</span>Zľava z poplatku</div>
-          <div class="benefit"><span class="bic">+</span>Kupón na zariadenie</div>
-          <div class="benefit"><span class="bic">+</span>Zriadenie zadarmo</div>
-        </div>
       </div>
-      <div class="addon" id="addonBox" style="display:none;">
-        <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
-      </div>
-      <div class="promo-strip" style="margin-bottom:14px;">
-        <span class="ps-label">Ušetrite ešte viac</span>
-        Vybojujte si zľavu na internet <b>v Hokejovej online výzve</b> — zľava až 120 € ročne.
-        <a href="#challenge-anchor" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})" style="color:var(--orange-deep);font-weight:600;text-decoration:none;display:block;margin-top:6px;">Hrať výzvu →</a>
-      </div>
-      <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
-      <button class="cta-primary" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
-      <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
     </div>
   </div><!-- /quiz-card -->
   </div><!-- /sec-inner -->
 </section>
 
 <!-- 6. PROCES -->
-<section class="sec sec--dark">
+<section class="sec">
   <div class="sec-inner">
     <div class="sec-head">
       <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
@@ -1674,7 +1698,44 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
   </div>
 </section>
 
-<!-- 7. FAQ -->
+<!-- 7. BENEFITKO -->
+<section class="sec" style="background:#ffffff;">
+  <div class="sec-inner">
+    <div class="promo-2col">
+      <div>
+        <h2><span style="color:var(--orange)">Naložená ponuka Love</span><br>vás spojí do jedného víťazného tímu.</h2>
+        <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin:12px 0 0;">Spojte si svoje Orange služby do jednej zostavy a získajte naložené benefity aj 10 % zľavu na účte.</p>
+        <div class="promo-bullets">
+          <div class="promo-bullet"><b>Silná päťka v jednom balíku</b>Internet, TV a paušály pohromade, bez zbytočného taktického chaosu.</div>
+          <div class="promo-bullet"><b>Prihrávka na zľavu</b>Ušetrite 10 % z mesačného poplatku a užite si extra výhody pre celú rodinu.</div>
+          <div class="promo-bullet"><b>Živý prenos bez sekania</b>Sledujte každý zápas, dôležitý moment aj opakovaný záber v perfektnej kvalite.</div>
+        </div>
+        <button class="cta-primary cta-inline">Zistiť viac</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <img src="https://www.orange.sk/e-shop/build/assets/common/images/love-banner-benefitko@2x.jpg" alt="Orange Love Benefitko" loading="lazy" style="width:60%;max-width:100%;border-radius:var(--radius);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PREDĹŽENIE -->
+<section class="sec sec--dark">
+  <div class="sec-inner">
+    <div class="promo-2col">
+      <div>
+        <h2 style="color:#fff;">Predĺženie, ktoré je jasne <b style="color:var(--orange);">víťazné</b>.</h2>
+        <p style="color:rgba(255,255,255,.8);font-size:14.5px;line-height:1.55;margin:12px 0 24px;">Máte už internet od Orangeu? Predĺžte si ho a získajte aktuálnu ponuku internetu šitú na mieru s množstvom benefitov.</p>
+        <button class="cta-primary cta-inline">Zistiť viac</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <img src="images/rozhodca.png" alt="Predĺženie internetu Orange" loading="lazy" style="width:50%;max-width:100%;border-radius:var(--radius);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
 <section class="sec" id="faq-anchor">
   <div class="sec-inner">
     <div class="sec-head">
@@ -1688,49 +1749,17 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
 
-    <!-- Brand + social + apps -->
-    <div class="footer-brand">
-      <a class="footer-brand-logo" href="/" aria-label="Orange Slovensko — domov">
-        <img src="tender.lb.sk/logo.svg" alt="Orange" width="38" height="38" />
-      </a>
-      <p class="footer-tagline">Rýchly optický internet, TV a mobilné služby pre celé Slovensko.</p>
-
-      <nav class="footer-social" aria-label="Sociálne siete">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">ig</a>
-        <a href="#" aria-label="YouTube">▶</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="Twitter / X">𝕏</a>
-      </nav>
-
-      <div class="footer-apps">
-        <a class="footer-app-btn" href="#" aria-label="Stiahnuť z App Store">
-          <span class="footer-app-ic" style="font-size:13px;font-weight:700;">iOS</span>
-          <span class="footer-app-text">
-            <small>Dostupné na</small>
-            <span>App Store</span>
-          </span>
-        </a>
-        <a class="footer-app-btn" href="#" aria-label="Stiahnuť z Google Play">
-          <span class="footer-app-ic">▶</span>
-          <span class="footer-app-text">
-            <small>Získať na</small>
-            <span>Google Play</span>
-          </span>
-        </a>
-      </div>
-    </div>
-
     <!-- E-shop -->
     <div>
       <span class="footer-col-title">E-shop</span>
       <ul class="footer-links" role="list">
         <li><a href="#">Telefóny</a></li>
         <li><a href="#">Prenos čísla</a></li>
+        <li><a href="#">Akciové ponuky v e-shope</a></li>
+        <li><a href="#">Sledovanie objednávky</a></li>
+        <li><a href="#">Ponuka Love</a></li>
         <li><a href="#plans-anchor">Optický internet</a></li>
         <li><a href="#">Orange TV</a></li>
-        <li><a href="#">Akciové ponuky</a></li>
-        <li><a href="#">Sledovanie objednávky</a></li>
       </ul>
     </div>
 
@@ -1740,29 +1769,68 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
       <ul class="footer-links" role="list">
         <li><a href="#">Predajne</a></li>
         <li><a href="#">Porovnanie paušálov</a></li>
+        <li><a href="#">Dobitie kreditu</a></li>
+        <li><a href="#">Prima Voľba</a></li>
+        <li><a href="#">FunFón</a></li>
         <li><a href="#">Roaming</a></li>
         <li><a href="#">Môj Orange</a></li>
         <li><a href="#coverage-anchor">Mapa pokrytia</a></li>
-        <li><a href="#">Online benefity</a></li>
       </ul>
     </div>
 
-    <!-- Pomoc + O nás -->
+    <!-- Pomoc a podpora -->
     <div>
-      <span class="footer-col-title">Pomoc & O nás</span>
+      <span class="footer-col-title">Pomoc a podpora</span>
       <ul class="footer-links" role="list">
-        <li><a href="#faq">Časté otázky</a></li>
         <li><a href="#">Cenník</a></li>
-        <li><a href="#">Reklamácie</a></li>
-        <li><a href="#">GDPR</a></li>
+        <li><a href="#">Návody a nastavenia</a></li>
+        <li><a href="#">Reklamácie a riešenie sporov</a></li>
+        <li><a href="#">Elektronický záručný list</a></li>
+        <li><a href="#">Nariadenie GDPR</a></li>
+        <li><a href="#">Telemarketing</a></li>
+        <li><a href="#">Nevyžiadané volania</a></li>
+        <li><a href="#">Nariadenie o digitálnych službách</a></li>
+        <li><a href="#">Kvalitatívne ukazovatele služieb</a></li>
+      </ul>
+    </div>
+
+    <!-- O nás -->
+    <div>
+      <span class="footer-col-title">O nás</span>
+      <ul class="footer-links" role="list">
         <li><a href="#">Kariéra</a></li>
+        <li><a href="#">Tlačové správy</a></li>
         <li><a href="#">Spoločenská zodpovednosť</a></li>
+        <li><a href="#">Bez nástrah online</a></li>
+        <li><a href="#">Nadácia Orange</a></li>
+        <li><a href="#">Orange pre developerov</a></li>
+        <li><a href="#">Informácie pre stavebníkov</a></li>
+        <li><a href="#">Vyhlásenie o prístupnosti</a></li>
       </ul>
     </div>
 
   </div>
 
-  <hr class="footer-divider" />
+  <div class="footer-meta">
+    <div>
+      <div class="footer-meta-label">Sledujte nás</div>
+      <nav class="footer-social" aria-label="Sociálne siete">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Twitter / X">𝕏</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-meta-label">Stiahnite si aplikáciu Môj Orange</div>
+      <div class="footer-badges">
+        <a href="#" aria-label="App Store"><img src="https://www.orange.sk/fileadmin/orange/user_uploads/pages/common/img/badge-appstore.svg" alt="App Store"></a>
+        <a href="#" aria-label="Google Play"><img src="https://www.orange.sk/fileadmin/orange/user_uploads/pages/common/img/badge-google.svg" alt="Google Play"></a>
+        <a href="#" aria-label="App Gallery"><img src="https://www.orange.sk/fileadmin/orange/user_uploads/pages/common/img/badge-appgallery.svg" alt="App Gallery"></a>
+      </div>
+    </div>
+  </div>
 
   <div class="footer-bottom">
     <span>© 1997 – 2026 Orange Slovensko a.s.</span>
