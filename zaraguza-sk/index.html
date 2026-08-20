@@ -641,6 +641,167 @@
     .nav-links a, .nav-mega-trigger{ height:64px; }
   }
 
+  /* ---------- HERO CTAs + BENEFITS ---------- */
+  .hero-ctas{ display:flex; flex-direction:column; gap:10px; margin-bottom:26px; align-items:flex-start; }
+  .cta-ghost-hero{
+    display:inline-block; text-decoration:none;
+    color:#fff; border:1.5px solid rgba(255,255,255,0.4); border-radius:14px;
+    padding:13px 22px; font-size:14.5px; font-weight:600; cursor:pointer;
+    transition:border-color .15s, background .15s; width:auto;
+  }
+  .cta-ghost-hero:hover{ border-color:#fff; background:rgba(255,255,255,0.08); }
+  @media(min-width:480px){
+    .hero-ctas{ flex-direction:row; align-items:center; flex-wrap:wrap; }
+  }
+  .benefit-row{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .benefit-chip{
+    display:inline-flex; align-items:center;
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+    border-radius:100px; padding:7px 14px; font-size:12px; color:#fff; font-weight:500;
+    white-space:nowrap;
+  }
+
+  /* ---------- MOBILE PLAN ACCORDION ---------- */
+  .plan-mobile-header{ display:none; }
+  @media(max-width:1079px){
+    .plans{ flex-direction:column; overflow:visible; scroll-snap-type:none; gap:10px; }
+    .plan{ min-width:0; cursor:pointer; }
+    .plan-mobile-header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:0;
+    }
+    .plan-mh-left{ flex:1; min-width:0; }
+    .plan-mh-meta{ font-size:13px; color:var(--ink-soft); margin-top:3px; }
+    .plan-chevron{
+      font-size:24px; line-height:1; color:var(--ink-soft);
+      transition:transform .25s ease; flex-shrink:0; user-select:none;
+    }
+    .plan--open .plan-chevron{ transform:rotate(90deg); }
+    .plan-body{
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease, padding .35s ease;
+      padding-top:0;
+    }
+    .plan--open .plan-body{ max-height:900px; padding-top:14px; }
+    .plan--open:not(.reco){ border-color:var(--orange); box-shadow:0 0 0 1px var(--orange); }
+    .plan.reco.plan--open{ border-color:var(--orange); box-shadow:0 0 0 1px var(--orange); }
+    .plan-badge--empty{ display:none; }
+    .plan-mobile-header .plan-badge--empty{ display:none; }
+    .plan-mobile-header .plan-badge{ margin-bottom:4px; }
+    /* hide duplicate badge/name/speed inside plan-body on mobile (shown in header) */
+    .plan-body > .plan-badge,
+    .plan-body > .plan-name2,
+    .plan-body > .plan-speed2{ display:none; }
+  }
+  @media(min-width:1080px){
+    .plan-mobile-header{ display:none !important; }
+    .plan-body{ display:contents; }
+  }
+
+  /* ---------- CONTACT SECTION ---------- */
+  .sec-contact{ background:#FAF8F6; }
+  .sec-contact .sec-head .eyebrow{ background:var(--tint) !important; color:var(--orange-deep) !important; border:none !important; }
+  .sec-contact .sec-head h2{ color:var(--ink) !important; }
+  .sec-contact .sec-head p{ color:var(--ink-soft) !important; }
+  .contact-cards{
+    display:grid; grid-template-columns:1fr; gap:20px; margin-top:32px;
+  }
+  @media(min-width:720px){
+    .contact-cards{ grid-template-columns:1fr 1fr; gap:24px; }
+  }
+  .contact-card{
+    background:#fff; border:1.5px solid var(--line);
+    border-radius:var(--radius); padding:28px 24px;
+    position:relative; overflow:hidden;
+    transition:border-color .2s ease;
+  }
+  .contact-card:hover{ border-color:rgba(255,102,0,0.35); }
+  .contact-card h3{ font-family:'Sora'; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:8px; line-height:1.25; }
+  .contact-card .cc-sub{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin-bottom:22px; }
+  .contact-card .cta-primary{ margin-top:0; }
+  .callback-form{ display:flex; flex-direction:column; gap:10px; }
+  .callback-form input[type=tel],
+  .callback-form input[type=date],
+  .callback-form select{
+    width:100%; border:1.5px solid var(--line);
+    background:#fff; color:var(--ink);
+    border-radius:12px; padding:12px 14px; font-size:14px;
+    outline:none; font-family:'Inter'; appearance:none; -webkit-appearance:none;
+  }
+  .callback-form input[type=tel]:focus,
+  .callback-form input[type=date]:focus,
+  .callback-form select:focus{ border-color:var(--orange); }
+  .callback-form input::placeholder{ color:var(--ink-soft); opacity:.6; }
+  .callback-form select option{ background:#fff; color:var(--ink); }
+  .callback-form input[type=date]::-webkit-calendar-picker-indicator{ opacity:.5; cursor:pointer; }
+  .cb-gdpr{ display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--ink-soft); line-height:1.45; cursor:pointer; }
+  .cb-gdpr input[type=checkbox]{ margin-top:2px; flex-shrink:0; accent-color:var(--orange); }
+  .callback-success{
+    display:none; text-align:center; padding:16px 0;
+    animation:fadeUp .4s ease;
+  }
+  .callback-success.show{ display:block; }
+  .callback-success .cs-icon{
+    width:52px; height:52px; border-radius:50%; background:#22c55e;
+    color:#fff; font-size:24px; font-weight:800;
+    display:flex; align-items:center; justify-content:center; margin:0 auto 14px;
+  }
+  .callback-success p{ font-size:14px; color:var(--ink-soft); line-height:1.6; }
+  .callback-success strong{ color:var(--ink); }
+  .contact-card--chat{ display:flex; flex-direction:column; }
+
+  /* ---------- INLINE CHAT ---------- */
+  .inline-chat-trigger{ display:flex; flex-direction:column; }
+  .inline-chat-body{
+    display:none; flex-direction:column; flex:1;
+    border-top:1px solid var(--line); margin-top:16px; padding-top:16px;
+  }
+  .inline-chat-body.open{ display:flex; }
+  .inline-chat-msgs{
+    flex:1; min-height:200px; max-height:260px; overflow-y:auto;
+    display:flex; flex-direction:column; gap:8px; margin-bottom:10px;
+    scrollbar-width:thin; scrollbar-color:var(--line) transparent;
+  }
+  .inline-chat-msgs .chat-msg--bot{
+    background:var(--paper-dim); color:var(--ink);
+    border-radius:4px 14px 14px 14px; align-self:flex-start;
+    padding:9px 13px; font-size:13px; line-height:1.5; max-width:85%;
+  }
+  .inline-chat-msgs .chat-msg--user{
+    background:var(--orange); color:#fff;
+    border-radius:14px 4px 14px 14px; align-self:flex-end;
+    padding:9px 13px; font-size:13px; line-height:1.5; max-width:85%;
+  }
+  .inline-chat-typing{
+    align-self:flex-start; background:var(--paper-dim);
+    padding:9px 13px; border-radius:4px 14px 14px 14px; display:none;
+  }
+  .inline-chat-typing.show{ display:flex; gap:4px; align-items:center; }
+  .inline-chat-typing span{ width:6px; height:6px; border-radius:50%; background:var(--ink-soft); animation:typingDot 1.2s infinite; }
+  .inline-chat-typing span:nth-child(2){ animation-delay:.2s; }
+  .inline-chat-typing span:nth-child(3){ animation-delay:.4s; }
+  .inline-chat-input{
+    display:flex; gap:8px;
+  }
+  .inline-chat-input input{
+    flex:1; border:1.5px solid var(--line); background:#fff;
+    color:var(--ink); border-radius:10px; padding:10px 13px; font-size:13.5px;
+    outline:none; font-family:'Inter';
+  }
+  .inline-chat-input input:focus{ border-color:var(--orange); }
+  .inline-chat-input input::placeholder{ color:var(--ink-soft); opacity:.6; }
+  .inline-chat-input button{
+    background:var(--orange); color:#fff; border:none; border-radius:10px;
+    padding:10px 14px; font-weight:700; font-size:13px; cursor:pointer;
+    transition:background .15s; white-space:nowrap;
+  }
+  .inline-chat-input button:hover{ background:var(--orange-deep); }
+
+  @keyframes typingDot{ 0%,60%,100%{ transform:translateY(0); } 30%{ transform:translateY(-4px); } }
+
   /* ---------- MOBILE MENU ---------- */
   #mobile-menu{
     position:fixed; top:57px; left:0; right:0; z-index:49;
@@ -852,19 +1013,54 @@
       <div class="eyebrow">Orange fandí našim hokejistom</div>
       <h1>Buďte prvý, kto zakričí <span class="je-tam">Je tam!</span></h1>
       <p>Pomalé pripojenie dokáže pokaziť aj ten najlepší zápas. Prejdite na Orange internet, majte bleskovú odozvu a oslavujte každý gól bez meškania.</p>
-      <a href="#plans-anchor" class="cta-primary" style="display:inline-block;text-decoration:none;margin-bottom:28px;width:auto;">Pozrieť akčné hokejové balíky</a>
+      <div class="hero-ctas">
+        <a href="#challenge-anchor" class="cta-primary" style="display:inline-block;text-decoration:none;width:auto;" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})">Chcem zľavu</a>
+        <a href="#coverage-anchor" class="cta-ghost-hero" onclick="event.preventDefault();document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť internetu</a>
+      </div>
 
-      <div class="stat-row">
-        <div class="stat"><b>500k+</b><span>pripojených domácností</span></div>
-        <div class="stat"><b>4.6★</b><span>hodnotenie zákazníkov</span></div>
-        <div class="stat"><b>až 2.5 Gbit/s</b><span>blesková rýchlosť internetu</span></div>
-        <div class="stat"><b>14 dní</b><span>na vyskúšanie bez rizika</span></div>
+      <div class="benefit-row">
+        <div class="benefit-chip">24/7 Rýchly a stabilný internet</div>
+        <div class="benefit-chip">100% pokrytie celej domácnosti</div>
+        <div class="benefit-chip">200 € preplatenie zmluvnej pokuty</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 2. ORANGE HOCKEY CHALLENGE -->
+<!-- 2. COVERAGE + MAP -->
+<section class="sec" id="coverage-anchor">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="eyebrow">Krok 1: Overenie dostupnosti</div>
+      <h2>Zistite, či k vám vieme zaviesť bleskovú optiku</h2>
+      <p>Zadajte svoju adresu a zistite možnosti najrýchlejšieho pripojenia. Váš vybojovaný zľavový kód si jednoducho uplatníte pri výbere balíka v ďalšom kroku.</p>
+    </div>
+
+    <div class="coverage-form">
+      <div class="address-row">
+        <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
+        <button onclick="checkCoverage()">Preveriť</button>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <div id="coverageMap"></div>
+      <div class="map-legend">
+        <div class="li"><span class="dot on"></span>Pokryté optikou</div>
+        <div class="li"><span class="dot soon"></span>Pripravujeme</div>
+      </div>
+    </div>
+
+    <div class="coverage-success" id="coverageSuccess">
+      <div class="cs-check">✓</div>
+      <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
+      <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
+      <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ORANGE HOCKEY CHALLENGE -->
 <div class="challenge" id="challenge-anchor">
   <div class="challenge-inner">
     <div class="challenge-copy">
@@ -944,39 +1140,6 @@
   </div>
 </div>
 
-<!-- 3. COVERAGE + MAP -->
-<section class="sec" id="coverage-anchor">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="eyebrow">Krok 1: Overenie dostupnosti</div>
-      <h2>Zistite, či k vám vieme zaviesť bleskovú optiku</h2>
-      <p>Zadajte svoju adresu a zistite možnosti najrýchlejšieho pripojenia. Váš vybojovaný zľavový kód si jednoducho uplatníte pri výbere balíka v ďalšom kroku.</p>
-    </div>
-
-    <div class="coverage-form">
-      <div class="address-row">
-        <input id="addr-cov" type="text" placeholder="Ulica, číslo, mesto">
-        <button onclick="checkCoverage()">Preveriť</button>
-      </div>
-    </div>
-
-    <div class="map-wrap">
-      <div id="coverageMap"></div>
-      <div class="map-legend">
-        <div class="li"><span class="dot on"></span>Pokryté optikou</div>
-        <div class="li"><span class="dot soon"></span>Pripravujeme</div>
-      </div>
-    </div>
-
-    <div class="coverage-success" id="coverageSuccess">
-      <div class="cs-check">✓</div>
-      <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
-      <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
-      <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
-    </div>
-  </div>
-</section>
-
 <!-- 4. BALÍKY INTERNETU -->
 <section class="sec" id="plans-anchor">
   <div class="sec-inner">
@@ -989,102 +1152,142 @@
   <div class="plans">
 
     <!-- Internet M -->
-    <div class="plan">
-      <div class="plan-badge plan-badge--empty">—</div>
-      <div class="plan-name2">Internet M</div>
-      <div class="plan-speed2">100 / 40 Mbit/s</div>
-      <div class="plan-price">
-        <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">15 €/mes</div>
-        <div class="now" style="font-size:18px;">od 13 €<span>/mes</span></div>
-        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+    <div class="plan" onclick="planToggle(this)">
+      <div class="plan-mobile-header">
+        <div class="plan-mh-left">
+          <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
+          <div class="plan-name2">Internet M</div>
+          <div class="plan-mh-meta">100 / 40 Mbit/s · od 13 €/mes</div>
+        </div>
+        <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
-      <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
-      <ul class="plan-benefits-list">
-        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">+</span>Online ochrana Doma</li>
-        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
-      </ul>
-      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
-      <div class="plan-ctas">
-        <button class="cta-primary">Vybrať</button>
+      <div class="plan-body">
+        <div class="plan-badge plan-badge--empty">—</div>
+        <div class="plan-name2">Internet M</div>
+        <div class="plan-speed2">100 / 40 Mbit/s</div>
+        <div class="plan-price">
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">15 €/mes</div>
+          <div class="now" style="font-size:18px;">od 13 €<span>/mes</span></div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+        </div>
+        <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
+        <ul class="plan-benefits-list">
+          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+          <li><span class="bik">+</span>Online ochrana Doma</li>
+          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
+        </ul>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
+        <div class="plan-ctas">
+          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
+        </div>
       </div>
     </div>
 
     <!-- Internet L — hero produkt -->
-    <div class="plan reco">
-      <div class="plan-badge">Favorit fanúšikov</div>
-      <div class="plan-name2">Internet L</div>
-      <div class="plan-speed2">600 / 150 Mbit/s</div>
-      <div class="plan-price">
-        <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">22 €/mes</div>
-        <div class="now" style="font-size:18px;">od 15,01 €<span>/mes</span></div>
-        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+    <div class="plan reco plan--open" onclick="planToggle(this)">
+      <div class="plan-mobile-header">
+        <div class="plan-mh-left">
+          <div class="plan-badge">Favorit fanúšikov</div>
+          <div class="plan-name2">Internet L</div>
+          <div class="plan-mh-meta">600 / 150 Mbit/s · od 15,01 €/mes</div>
+        </div>
+        <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
-      <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
-      <ul class="plan-benefits-list">
-        <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
-        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">+</span>Online ochrana Doma</li>
-        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
-      </ul>
-      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
-      <div class="plan-ctas">
-        <button class="cta-primary">Vybrať</button>
+      <div class="plan-body">
+        <div class="plan-badge">Favorit fanúšikov</div>
+        <div class="plan-name2">Internet L</div>
+        <div class="plan-speed2">600 / 150 Mbit/s</div>
+        <div class="plan-price">
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">22 €/mes</div>
+          <div class="now" style="font-size:18px;">od 15,01 €<span>/mes</span></div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+        </div>
+        <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
+        <ul class="plan-benefits-list">
+          <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
+          <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+          <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+          <li><span class="bik">+</span>Online ochrana Doma</li>
+          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
+        </ul>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+        <div class="plan-ctas">
+          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
+        </div>
       </div>
     </div>
 
     <!-- Internet XL -->
-    <div class="plan">
-      <div class="plan-badge plan-badge--empty">—</div>
-      <div class="plan-name2">Internet XL</div>
-      <div class="plan-speed2">1 000 / 500 Mbit/s</div>
-      <div class="plan-price">
-        <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">26 €/mes</div>
-        <div class="now" style="font-size:18px;">od 19,17 €<span>/mes</span></div>
-        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+    <div class="plan" onclick="planToggle(this)">
+      <div class="plan-mobile-header">
+        <div class="plan-mh-left">
+          <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
+          <div class="plan-name2">Internet XL</div>
+          <div class="plan-mh-meta">1 000 / 500 Mbit/s · od 19,17 €/mes</div>
+        </div>
+        <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
-      <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
-      <ul class="plan-benefits-list">
-        <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
-        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">+</span>Online ochrana Doma</li>
-        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
-      </ul>
-      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
-      <div class="plan-ctas">
-        <button class="cta-primary">Vybrať</button>
+      <div class="plan-body">
+        <div class="plan-badge plan-badge--empty">—</div>
+        <div class="plan-name2">Internet XL</div>
+        <div class="plan-speed2">1 000 / 500 Mbit/s</div>
+        <div class="plan-price">
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">26 €/mes</div>
+          <div class="now" style="font-size:18px;">od 19,17 €<span>/mes</span></div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+        </div>
+        <p class="plan-desc">Extra rýchly internet pre celú domácnosť pripojenú v jednom čase.</p>
+        <ul class="plan-benefits-list">
+          <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
+          <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+          <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+          <li><span class="bik">+</span>Online ochrana Doma</li>
+          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
+        </ul>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+        <div class="plan-ctas">
+          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
+        </div>
       </div>
     </div>
 
     <!-- Internet XL Extra -->
-    <div class="plan">
-      <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
-      <div class="plan-name2">Internet XL Extra</div>
-      <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
-      <div class="plan-price">
-        <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">30 €/mes</div>
-        <div class="now">23 €<span>/mes</span></div>
+    <div class="plan" onclick="planToggle(this)">
+      <div class="plan-mobile-header">
+        <div class="plan-mh-left">
+          <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
+          <div class="plan-name2">Internet XL Extra</div>
+          <div class="plan-mh-meta">2 500 / 1 000 Mbit/s · 23 €/mes</div>
+        </div>
+        <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
-      <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
-        Online zľava · Prémiová inštalácia zadarmo
-      </div>
-      <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
-      <ul class="plan-benefits-list">
-        <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
-        <li><span class="bik">+</span>Zriadenie pripojenia zadarmo</li>
-        <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
-        <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
-        <li><span class="bik">+</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
-        <li><span class="bik">+</span>Online ochrana Doma</li>
-        <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
-      </ul>
-      <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
-      <div class="plan-ctas">
-        <button class="cta-primary">Vybrať</button>
+      <div class="plan-body">
+        <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
+        <div class="plan-name2">Internet XL Extra</div>
+        <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
+        <div class="plan-price">
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">30 €/mes</div>
+          <div class="now">23 €<span>/mes</span></div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
+          Online zľava · Prémiová inštalácia zadarmo
+        </div>
+        <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
+        <ul class="plan-benefits-list">
+          <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+          <li><span class="bik">+</span>Zriadenie pripojenia zadarmo</li>
+          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+          <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+          <li><span class="bik">+</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
+          <li><span class="bik">+</span>Online ochrana Doma</li>
+          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
+        </ul>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
+        <div class="plan-ctas">
+          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
+        </div>
       </div>
     </div>
 
@@ -1225,8 +1428,8 @@ details.vc-plan[open] .vc-toggle{ transform:rotate(45deg); background:var(--oran
 </style>
 
 <!-- ===== VARIANT A — POROVNÁVACIA TABUĽKA ===== -->
-<div class="vr-header"><em>Variant A</em> — Porovnávacia tabuľka</div>
-<section class="sec" id="plans-va">
+<div class="vr-header" style="display:none;"><em>Variant A</em> — Porovnávacia tabuľka</div>
+<section class="sec" id="plans-va" style="display:none;">
   <div class="sec-inner">
     <div class="sec-head">
       <div class="eyebrow">Krok 2: Výber balíka</div>
@@ -1318,8 +1521,8 @@ details.vc-plan[open] .vc-toggle{ transform:rotate(45deg); background:var(--oran
 </section>
 
 <!-- ===== VARIANT B — TAB VÝBER ===== -->
-<div class="vr-header"><em>Variant B</em> — Tab výber</div>
-<section class="sec" id="plans-vb">
+<div class="vr-header" style="display:none;"><em>Variant B</em> — Tab výber</div>
+<section class="sec" id="plans-vb" style="display:none;">
   <div class="sec-inner">
     <div class="sec-head">
       <div class="eyebrow">Krok 2: Výber balíka</div>
@@ -1449,7 +1652,7 @@ function vbSwitch(id){
 </script>
 
 <!-- ===== VARIANT C — INTERAKTÍVNY ODOMETER ===== -->
-<div class="vr-header"><em>Variant C</em> — Interaktívny odometer</div>
+<div class="vr-header" style="display:none;"><em>Variant C</em> — Interaktívny odometer</div>
 <style>
 /* ---- Variant C: Odometer ---- */
 .odo-layout{ display:grid; grid-template-columns:1fr; gap:32px; }
@@ -1475,7 +1678,7 @@ function vbSwitch(id){
 .odo-card-bens li{ font-size:13.5px; color:var(--ink-soft,#666); }
 .odo-card-bens li::before{ content:'+\00a0'; color:var(--orange,#f15e00); font-weight:700; }
 </style>
-<section class="sec" id="plans-vc" style="background:var(--paper-dim);">
+<section class="sec" id="plans-vc" style="background:var(--paper-dim);display:none;">
   <div class="sec-inner">
     <div class="sec-head">
       <div class="eyebrow">Krok 2: Výber balíka</div>
@@ -1603,7 +1806,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 </script>
 
 <!-- 5. AK SI NEVIETE PORADIŤ -->
-<section class="sec" id="quiz-anchor">
+<section class="sec" id="quiz-anchor" style="display:none;">
   <div class="sec-inner">
   <div class="sec-head">
     <div class="eyebrow">Poradíme vám</div>
@@ -1735,7 +1938,66 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
   </div>
 </section>
 
-<!-- 9. FAQ -->
+<!-- 9. KONTAKT -->
+<section class="sec sec-contact" id="contact-anchor">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="eyebrow">Sme tu pre vás</div>
+      <h2>Pomôžeme vám vybrať správny internet</h2>
+      <p>Nie ste si istí, čo si vybrať? Zavoláme vám, kedy vám to vyhovuje, alebo vám poradíme hneď online.</p>
+    </div>
+
+    <div class="contact-cards">
+
+      <!-- Karta 1: Spätné volanie -->
+      <div class="contact-card">
+        <h3>Zavoláme vám</h3>
+        <p class="cc-sub">Vyberte si čas, kedy vám to vyhovuje — náš poradca vám zavolá a pomôže s výberom.</p>
+        <div class="callback-form" id="callbackForm">
+          <input type="tel" id="cbPhone" placeholder="Vaše telefónne číslo" />
+          <input type="date" id="cbDate" />
+          <select id="cbTime">
+            <option value="" disabled selected>Čas hovoru</option>
+            <option value="rano">Ráno (8:00 – 12:00)</option>
+            <option value="poobede">Poobede (12:00 – 17:00)</option>
+            <option value="vecer">Večer (17:00 – 20:00)</option>
+          </select>
+          <label class="cb-gdpr">
+            <input type="checkbox" id="cbGdpr" />
+            <span>Súhlasím so spracovaním osobných údajov za účelom spätného telefonického kontaktu.</span>
+          </label>
+          <button class="cta-primary" onclick="submitCallback()">Naplánovať hovor</button>
+        </div>
+        <div class="callback-success" id="callbackSuccess">
+          <div class="cs-icon">✓</div>
+          <p><strong>Ďakujeme.</strong> Náš špecialista vás bude v zvolenom čase kontaktovať.</p>
+        </div>
+      </div>
+
+      <!-- Karta 2: Inline chat -->
+      <div class="contact-card contact-card--chat">
+        <div class="inline-chat-trigger" id="inlineChatTrigger">
+          <h3>Poradíme vám hneď online</h3>
+          <p class="cc-sub">Náš AI asistent odpovedá okamžite — bez čakania na linke. Opýtajte sa na čokoľvek ohľadom internetu.</p>
+          <button class="cta-primary" onclick="openInlineChat()">Spustiť chat</button>
+        </div>
+        <div class="inline-chat-body" id="inlineChatBody" aria-live="polite">
+          <div class="inline-chat-msgs" id="inlineChatMsgs">
+            <div class="chat-msg--bot">Dobrý deň! Som váš Orange asistent. Pomôžem vám vybrať správny internet. Na čo sa chcete opýtať?</div>
+            <div class="inline-chat-typing" id="inlineChatTyping"><span></span><span></span><span></span></div>
+          </div>
+          <div class="inline-chat-input">
+            <input type="text" id="inlineChatInput" placeholder="Napíšte správu…" onkeydown="if(event.key==='Enter')sendInlineChatMsg()" aria-label="Správa pre asistenta" />
+            <button onclick="sendInlineChatMsg()">Odoslať</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
 <section class="sec" id="faq-anchor">
   <div class="sec-inner">
     <div class="sec-head">
@@ -2337,6 +2599,86 @@ function toggleFaq(i){ document.getElementById('faq-'+i).classList.toggle('open'
     if(e.key === 'Escape') closeMenu();
   });
 })();
+
+/* ================= PLAN ACCORDION (mobile) ================= */
+function planToggle(card){
+  var isOpen = card.classList.contains('plan--open');
+  document.querySelectorAll('.plan').forEach(function(p){ p.classList.remove('plan--open'); });
+  if(!isOpen) card.classList.add('plan--open');
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var reco = document.querySelector('.plan.reco');
+  if(reco && window.innerWidth < 1080) reco.classList.add('plan--open');
+  var cbDate = document.getElementById('cbDate');
+  if(cbDate) cbDate.min = new Date().toISOString().split('T')[0];
+});
+
+/* ================= CALLBACK FORM ================= */
+function submitCallback(){
+  var phone = document.getElementById('cbPhone').value.trim();
+  var date  = document.getElementById('cbDate').value;
+  var time  = document.getElementById('cbTime').value;
+  var gdpr  = document.getElementById('cbGdpr').checked;
+  if(!phone){ document.getElementById('cbPhone').focus(); return; }
+  if(!date){ document.getElementById('cbDate').focus(); return; }
+  if(!time){ document.getElementById('cbTime').focus(); return; }
+  if(!gdpr){ document.getElementById('cbGdpr').focus(); return; }
+  document.getElementById('callbackForm').style.display = 'none';
+  document.getElementById('callbackSuccess').classList.add('show');
+}
+
+/* ================= INLINE CHAT ================= */
+var chatBotResponses = [
+  { keys:['cena','koľko','plat','mesačn','€'], reply:'Balíky internetu začínajú od 13 €/mes. Akčná cena platí pri objednávke online. Chcete, aby som vám porovnal konkrétne balíky?' },
+  { keys:['rýchlost','rýchlosť','mbit','gbit','streaming','netflix','4k'], reply:'Máme balíky od 100 Mbit/s (M) až po 2 500 Mbit/s (XL Extra). Na 4K streaming a celú domácnosť odporúčam Internet L (600/150 Mbit/s).' },
+  { keys:['dostupnost','dostupnosť','adresa','pokryt','optika','fiber'], reply:'Dostupnosť optiky si overíte priamo na stránke v sekcii "Overenie dostupnosti" — stačí zadať vašu adresu.' },
+  { keys:['zmluv','pokuta','preplatenie','viazanost','viazanosť'], reply:'Pri balíkoch L, XL a XL Extra preplatíme zmluvnú pokutu až do 200 €. Viazanosť je 24 mesiacov.' },
+  { keys:['router','wifi','wi-fi','sieť','signál'], reply:'Každý balík zahŕňa Wi-Fi router za 1 €/mes. Balíky XL a vyššie majú Wi-Fi 7 router.' },
+  { keys:['inštalácia','instalacia','technik','zapojenie','montáž'], reply:'Inštaláciu vykoná náš technik v termíne, ktorý si vyberiete. Zvyčajne do 5 pracovných dní od objednávky.' },
+  { keys:['zľava','zlava','akcia','hokej','challenge'], reply:'Zľavový kód z Hockey Challenge uplatníte priamo v košíku pri objednávke — zľava sa odpočíta z mesačného poplatku.' },
+  { keys:['pomoc','poradit','poradiť','neviem'], reply:'Rád pomôžem! Povedzte mi viac — koľko ľudí, zariadení, na čo internet používate?' },
+];
+var chatDefaultReply = 'Ďakujem za správu. Ak sa chcete poradiť priamo s poradcom, využite možnosť naplánovania spätného volania.';
+
+function openInlineChat(){
+  document.getElementById('inlineChatTrigger').style.display = 'none';
+  document.getElementById('inlineChatBody').classList.add('open');
+  setTimeout(function(){ document.getElementById('inlineChatInput').focus(); }, 100);
+}
+
+function inlineAppendMsg(text, type){
+  var msgs = document.getElementById('inlineChatMsgs');
+  var div = document.createElement('div');
+  div.className = 'chat-msg--' + type;
+  div.textContent = text;
+  var typing = document.getElementById('inlineChatTyping');
+  msgs.insertBefore(div, typing);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendInlineChatMsg(){
+  var input = document.getElementById('inlineChatInput');
+  var text = input.value.trim();
+  if(!text) return;
+  inlineAppendMsg(text, 'user');
+  input.value = '';
+  var typing = document.getElementById('inlineChatTyping');
+  typing.classList.add('show');
+  document.getElementById('inlineChatMsgs').scrollTop = 99999;
+  var lower = text.toLowerCase();
+  var reply = chatDefaultReply;
+  for(var i=0; i<chatBotResponses.length; i++){
+    var r = chatBotResponses[i];
+    for(var j=0; j<r.keys.length; j++){
+      if(lower.indexOf(r.keys[j]) !== -1){ reply = r.reply; break; }
+    }
+    if(reply !== chatDefaultReply) break;
+  }
+  setTimeout(function(){
+    typing.classList.remove('show');
+    inlineAppendMsg(reply, 'bot');
+  }, 700 + Math.random()*500);
+}
 </script>
 
 </body>
