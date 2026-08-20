@@ -266,11 +266,8 @@
   }
 
   /* ---------- ASSESSMENT ---------- */
-  #quiz-anchor{ background:linear-gradient(160deg, var(--night) 0%, #241A10 100%) !important; max-width:none !important; }
-  #quiz-anchor .sec-head h2{ color:#fff; }
-  #quiz-anchor .sec-head p{ color:rgba(255,255,255,.8); }
-  #quiz-anchor .eyebrow{ background:rgba(255,102,0,.16) !important; color:var(--orange-glow) !important; border:1px solid rgba(255,102,0,.3); }
-  .quiz-card{ background:#fff; border:none; border-radius:var(--radius); padding:28px 22px; overflow:hidden; box-shadow:0 12px 60px rgba(0,0,0,.35); }
+  #quiz-anchor{ background:var(--paper-dim); max-width:none !important; }
+  .quiz-card{ background:#fff; border:1.5px solid var(--line); border-radius:var(--radius); padding:28px 22px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.07); }
   .gauge-wrap{ display:flex; justify-content:center; margin-bottom:22px; }
   svg#gauge{ width:180px; height:110px; overflow:visible; }
   .gauge-track{ fill:none; stroke:var(--paper-dim); stroke-width:14; stroke-linecap:round; }
@@ -352,6 +349,10 @@
   .s3-num{ font-family:'Sora'; font-weight:800; font-size:40px; color:rgba(255,102,0,.3); line-height:1; margin-bottom:8px; }
   .s3-title{ font-family:'Sora'; font-weight:700; font-size:15px; color:var(--ink); margin-bottom:5px; }
   .s3-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+  .sec--dark .s3-num{ color:rgba(255,102,0,.45); }
+  .sec--dark .s3-title{ color:#fff; }
+  .sec--dark .s3-desc{ color:rgba(255,255,255,.65); }
+  .sec--dark .eyebrow{ background:rgba(255,102,0,.16); color:var(--orange-glow); border:1px solid rgba(255,102,0,.3); }
 
   /* ---------- DARK SECTION ---------- */
   .sec--dark{ background:var(--night); }
@@ -737,6 +738,15 @@
   .callback-form input::placeholder{ color:var(--ink-soft); opacity:.6; }
   .callback-form select option{ background:#fff; color:var(--ink); }
   .callback-form input[type=date]::-webkit-calendar-picker-indicator{ opacity:.5; cursor:pointer; }
+  .date-field-wrap{ position:relative; }
+  .date-field-wrap input[type=date]{ width:100%; }
+  .date-placeholder{
+    position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    font-size:14px; color:var(--ink-soft); opacity:.6; pointer-events:none;
+    font-family:'Inter'; transition:opacity .1s;
+  }
+  .date-placeholder.hidden{ opacity:0; }
+  @media(min-width:720px){ .date-placeholder{ display:none; } }
   .cb-gdpr{ display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--ink-soft); line-height:1.45; cursor:pointer; }
   .cb-gdpr input[type=checkbox]{ margin-top:2px; flex-shrink:0; accent-color:var(--orange); }
   .callback-success{
@@ -802,6 +812,11 @@
 
   @keyframes typingDot{ 0%,60%,100%{ transform:translateY(0); } 30%{ transform:translateY(-4px); } }
 
+  /* Prevent iOS auto-zoom on input focus (requires font-size >= 16px) */
+  @media(max-width:1079px){
+    input, select, textarea{ font-size:16px !important; }
+  }
+
   /* ---------- MOBILE MENU ---------- */
   #mobile-menu{
     position:fixed; top:57px; left:0; right:0; z-index:49;
@@ -838,6 +853,18 @@
   .promo-2col{ display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
   @media(min-width:720px){ .promo-2col{ grid-template-columns:1fr 1fr; gap:48px; } }
   .promo-2col img{ width:100%; border-radius:var(--radius); display:block; }
+
+  /* mobile-only inline img (Benefitko) */
+  .promo-img-mobile{ display:block; width:70%; margin:16px auto; }
+  .promo-img-desktop{ display:none; }
+  @media(min-width:720px){
+    .promo-img-mobile{ display:none; }
+    .promo-img-desktop{ display:flex; align-items:center; justify-content:center; }
+  }
+
+  /* Predĺženie: image above heading on mobile via order */
+  .predlzenie-img{ order:-1; }
+  @media(min-width:720px){ .predlzenie-img{ order:0; } }
   .promo-bullets{ display:flex; flex-direction:column; margin:22px 0 28px; }
   .promo-bullet{ padding:13px 0; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
   .promo-bullet:last-child{ border-bottom:1px solid var(--line); }
@@ -1806,7 +1833,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 </script>
 
 <!-- 5. AK SI NEVIETE PORADIŤ -->
-<section class="sec" id="quiz-anchor" style="display:none;">
+<section class="sec" id="quiz-anchor">
   <div class="sec-inner">
   <div class="sec-head">
     <div class="eyebrow">Poradíme vám</div>
@@ -1875,7 +1902,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 </section>
 
 <!-- 6. PROCES -->
-<section class="sec">
+<section class="sec sec--dark">
   <div class="sec-inner">
     <div class="sec-head">
       <div class="eyebrow">Krok 3: Rýchla online objednávka</div>
@@ -1907,6 +1934,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
     <div class="promo-2col">
       <div>
         <h2><span style="color:var(--orange)">Naložená ponuka Love</span><br>vás spojí do jedného víťazného tímu.</h2>
+        <img src="https://www.orange.sk/e-shop/build/assets/common/images/love-banner-benefitko@2x.jpg" alt="Orange Love Benefitko" loading="lazy" class="promo-img-mobile" style="border-radius:var(--radius);">
         <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin:12px 0 0;">Spojte si svoje Orange služby do jednej zostavy a získajte naložené benefity aj 10 % zľavu na účte.</p>
         <div class="promo-bullets">
           <div class="promo-bullet"><b>Silná päťka v jednom balíku</b>Internet, TV a paušály pohromade, bez zbytočného taktického chaosu.</div>
@@ -1915,7 +1943,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
         </div>
         <button class="cta-primary cta-inline">Zistiť viac</button>
       </div>
-      <div style="display:flex;align-items:center;justify-content:center;">
+      <div class="promo-img-desktop">
         <img src="https://www.orange.sk/e-shop/build/assets/common/images/love-banner-benefitko@2x.jpg" alt="Orange Love Benefitko" loading="lazy" style="width:60%;max-width:100%;border-radius:var(--radius);">
       </div>
     </div>
@@ -1931,7 +1959,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
         <p style="color:rgba(255,255,255,.8);font-size:14.5px;line-height:1.55;margin:12px 0 24px;">Máte už internet od Orangeu? Predĺžte si ho a získajte aktuálnu ponuku internetu šitú na mieru s množstvom benefitov.</p>
         <button class="cta-primary cta-inline">Zistiť viac</button>
       </div>
-      <div style="display:flex;align-items:center;justify-content:center;">
+      <div class="predlzenie-img" style="display:flex;align-items:center;justify-content:center;">
         <img src="images/rozhodca.png" alt="Predĺženie internetu Orange" loading="lazy" style="width:50%;max-width:100%;border-radius:var(--radius);">
       </div>
     </div>
@@ -1955,7 +1983,10 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
         <p class="cc-sub">Vyberte si čas, kedy vám to vyhovuje — náš poradca vám zavolá a pomôže s výberom.</p>
         <div class="callback-form" id="callbackForm">
           <input type="tel" id="cbPhone" placeholder="Vaše telefónne číslo" />
-          <input type="date" id="cbDate" />
+          <div class="date-field-wrap">
+            <input type="date" id="cbDate" />
+            <span class="date-placeholder" id="cbDatePlaceholder">Dátum hovoru</span>
+          </div>
           <select id="cbTime">
             <option value="" disabled selected>Čas hovoru</option>
             <option value="rano">Ráno (8:00 – 12:00)</option>
@@ -2610,7 +2641,19 @@ document.addEventListener('DOMContentLoaded', function(){
   var reco = document.querySelector('.plan.reco');
   if(reco && window.innerWidth < 1080) reco.classList.add('plan--open');
   var cbDate = document.getElementById('cbDate');
-  if(cbDate) cbDate.min = new Date().toISOString().split('T')[0];
+  var cbDatePh = document.getElementById('cbDatePlaceholder');
+  if(cbDate){
+    cbDate.min = new Date().toISOString().split('T')[0];
+    cbDate.addEventListener('change', function(){
+      if(cbDatePh) cbDatePh.classList.toggle('hidden', !!this.value);
+    });
+    cbDate.addEventListener('focus', function(){
+      if(cbDatePh) cbDatePh.classList.add('hidden');
+    });
+    cbDate.addEventListener('blur', function(){
+      if(cbDatePh && !this.value) cbDatePh.classList.remove('hidden');
+    });
+  }
 });
 
 /* ================= CALLBACK FORM ================= */
