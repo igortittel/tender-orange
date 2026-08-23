@@ -17,7 +17,7 @@
     --orange-deep: #E65100;
     --orange-glow: #FF8A3D;
     --ink: #14110F;
-    --ink-soft: #4A4540;
+    --ink-soft: #14110F;
     --paper: #FAF8F5;
     --paper-dim: #F0ECE6;
     --tint: #FFE4CC;
@@ -61,20 +61,18 @@
   .sec-head{ margin-bottom:28px; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:6px;
-    font-size:12.5px; font-weight:600; color:var(--orange-deep);
+    font-size:12px; font-weight:600; color:var(--orange-deep);
     background:var(--tint); padding:6px 12px; border-radius:100px; margin-bottom:14px;
   }
   .sec-head .eyebrow{ background:var(--paper-dim); color:var(--ink-soft); }
   .sec-head h2{ font-size:23px; margin:0 0 6px; color:var(--ink); }
-  .sec-head p{ color:var(--ink-soft); font-size:14.5px; line-height:1.5; }
+  .sec-head p{ color:var(--ink-soft); font-size:14px; line-height:1.55; }
   .sec-head.center{ text-align:center; }
 
   /* ---------- HERO ---------- */
   .hero{
-    background:
-      linear-gradient(to right, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.2) 100%),
-      url('images/fan.jpg') center/cover no-repeat;
-    color:#fff; max-width:none; padding:40px 20px;
+    background: var(--night);
+    color:#fff; max-width:none; padding:36px 20px 0;
   }
   .hero-inner{ max-width:560px; margin:0; width:100%; }
   .hero .eyebrow{ color:var(--orange-glow); background:rgba(255,102,0,0.14); border:1px solid rgba(255,102,0,0.3); }
@@ -116,7 +114,7 @@
   .challenge-inner{ max-width:560px; margin:0 auto; }
   .challenge .eyebrow{ background:rgba(255,102,0,0.16); color:var(--orange-glow); border:1px solid rgba(255,102,0,0.3); }
   .challenge h2{ color:#fff; font-size:24px; margin:0 0 8px; }
-  .challenge > .challenge-inner > p{ color:rgba(255,255,255,0.9); font-size:14.5px; line-height:1.55; margin-bottom:8px; }
+  .challenge > .challenge-inner > p{ color:rgba(255,255,255,0.9); font-size:14px; line-height:1.55; margin-bottom:8px; }
   .reward-row{ display:flex; gap:8px; margin:16px 0 22px; flex-wrap:wrap; }
   .reward-chip{
     display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06);
@@ -153,7 +151,7 @@
   .result-time{ font-family:'Sora'; font-weight:800; font-size:44px; color:var(--orange-glow); line-height:1; margin-bottom:4px; }
   .result-time span{ font-size:16px; color:#fff; font-weight:600; }
   .result-main{ font-family:'Sora'; font-weight:800; font-size:18px; color:#fff; line-height:1.25; margin-bottom:8px; }
-  .result-sub{ font-size:13px; color:rgba(255,255,255,.9); line-height:1.55; margin-bottom:18px; }
+  .result-sub{ font-size:14px; color:rgba(255,255,255,.9); line-height:1.55; margin-bottom:18px; }
   .result-reward{ border:1.5px solid var(--orange); border-radius:14px; padding:14px 16px; margin-bottom:18px; background:rgba(241,94,0,0.08); }
   .reward-label{ display:block; font-size:11px; color:rgba(255,255,255,.85); letter-spacing:.06em; margin-bottom:4px; }
   .reward-value{ display:block; font-family:'Sora'; font-weight:800; font-size:17px; color:var(--orange-glow); line-height:1.2; }
@@ -170,7 +168,7 @@
   .result-success{ text-align:center; animation:fadeUp .4s ease; padding:10px 0; }
   .success-icon{ width:56px; height:56px; border-radius:50%; background:#22c55e; color:#fff; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
   .result-success h3{ font-family:'Sora'; font-weight:800; font-size:17px; color:#fff; margin-bottom:10px; line-height:1.3; }
-  .result-success p{ font-size:13px; color:rgba(255,255,255,.9); margin-bottom:18px; line-height:1.5; }
+  .result-success p{ font-size:14px; color:rgba(255,255,255,.9); margin-bottom:18px; line-height:1.55; }
   .game-ctas{ display:flex; gap:8px; flex-direction:column; }
 
   .lb-save{ display:none; flex-direction:column; gap:8px; margin-bottom:14px; }
@@ -215,7 +213,7 @@
   .cta-primary:hover{ background:var(--orange-deep); }
   .cta-outline{
     width:100%; background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.25); border-radius:14px;
-    padding:13px; font-size:13.5px; font-weight:600; cursor:pointer;
+    padding:15px; font-size:15px; font-weight:600; cursor:pointer;
   }
 
   /* ---------- COVERAGE / MAP ---------- */
@@ -250,23 +248,23 @@
     font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
   }
   .plan-name2{ font-family:'Sora'; font-weight:700; font-size:16px; margin:8px 0 2px; }
-  .plan-speed2{ font-size:12.5px; color:var(--ink-soft); margin-bottom:8px; }
+  .plan-speed2{ font-size:12px; color:var(--ink-soft); margin-bottom:8px; }
   .plan-price{ margin-bottom:10px; }
   .plan-price .was{ font-size:12px; color:var(--ink-soft); text-decoration:line-through; }
   .plan-price .now{ font-family:'Sora'; font-weight:800; font-size:22px; }
   .plan-price .now span{ font-size:12px; font-weight:600; }
-  .plan-desc{ font-size:13px; color:var(--ink-soft); line-height:1.5; margin-bottom:14px; }
+  .plan-desc{ font-size:14px; color:var(--ink-soft); line-height:1.55; margin-bottom:14px; }
   .plan-benefits{ display:flex; gap:14px; border-top:1px solid var(--line); padding-top:12px; margin-top:2px; }
   .plan-benefits .benefit{ text-align:center; flex:1; font-size:10px; color:var(--ink-soft); }
   .plan-benefits .bic{ font-size:16px; display:block; margin-bottom:3px; }
   .plan-ctas{ display:flex; gap:8px; margin-top:14px; }
-  .plan-ctas button{ flex:1; padding:12px; font-size:13.5px; }
+  .plan-ctas button{ flex:1; padding:14px; font-size:15px; }
   .cta-secondary{
     background:#fff; color:var(--ink); border:1.5px solid var(--line); border-radius:14px; font-weight:600; cursor:pointer;
   }
 
   /* ---------- ASSESSMENT ---------- */
-  #quiz-anchor{ background:var(--paper-dim); max-width:none !important; }
+  #quiz-anchor{ background:#FAF8F6; max-width:none !important; }
   .quiz-card{ background:#fff; border:1.5px solid var(--line); border-radius:var(--radius); padding:28px 22px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.07); }
   .gauge-wrap{ display:flex; justify-content:center; margin-bottom:22px; }
   svg#gauge{ width:180px; height:110px; overflow:visible; }
@@ -286,7 +284,7 @@
   .opts.single-col{ grid-template-columns:1fr; }
   .opt{
     border:1.5px solid var(--line); border-radius:14px; padding:14px 12px; text-align:center; cursor:pointer; background:#fff;
-    transition:border-color .15s ease, background .15s ease, transform .1s ease; font-size:13.5px; font-weight:600;
+    transition:border-color .15s ease, background .15s ease, transform .1s ease; font-size:14px; font-weight:600;
   }
   .opt .ic{ font-size:22px; display:block; margin-bottom:6px; }
   .opt:hover{ border-color:var(--orange); background:var(--tint,#fff5f0); }
@@ -298,6 +296,12 @@
 
   .result{ display:none; }
   .result.show{ display:block; animation:fadeUp .5s ease; }
+  .res-plan-card{ background:#fff; border:1.5px solid var(--line); border-radius:var(--radius); padding:22px 20px; margin:0 0 14px; }
+  .res-cta{ display:block; width:100%; text-align:center; }
+  @media(min-width:1080px){
+    .res-cols{ display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:18px; }
+    .res-plan-card{ padding:28px; }
+  }
   .result-badge{
     display:inline-block; background:var(--ok); color:#fff; font-size:12px; font-weight:700;
     padding:5px 12px; border-radius:100px; margin-bottom:14px;
@@ -308,7 +312,7 @@
   .price-card{ background:var(--night); color:#fff; border-radius:16px; padding:22px 22px 18px; margin-bottom:14px; }
   .price-card .top-row{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
   .price-card .plan-name{ font-family:'Sora'; font-weight:700; font-size:16px; margin-bottom:4px; }
-  .price-card .plan-speed{ font-size:12.5px; opacity:.7; }
+  .price-card .plan-speed{ font-size:12px; opacity:.7; }
   .price-card .price{ text-align:right; }
   .price-card .price .was{ font-size:12px; opacity:.55; text-decoration:line-through; }
   .price-card .price .first-month{ font-family:'Sora'; font-weight:800; font-size:26px; color:var(--orange); line-height:1.15; }
@@ -319,11 +323,11 @@
 
   .addon{
     display:flex; gap:10px; align-items:flex-start; background:var(--paper-dim);
-    border-radius:12px; padding:12px 14px; margin-bottom:16px; font-size:13px; color:var(--ink-soft);
+    border-radius:12px; padding:12px 14px; margin-bottom:16px; font-size:14px; color:var(--ink-soft);
   }
-  .binding-note{ font-size:11.5px; color:var(--ink-soft); text-align:center; margin-bottom:14px; }
+  .binding-note{ font-size:12px; color:var(--ink-soft); text-align:center; margin-bottom:14px; }
   .restart{ text-align:center; margin-top:12px; }
-  .restart button{ background:none; border:none; color:var(--ink-soft); font-size:12.5px; text-decoration:underline; cursor:pointer; }
+  .restart button{ background:none; border:none; color:var(--ink-soft); font-size:12px; text-decoration:underline; cursor:pointer; }
 
   /* ---------- PROCESS ---------- */
   .steps{ display:flex; flex-direction:column; gap:14px; }
@@ -348,10 +352,10 @@
   .s3{ }
   .s3-num{ font-family:'Sora'; font-weight:800; font-size:40px; color:rgba(255,102,0,.3); line-height:1; margin-bottom:8px; }
   .s3-title{ font-family:'Sora'; font-weight:700; font-size:15px; color:var(--ink); margin-bottom:5px; }
-  .s3-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+  .s3-desc{ font-size:14px; color:var(--ink-soft); line-height:1.55; }
   .sec--dark .s3-num{ color:rgba(255,102,0,.45); }
   .sec--dark .s3-title{ color:#fff; }
-  .sec--dark .s3-desc{ color:rgba(255,255,255,.65); }
+  .sec--dark .s3-desc{ color:#fff; }
   .sec--dark .eyebrow{ background:rgba(255,102,0,.16); color:var(--orange-glow); border:1px solid rgba(255,102,0,.3); }
 
   /* ---------- DARK SECTION ---------- */
@@ -370,13 +374,13 @@
   .faq-q{
     width:100%; text-align:left; background:none; border:none; padding:16px 4px;
     display:flex; justify-content:space-between; align-items:center; cursor:pointer;
-    font-family:'Sora'; font-weight:600; font-size:14.5px; color:var(--ink);
+    font-family:'Sora'; font-weight:600; font-size:14px; color:var(--ink);
   }
   .faq-q .chev{ transition:transform .2s ease; color:var(--orange); font-size:16px; flex-shrink:0; margin-left:12px; }
   .faq-item.open .faq-q .chev{ transform:rotate(45deg); }
   .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
   .faq-item.open .faq-a{ max-height:220px; }
-  .faq-a p{ padding:0 4px 16px; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+  .faq-a p{ padding:0 4px 16px; font-size:14px; color:var(--ink-soft); line-height:1.55; }
 
   /* ---------- STICKY CTA ---------- */
   .sticky-cta{
@@ -411,7 +415,7 @@
   .promo-strip{
     background:var(--tint); border:1px solid rgba(255,102,0,.25);
     border-radius:14px; padding:14px 18px; margin-top:20px;
-    font-size:13px; color:var(--ink); line-height:1.55;
+    font-size:14px; color:var(--ink); line-height:1.55;
   }
   .promo-strip b{ color:var(--orange-deep); }
   .promo-strip .ps-label{ font-family:'Sora'; font-weight:700; font-size:12px; color:var(--orange-deep); display:block; margin-bottom:4px; }
@@ -664,6 +668,28 @@
     border-radius:100px; padding:7px 14px; font-size:12px; color:#fff; font-weight:500;
     white-space:nowrap;
   }
+  .hero-img-m{
+    display:block;
+    width:calc(100% + 40px); margin:28px -20px 0;
+    height:220px; object-fit:cover; object-position:center 25%;
+  }
+  @media(max-width:719px){
+    .hero-ctas{ align-items:stretch; flex-direction:column; padding-top:20px; margin-bottom:0; }
+    .hero-ctas .cta-primary{ display:block; width:100%; text-align:center; }
+    .cta-ghost-hero{ width:100%; text-align:center; padding:14px 22px; }
+    .benefit-row{ margin-top:0; padding:20px 0; border-top:none; }
+  }
+  @media(min-width:720px){
+    .hero{
+      background:
+        linear-gradient(to right, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.2) 100%),
+        url('images/fan.jpg') center/cover no-repeat;
+      padding:48px 48px;
+    }
+    .hero-img-m{ display:none; }
+    .hero-ctas{ max-width:560px; }
+    .benefit-row{ margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12); }
+  }
 
   /* ---------- MOBILE PLAN ACCORDION ---------- */
   .plan-mobile-header{ display:none; }
@@ -721,7 +747,7 @@
   }
   .contact-card:hover{ border-color:rgba(255,102,0,0.35); }
   .contact-card h3{ font-family:'Sora'; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:8px; line-height:1.25; }
-  .contact-card .cc-sub{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin-bottom:22px; }
+  .contact-card .cc-sub{ font-size:14px; color:var(--ink-soft); line-height:1.55; margin-bottom:22px; }
   .contact-card .cta-primary{ margin-top:0; }
   .callback-form{ display:flex; flex-direction:column; gap:10px; }
   .callback-form input[type=tel],
@@ -735,18 +761,12 @@
   .callback-form input[type=tel]:focus,
   .callback-form input[type=date]:focus,
   .callback-form select:focus{ border-color:var(--orange); }
-  .callback-form input::placeholder{ color:var(--ink-soft); opacity:.6; }
+  .callback-form input::placeholder{ color:var(--ink); opacity:1; }
   .callback-form select option{ background:#fff; color:var(--ink); }
   .callback-form input[type=date]::-webkit-calendar-picker-indicator{ opacity:.5; cursor:pointer; }
   .date-field-wrap{ position:relative; }
   .date-field-wrap input[type=date]{ width:100%; }
-  .date-placeholder{
-    position:absolute; left:14px; top:50%; transform:translateY(-50%);
-    font-size:14px; color:var(--ink-soft); opacity:.6; pointer-events:none;
-    font-family:'Inter'; transition:opacity .1s;
-  }
-  .date-placeholder.hidden{ opacity:0; }
-  @media(min-width:720px){ .date-placeholder{ display:none; } }
+  .date-placeholder{ display:none; }
   .cb-gdpr{ display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--ink-soft); line-height:1.45; cursor:pointer; }
   .cb-gdpr input[type=checkbox]{ margin-top:2px; flex-shrink:0; accent-color:var(--orange); }
   .callback-success{
@@ -762,6 +782,72 @@
   .callback-success p{ font-size:14px; color:var(--ink-soft); line-height:1.6; }
   .callback-success strong{ color:var(--ink); }
   .contact-card--chat{ display:flex; flex-direction:column; }
+
+  /* ---------- COLOURED CONTACT CARDS ---------- */
+  .contact-card--colored,
+  .contact-card--dark{
+    position:relative; overflow:hidden;
+    padding-right:calc(40% + 24px);
+    border:none;
+  }
+  .contact-card--colored{ background:var(--orange); }
+  .contact-card--dark{ background:var(--night); }
+  .contact-card--colored h3,
+  .contact-card--dark h3{ color:#fff; }
+  .contact-card--colored .cc-sub,
+  .contact-card--dark .cc-sub{ color:rgba(255,255,255,.8); }
+  .contact-card--colored .cta-primary{
+    background:#fff; color:var(--orange);
+  }
+  .contact-card--colored .cta-primary:hover{ background:rgba(255,255,255,.9); }
+  .contact-card--colored .callback-form input[type=tel],
+  .contact-card--colored .callback-form input[type=date],
+  .contact-card--colored .callback-form select{
+    background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.35); color:#fff;
+  }
+  .contact-card--colored .callback-form input::placeholder{ color:rgba(255,255,255,.65); opacity:1; }
+  .contact-card--colored .callback-form input[type=date]::-webkit-calendar-picker-indicator{ filter:invert(1); opacity:.7; }
+  .contact-card--colored .callback-form select option{ background:var(--ink); color:#fff; }
+  .contact-card--colored .date-placeholder{ color:rgba(255,255,255,.65); opacity:1; }
+  .contact-card--colored .cb-gdpr{ color:rgba(255,255,255,.75); }
+  .contact-card--colored .callback-success p{ color:rgba(255,255,255,.9); }
+  .contact-card--colored .callback-success strong{ color:#fff; }
+  .contact-card-person{
+    position:absolute; right:0; top:0;
+    width:40%; height:100%;
+    pointer-events:none;
+  }
+  .contact-card-person img{
+    width:100%; height:100%; object-fit:cover; object-position:center top;
+    border-radius:0 var(--radius) var(--radius) 0;
+    display:block;
+  }
+  .contact-card--outlined{
+    position:relative; overflow:hidden;
+    padding-right:calc(40% + 24px);
+    background:#fff;
+    border-color:var(--orange);
+  }
+  @media(max-width:719px){
+    .contact-card--colored,
+    .contact-card--dark,
+    .contact-card--outlined{ padding-right:24px; display:flex; flex-direction:column; padding-top:0; }
+    .contact-card-person{
+      display:block;
+      position:static;
+      order:-1;
+      width:calc(100% + 48px);
+      margin:-1.5px -24px 24px;
+      height:180px;
+      border-radius:var(--radius) var(--radius) 0 0;
+      overflow:hidden;
+    }
+    .contact-card-person img{
+      border-radius:var(--radius) var(--radius) 0 0;
+      width:100%; height:100%;
+      object-fit:cover; object-position:center 15%;
+    }
+  }
 
   /* ---------- INLINE CHAT ---------- */
   .inline-chat-trigger{ display:flex; flex-direction:column; }
@@ -890,12 +976,12 @@
     display:flex; align-items:center; text-decoration:none; margin-bottom:14px;
   }
   .footer-brand-logo img{ height:34px; width:auto; }
-  .footer-tagline{ font-size:13px; color:rgba(255,255,255,.4); line-height:1.6; max-width:210px; margin-bottom:20px; }
+  .footer-tagline{ font-size:13px; color:rgba(255,255,255,.85); line-height:1.6; max-width:210px; margin-bottom:20px; }
   .footer-social{ display:flex; gap:8px; margin-bottom:20px; }
   .footer-social a{
     width:34px; height:34px; border-radius:7px; border:1px solid rgba(255,255,255,.12);
     display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800;
-    color:rgba(255,255,255,.48); text-decoration:none; transition:border-color .15s, color .15s;
+    color:rgba(255,255,255,.85); text-decoration:none; transition:border-color .15s, color .15s;
     font-family:'Sora'; letter-spacing:-.01em;
   }
   .footer-social a:hover{ border-color:var(--orange); color:var(--orange); }
@@ -909,15 +995,15 @@
   .footer-app-btn:hover{ border-color:rgba(255,255,255,.35); }
   .footer-app-ic{ font-size:18px; }
   .footer-app-text{ display:flex; flex-direction:column; }
-  .footer-app-text small{ font-size:8.5px; color:rgba(255,255,255,.38); letter-spacing:.04em; text-transform:uppercase; line-height:1; }
+  .footer-app-text small{ font-size:8.5px; color:rgba(255,255,255,.7); letter-spacing:.04em; text-transform:uppercase; line-height:1; }
   .footer-app-text span{ font-size:12.5px; font-weight:600; color:#fff; line-height:1.3; }
   .footer-col-title{
     display:block; font-family:'Sora'; font-weight:700; font-size:11px;
     text-transform:uppercase; letter-spacing:.09em;
-    color:rgba(255,255,255,.33); margin-bottom:14px;
+    color:rgba(255,255,255,.7); margin-bottom:14px;
   }
   .footer-links{ list-style:none; display:flex; flex-direction:column; gap:10px; }
-  .footer-links a{ color:rgba(255,255,255,.56); font-size:13.5px; text-decoration:none; transition:color .15s; }
+  .footer-links a{ color:#fff; font-size:13.5px; text-decoration:none; transition:color .15s; }
   .footer-links a:hover{ color:#fff; }
   .footer-divider{
     max-width:1200px; margin:0 auto;
@@ -926,9 +1012,9 @@
   .footer-bottom{
     max-width:1200px; margin:0 auto; padding:18px 0 28px;
     display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;
-    font-size:11.5px; color:rgba(255,255,255,.28);
+    font-size:11.5px; color:rgba(255,255,255,.65);
   }
-  .footer-bottom a{ color:rgba(255,255,255,.28); text-decoration:none; transition:color .15s; }
+  .footer-bottom a{ color:rgba(255,255,255,.65); text-decoration:none; transition:color .15s; }
   .footer-bottom a:hover{ color:rgba(255,255,255,.7); }
   .footer-bottom-links{ display:flex; gap:16px; flex-wrap:wrap; }
   @media(min-width:720px){
@@ -1040,17 +1126,18 @@
       <div class="eyebrow">Orange fandí našim hokejistom</div>
       <h1>Buďte prvý, kto zakričí <span class="je-tam">Je tam!</span></h1>
       <p>Pomalé pripojenie dokáže pokaziť aj ten najlepší zápas. Prejdite na Orange internet, majte bleskovú odozvu a oslavujte každý gól bez meškania.</p>
-      <div class="hero-ctas">
-        <a href="#challenge-anchor" class="cta-primary" style="display:inline-block;text-decoration:none;width:auto;" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})">Chcem zľavu</a>
-        <a href="#coverage-anchor" class="cta-ghost-hero" onclick="event.preventDefault();document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť internetu</a>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-chip">24/7 Rýchly a stabilný internet</div>
-        <div class="benefit-chip">100% pokrytie celej domácnosti</div>
-        <div class="benefit-chip">200 € preplatenie zmluvnej pokuty</div>
-      </div>
     </div>
+  </div>
+  <img class="hero-img-m" src="images/fan.jpg" alt="" aria-hidden="true" loading="eager">
+  <div class="hero-ctas">
+    <a href="#challenge-anchor" class="cta-primary" style="text-decoration:none;" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})">Chcem zľavu</a>
+    <a href="#coverage-anchor" class="cta-ghost-hero" onclick="event.preventDefault();document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť internetu</a>
+  </div>
+  <div class="benefit-row">
+    <div class="benefit-chip">Do 14 dní môžete službu zadarmo zrušiť</div>
+    <div class="benefit-chip">Až do 200 € preplatíme pokutu za prenos</div>
+    <div class="benefit-chip">Wi&#8209;Fi router najrýchlejší na trhu</div>
+    <div class="benefit-chip">Inštalácia pri online objednávke zdarma</div>
   </div>
 </div>
 
@@ -1178,67 +1265,38 @@
 
   <div class="plans">
 
-    <!-- Internet M -->
+    <!-- Internet XL Extra -->
     <div class="plan" onclick="planToggle(this)">
       <div class="plan-mobile-header">
         <div class="plan-mh-left">
-          <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
-          <div class="plan-name2">Internet M</div>
-          <div class="plan-mh-meta">100 / 40 Mbit/s · od 13 €/mes</div>
+          <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
+          <div class="plan-name2">Internet XL Extra</div>
+          <div class="plan-mh-meta">2 500 / 1 000 Mbit/s · 23 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
       <div class="plan-body">
-        <div class="plan-badge plan-badge--empty">—</div>
-        <div class="plan-name2">Internet M</div>
-        <div class="plan-speed2">100 / 40 Mbit/s</div>
+        <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
+        <div class="plan-name2">Internet XL Extra</div>
+        <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
         <div class="plan-price">
-          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">15 €/mes</div>
-          <div class="now" style="font-size:18px;">od 13 €<span>/mes</span></div>
-          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">30 €/mes</div>
+          <div class="now">23 €<span>/mes</span></div>
         </div>
-        <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
+          Online zľava · Prémiová inštalácia zadarmo
+        </div>
+        <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
         <ul class="plan-benefits-list">
-          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
-          <li><span class="bik">+</span>Online ochrana Doma</li>
-          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
-        </ul>
-        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
-        <div class="plan-ctas">
-          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Internet L — hero produkt -->
-    <div class="plan reco plan--open" onclick="planToggle(this)">
-      <div class="plan-mobile-header">
-        <div class="plan-mh-left">
-          <div class="plan-badge">Favorit fanúšikov</div>
-          <div class="plan-name2">Internet L</div>
-          <div class="plan-mh-meta">600 / 150 Mbit/s · od 15,01 €/mes</div>
-        </div>
-        <div class="plan-chevron" aria-hidden="true">›</div>
-      </div>
-      <div class="plan-body">
-        <div class="plan-badge">Favorit fanúšikov</div>
-        <div class="plan-name2">Internet L</div>
-        <div class="plan-speed2">600 / 150 Mbit/s</div>
-        <div class="plan-price">
-          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">22 €/mes</div>
-          <div class="now" style="font-size:18px;">od 15,01 €<span>/mes</span></div>
-          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
-        </div>
-        <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
-        <ul class="plan-benefits-list">
-          <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
           <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
+          <li><span class="bik">+</span>Zriadenie pripojenia zadarmo</li>
           <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
           <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
+          <li><span class="bik">+</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
           <li><span class="bik">+</span>Online ochrana Doma</li>
           <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
         </ul>
-        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
         <div class="plan-ctas">
           <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
         </div>
@@ -1280,38 +1338,67 @@
       </div>
     </div>
 
-    <!-- Internet XL Extra -->
-    <div class="plan" onclick="planToggle(this)">
+    <!-- Internet L — hero produkt -->
+    <div class="plan reco plan--open" onclick="planToggle(this)">
       <div class="plan-mobile-header">
         <div class="plan-mh-left">
-          <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
-          <div class="plan-name2">Internet XL Extra</div>
-          <div class="plan-mh-meta">2 500 / 1 000 Mbit/s · 23 €/mes</div>
+          <div class="plan-badge">Favorit fanúšikov</div>
+          <div class="plan-name2">Internet L</div>
+          <div class="plan-mh-meta">600 / 150 Mbit/s · od 15,01 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
       <div class="plan-body">
-        <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
-        <div class="plan-name2">Internet XL Extra</div>
-        <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
+        <div class="plan-badge">Favorit fanúšikov</div>
+        <div class="plan-name2">Internet L</div>
+        <div class="plan-speed2">600 / 150 Mbit/s</div>
         <div class="plan-price">
-          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">30 €/mes</div>
-          <div class="now">23 €<span>/mes</span></div>
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">22 €/mes</div>
+          <div class="now" style="font-size:18px;">od 15,01 €<span>/mes</span></div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
         </div>
-        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
-          Online zľava · Prémiová inštalácia zadarmo
-        </div>
-        <p class="plan-desc">Najrýchlejší internet pre 4K video, gaming aj plne pripojenú smart domácnosť.</p>
+        <p class="plan-desc">Najobľúbenejší internet pre videá, hovory aj prácu online pre celú domácnosť.</p>
         <ul class="plan-benefits-list">
+          <li><span class="bik">+</span><span>4 mesiace zadarmo<br><small style="font-size:11px;color:var(--ink-soft);">alebo zľava z mesačného poplatku</small></span></li>
           <li><span class="bik">+</span>Kupón na zariadenie až do 35 €</li>
-          <li><span class="bik">+</span>Zriadenie pripojenia zadarmo</li>
           <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
           <li><span class="bik">+</span>Preplatenie pokuty do 120 €</li>
-          <li><span class="bik">+</span>Prémiová inštalácia — technik nastaví všetko u vás</li>
           <li><span class="bik">+</span>Online ochrana Doma</li>
           <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
         </ul>
-        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Wi-Fi 7 router s XGS-PON technológiou (1 €/mes.)</div>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.)</div>
+        <div class="plan-ctas">
+          <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Internet M -->
+    <div class="plan" onclick="planToggle(this)">
+      <div class="plan-mobile-header">
+        <div class="plan-mh-left">
+          <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
+          <div class="plan-name2">Internet M</div>
+          <div class="plan-mh-meta">100 / 40 Mbit/s · od 13 €/mes</div>
+        </div>
+        <div class="plan-chevron" aria-hidden="true">›</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-badge plan-badge--empty">—</div>
+        <div class="plan-name2">Internet M</div>
+        <div class="plan-speed2">100 / 40 Mbit/s</div>
+        <div class="plan-price">
+          <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">15 €/mes</div>
+          <div class="now" style="font-size:18px;">od 13 €<span>/mes</span></div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
+        </div>
+        <p class="plan-desc">Spoľahlivý internet na základné surfovanie, maily a videohovory.</p>
+        <ul class="plan-benefits-list">
+          <li><span class="bik">+</span>HBO Max 1 mesiac zadarmo</li>
+          <li><span class="bik">+</span>Online ochrana Doma</li>
+          <li><span class="bik">+</span>Love — zľava 10 % pri kombinácii služieb</li>
+        </ul>
+        <div style="font-size:11px;color:var(--ink-soft);margin-bottom:12px;">Zriadenie 20 € · Wi-Fi router v cene (1 €/mes.)</div>
         <div class="plan-ctas">
           <button class="cta-primary" onclick="event.stopPropagation()">Vybrať</button>
         </div>
@@ -1861,41 +1948,30 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 
     <div class="result" id="result">
       <span class="result-badge">✓ Odporúčanie pripravené</span>
-      <h3 id="resPlanName">—</h3>
       <p class="why" id="resWhy">—</p>
-      <div class="result-cols">
-        <div>
-          <div class="price-card">
-            <div class="top-row">
-              <div>
-                <div class="plan-name" id="resPlanName2">—</div>
-                <div class="plan-speed" id="resSpeed">—</div>
-              </div>
-              <div class="price">
-                <div class="first-month" id="resPromo">—</div>
-              </div>
-            </div>
-            <div class="benefits">
-              <div class="benefit"><span class="bic">%</span>Zľava z poplatku</div>
-              <div class="benefit"><span class="bic">+</span>Kupón na zariadenie</div>
-              <div class="benefit"><span class="bic">+</span>Zriadenie zadarmo</div>
+      <div class="res-plan-card">
+        <div class="res-cols">
+          <div class="res-left">
+            <div class="plan-badge" id="resBadge" style="display:none;">—</div>
+            <div class="plan-name2" id="resPlanName" style="font-size:20px;margin-top:6px;">—</div>
+            <div class="plan-speed2" id="resSpeed">—</div>
+            <div class="plan-price">
+              <div class="was" id="resOldPrice"></div>
+              <div class="now" id="resPromo" style="font-size:20px;">—</div>
+              <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
             </div>
           </div>
-          <div class="addon" id="addonBox" style="display:none;">
-            <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
-          </div>
-          <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
-          <button class="cta-primary cta-inline" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
-          <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
-        </div>
-        <div>
-          <div class="promo-strip">
-            <span class="ps-label">Ušetrite ešte viac</span>
-            Vybojujte si zľavu na internet <b>v Hokejovej online výzve</b> — zľava až 120 € ročne.
-            <a href="#challenge-anchor" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})" style="color:var(--orange-deep);font-weight:600;text-decoration:none;display:block;margin-top:6px;">Hrať výzvu →</a>
+          <div class="res-right">
+            <ul class="plan-benefits-list" id="resBenefits"></ul>
+            <div class="addon" id="addonBox" style="display:none;">
+              <div>Pridali sme <b>Online ochranu Doma</b> — na základe vašej odpovede o bezpečnosti. Môžete ju kedykoľvek vypnúť.</div>
+            </div>
           </div>
         </div>
+        <div class="binding-note">Viazanosť 24 mesiacov · možnosť vrátiť do 14 dní bez udania dôvodu</div>
+        <button class="cta-primary res-cta" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať balík</button>
       </div>
+      <div class="restart"><button onclick="restartQuiz()">Začať znova</button></div>
     </div>
   </div><!-- /quiz-card -->
   </div><!-- /sec-inner -->
@@ -1933,38 +2009,19 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
   <div class="sec-inner">
     <div class="promo-2col">
       <div>
-        <h2><span style="color:var(--orange)">Naložená ponuka Love</span><br>vás spojí do jedného víťazného tímu.</h2>
-        <img src="https://www.orange.sk/e-shop/build/assets/common/images/love-banner-benefitko@2x.jpg" alt="Orange Love Benefitko" loading="lazy" class="promo-img-mobile" style="border-radius:var(--radius);">
-        <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin:12px 0 0;">Spojte si svoje Orange služby do jednej zostavy a získajte naložené benefity aj 10 % zľavu na účte.</p>
-        <div class="promo-bullets">
-          <div class="promo-bullet"><b>Silná päťka v jednom balíku</b>Internet, TV a paušály pohromade, bez zbytočného taktického chaosu.</div>
-          <div class="promo-bullet"><b>Prihrávka na zľavu</b>Ušetrite 10 % z mesačného poplatku a užite si extra výhody pre celú rodinu.</div>
-          <div class="promo-bullet"><b>Živý prenos bez sekania</b>Sledujte každý zápas, dôležitý moment aj opakovaný záber v perfektnej kvalite.</div>
-        </div>
-        <button class="cta-primary cta-inline">Zistiť viac</button>
+        <div class="eyebrow">Výhodné spojenie Love</div>
+        <h2>Spojte svoje služby do jedného víťazného tímu Love</h2>
+        <img src="../screens/benefitko-hokejisti.png" alt="Orange Love – hokejisti" loading="lazy" class="promo-img-mobile" style="border-radius:var(--radius);">
+        <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin:12px 0 24px;">Dajte optický internet, televíziu a mobilné paušály na jednu súpisku. Získate 10 % zľavu na mesačné poplatky a balík výhod pre celú rodinu.</p>
+        <button class="cta-primary cta-inline">Spojiť služby</button>
       </div>
       <div class="promo-img-desktop">
-        <img src="https://www.orange.sk/e-shop/build/assets/common/images/love-banner-benefitko@2x.jpg" alt="Orange Love Benefitko" loading="lazy" style="width:60%;max-width:100%;border-radius:var(--radius);">
+        <img src="../screens/benefitko-hokejisti.png" alt="Orange Love – hokejisti" loading="lazy" style="width:60%;max-width:100%;border-radius:var(--radius);">
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8. PREDĹŽENIE -->
-<section class="sec sec--dark">
-  <div class="sec-inner">
-    <div class="promo-2col">
-      <div>
-        <h2 style="color:#fff;">Predĺženie, ktoré je jasne <b style="color:var(--orange);">víťazné</b>.</h2>
-        <p style="color:rgba(255,255,255,.8);font-size:14.5px;line-height:1.55;margin:12px 0 24px;">Máte už internet od Orangeu? Predĺžte si ho a získajte aktuálnu ponuku internetu šitú na mieru s množstvom benefitov.</p>
-        <button class="cta-primary cta-inline">Zistiť viac</button>
-      </div>
-      <div class="predlzenie-img" style="display:flex;align-items:center;justify-content:center;">
-        <img src="images/rozhodca.png" alt="Predĺženie internetu Orange" loading="lazy" style="width:50%;max-width:100%;border-radius:var(--radius);">
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 9. KONTAKT -->
 <section class="sec sec-contact" id="contact-anchor">
@@ -1978,7 +2035,7 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
     <div class="contact-cards">
 
       <!-- Karta 1: Spätné volanie -->
-      <div class="contact-card">
+      <div class="contact-card contact-card--outlined">
         <h3>Zavoláme vám</h3>
         <p class="cc-sub">Vyberte si čas, kedy vám to vyhovuje — náš poradca vám zavolá a pomôže s výberom.</p>
         <div class="callback-form" id="callbackForm">
@@ -2003,24 +2060,30 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
           <div class="cs-icon">✓</div>
           <p><strong>Ďakujeme.</strong> Náš špecialista vás bude v zvolenom čase kontaktovať.</p>
         </div>
+        <div class="contact-card-person" aria-hidden="true">
+          <img src="../screens/call-centrum.jpeg" alt="" />
+        </div>
       </div>
 
-      <!-- Karta 2: Inline chat -->
-      <div class="contact-card contact-card--chat">
+      <!-- Karta 2: Inline chat (Ori) -->
+      <div class="contact-card contact-card--chat contact-card--dark">
         <div class="inline-chat-trigger" id="inlineChatTrigger">
-          <h3>Poradíme vám hneď online</h3>
-          <p class="cc-sub">Náš AI asistent odpovedá okamžite — bez čakania na linke. Opýtajte sa na čokoľvek ohľadom internetu.</p>
+          <h3>Ori vám poradí hneď online</h3>
+          <p class="cc-sub">Ori, AI asistent Orange, odpovedá okamžite — bez čakania na linke. Opýtajte sa na čokoľvek ohľadom internetu.</p>
           <button class="cta-primary" onclick="openInlineChat()">Spustiť chat</button>
         </div>
         <div class="inline-chat-body" id="inlineChatBody" aria-live="polite">
           <div class="inline-chat-msgs" id="inlineChatMsgs">
-            <div class="chat-msg--bot">Dobrý deň! Som váš Orange asistent. Pomôžem vám vybrať správny internet. Na čo sa chcete opýtať?</div>
+            <div class="chat-msg--bot">Dobrý deň! Som Ori, AI asistent Orange. Pomôžem vám vybrať správny internet. Na čo sa chcete opýtať?</div>
             <div class="inline-chat-typing" id="inlineChatTyping"><span></span><span></span><span></span></div>
           </div>
           <div class="inline-chat-input">
             <input type="text" id="inlineChatInput" placeholder="Napíšte správu…" onkeydown="if(event.key==='Enter')sendInlineChatMsg()" aria-label="Správa pre asistenta" />
             <button onclick="sendInlineChatMsg()">Odoslať</button>
           </div>
+        </div>
+        <div class="contact-card-person" aria-hidden="true">
+          <img src="../screens/ori.jpeg" alt="" />
         </div>
       </div>
 
@@ -2032,8 +2095,8 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
 <section class="sec" id="faq-anchor">
   <div class="sec-inner">
     <div class="sec-head">
-      <div class="eyebrow">Časté otázky</div>
-      <h2>Odpovede na najčastejšie otázky</h2>
+      <div class="eyebrow">Často kladené otázky</div>
+      <h2>Všetko, čo potrebujete vedieť pred objednávkou</h2>
     </div>
     <div id="faq"></div>
   </div>
@@ -2516,19 +2579,28 @@ function computeResult(){
   score += (a.devices || 1);
   if(a.connection === 'wifi' || a.connection === 'both') score += 1;
 
+  const B_SHARED = ['Kupón na zariadenie až do 35 €','HBO Max 1 mesiac zadarmo','Preplatenie pokuty do 120 €','Online ochrana Doma','Love — zľava 10 % pri kombinácii služieb'];
   let plan;
   if(score >= 7){
     plan = { name:'Internet XL Extra', speed_display:'2 500 / 1 000 Mbit/s', speed:2500,
-      promo:'od 23 €/mes', why:'Veľa zariadení a gaming si žiadajú maximálnu rýchlosť bez výpadkov.' };
+      badge:'Rýchlosť Martina Pospíšila', oldPrice:'30 €/mes', promo:'od 23 €',
+      why:'Veľa zariadení a gaming si žiadajú maximálnu rýchlosť bez výpadkov.',
+      benefits:['Kupón na zariadenie až do 35 €','Zriadenie pripojenia zadarmo','HBO Max 1 mesiac zadarmo','Preplatenie pokuty do 120 €','Prémiová inštalácia — technik nastaví všetko u vás','Online ochrana Doma','Love — zľava 10 % pri kombinácii služieb'] };
   } else if(score >= 5){
     plan = { name:'Internet XL', speed_display:'1 000 / 500 Mbit/s', speed:1000,
-      promo:'od 19,17 €/mes', why:'Streamy, hokej naživo a viacero zariadení — ideálny pomer rýchlosti a ceny.' };
+      badge:'', oldPrice:'26 €/mes', promo:'od 19,17 €',
+      why:'Streamy, hokej naživo a viacero zariadení — ideálny pomer rýchlosti a ceny.',
+      benefits:['4 mesiace zadarmo'].concat(B_SHARED) };
   } else if(score >= 3){
     plan = { name:'Internet L', speed_display:'600 / 150 Mbit/s', speed:600,
-      promo:'od 15,01 €/mes', why:'Najobľúbenejší balík pre celú domácnosť — zvládne streamy aj prácu.' };
+      badge:'Favorit fanúšikov', oldPrice:'22 €/mes', promo:'od 15,01 €',
+      why:'Najobľúbenejší balík pre celú domácnosť — zvládne streamy aj prácu.',
+      benefits:['4 mesiace zadarmo'].concat(B_SHARED) };
   } else {
     plan = { name:'Internet M', speed_display:'100 / 40 Mbit/s', speed:100,
-      promo:'od 13 €/mes', why:'Na bežné surfovanie, e-mail a videohovory vám táto rýchlosť postačí.' };
+      badge:'', oldPrice:'15 €/mes', promo:'od 13 €',
+      why:'Na bežné surfovanie, e-mail a videohovory vám táto rýchlosť postačí.',
+      benefits:['HBO Max 1 mesiac zadarmo','Online ochrana Doma','Love — zľava 10 % pri kombinácii služieb'] };
   }
   plan.security = a.security === 'yes';
   state.result = plan;
@@ -2537,12 +2609,17 @@ function showResult(){
   document.getElementById('quiz-active').style.display = 'none';
   const r = document.getElementById('result');
   r.classList.add('show');
-  document.getElementById('resPlanName').textContent = state.result.name;
-  document.getElementById('resPlanName2').textContent = state.result.name;
-  document.getElementById('resSpeed').textContent = state.result.speed_display;
-  document.getElementById('resWhy').textContent = state.result.why;
-  document.getElementById('resPromo').textContent = state.result.promo;
-  if(state.result.security){ document.getElementById('addonBox').style.display = 'flex'; }
+  const res = state.result;
+  document.getElementById('resPlanName').textContent = res.name;
+  document.getElementById('resSpeed').textContent = res.speed_display;
+  document.getElementById('resWhy').textContent = res.why;
+  document.getElementById('resOldPrice').textContent = res.oldPrice;
+  document.getElementById('resPromo').innerHTML = res.promo + '<span>/mes</span>';
+  const badge = document.getElementById('resBadge');
+  if(res.badge){ badge.textContent = res.badge; badge.style.display = ''; }
+  else { badge.style.display = 'none'; }
+  document.getElementById('resBenefits').innerHTML = res.benefits.map(b=>`<li><span class="bik">+</span>${b}</li>`).join('');
+  if(res.security){ document.getElementById('addonBox').style.display = 'flex'; }
   updateGauge(1);
 }
 function restartQuiz(){
@@ -2555,8 +2632,8 @@ renderQuestion();
 
 /* ================= FAQ ================= */
 const faqData = [
-  { q:'Ako funguje zľava z Hockey Challenge?', a:'Po odohraní výzvy vám pošleme zľavový kód priamo na e-mail. Pri výbere balíka v košíku kód zadajte a zľava sa okamžite odpočíta z mesačnej platby. Zľava platí pri viazanosti 24 mesiacov cez orange.sk.' },
-  { q:'Čo je v stávke v žrebovaní o zájazd na MS?', a:'Každý, kto odošle e-mail po skončení výzvy, je automaticky zaradený do žrebovania o zájazd pre 2 osoby na MS v hokeji. Víťaza kontaktujeme e-mailom po skončení súťaže.' },
+  { q:'Ako funguje zľava z hokejovej výzvy?', a:'Po odohraní výzvy vám pošleme zľavový kód priamo na e-mail. Pri výbere balíka v košíku kód zadajte a zľava sa okamžite odpočíta z mesačnej platby. Zľava platí pri viazanosti 24 mesiacov cez orange.sk.' },
+  { q:'Čo môžem vyhrať v súťaži?', a:'Každý, kto odošle e-mail po skončení výzvy, je automaticky zaradený do žrebovania o zájazd pre 2 osoby na MS v hokeji. Víťaza kontaktujeme e-mailom po skončení súťaže.' },
   { q:'Aký je rozdiel medzi Internetom L, XL a XL Extra?', a:'Internet L (600 Mbit/s) pokryje rodinu pri streamovaní a práci z domu. XL (1 000 Mbit/s) je ideálny, ak súčasne streamujete v 4K a hráte online hry. XL Extra (2 500 Mbit/s) je pre tých, kde je pripojených veľa zariadení naraz alebo potrebujú maximálnu stabilitu.' },
   { q:'Ako overím dostupnosť optiky na mojej adrese?', a:'Zadajte adresu do formulára v sekcii Overenie dostupnosti. Výsledok uvidíte okamžite — ak je optika dostupná, stačí si vybrať balík a pokračovať v objednávke.' },
   { q:'Ako prebieha inštalácia internetu?', a:'Kuriér vám doručí zmluvu do 3 pracovných dní. Termín inštalácie si dohodnete s technikom podľa vašej dostupnosti — technik príde priamo k vám, zapojí optiku aj Wi-Fi router a všetko otestuje.' },
