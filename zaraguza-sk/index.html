@@ -246,8 +246,22 @@
   }
   .plans::-webkit-scrollbar{ display:none; }
   .plan{ background:#fff; border:1.5px solid var(--line); border-radius:16px; padding:20px; position:relative;
-    min-width:280px; flex-shrink:0; scroll-snap-align:start; }
+    min-width:280px; flex-shrink:0; scroll-snap-align:start; transition:opacity .3s, filter .3s; }
   .plan.reco{ border-color:var(--orange); box-shadow:0 0 0 3px var(--tint); }
+  .plan--unavailable{ opacity:.35; pointer-events:none; filter:grayscale(.25); }
+  .coverage-filter-bar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    background:var(--tint); border:1.5px solid rgba(255,121,0,.28);
+    border-radius:10px; padding:10px 14px; font-size:13px; color:var(--ink);
+    margin-bottom:24px;
+  }
+  .coverage-filter-bar strong{ font-weight:700; }
+  .coverage-filter-clear{
+    background:none; border:none; cursor:pointer; font-size:20px;
+    color:var(--ink-soft); line-height:1; flex-shrink:0; padding:0 2px;
+    transition:color .15s;
+  }
+  .coverage-filter-clear:hover{ color:var(--ink); }
   .plan .ribbon{
     position:absolute; top:-11px; left:20px; background:var(--orange); color:#fff;
     font-size:11px; font-weight:700; padding:4px 10px; border-radius:100px;
@@ -1292,10 +1306,10 @@
     </div>
 
     <div class="coverage-success" id="coverageSuccess">
-      <div class="cs-check">✓</div>
-      <h3>Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
-      <p>Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
-      <button class="cta-primary" style="width:auto;" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internetový balík</button>
+      <div class="cs-check" id="cs-icon">✓</div>
+      <h3 id="cs-title">Máte náskok! Na vašej adrese je dostupná blesková Optika.</h3>
+      <p id="cs-desc">Max. rýchlosť až do 2,5 Gbit/s. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.</p>
+      <button class="cta-primary" id="cs-cta" style="width:auto;">Zobraziť dostupné produkty</button>
     </div>
   </div>
 </section>
@@ -1389,10 +1403,15 @@
     <p>Sledujte hokej v 4K kvalite a bez jediného zaseknutia. Zvoľte si program pre vašu domácnosť a v košíku jednoducho uplatnite zľavový kód, ktorý sme vám práve poslali do e-mailu.</p>
   </div>
 
+  <div class="coverage-filter-bar" id="coverage-filter-bar" style="display:none;" role="status">
+    <span>Dostupné pre zvolenú adresu: <strong id="coverage-filter-addr"></strong></span>
+    <button class="coverage-filter-clear" onclick="clearCoverageFilter()" aria-label="Zrušiť filter adresy">×</button>
+  </div>
+
   <div class="plans">
 
     <!-- Internet XL Extra -->
-    <div class="plan" onclick="planToggle(this)">
+    <div class="plan" data-plan="xl-extra" onclick="planToggle(this)">
       <div class="plan-mobile-header">
         <div class="plan-mh-left">
           <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
@@ -2593,6 +2612,7 @@ const coverageData = {
     { type:'Feature', properties:{ covered:false, name:'Zvolen',               info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[19.118, 48.576] } },
     { type:'Feature', properties:{ covered:false, name:'Liptovský Mikuláš',    info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[19.611, 49.084] } },
     { type:'Feature', properties:{ covered:false, name:'Stará Ľubovňa',        info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[20.689, 49.300] } },
+    { type:'Feature', properties:{ covered:false, name:'Geraltov',              info:'Pokrytie pripravujeme. Zaregistrujte záujem a upozorníme vás.' },       geometry:{ type:'Point', coordinates:[21.527, 49.117] } },
   ]
 };
 
@@ -2666,6 +2686,46 @@ coverageMap.on('load', () => {
 
 let addressMarker = null;
 
+function _distKm(lat1, lon1, lat2, lon2) {
+  const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLon = (lon2-lon1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function _findCoverage(lat, lng, placeName) {
+  // 1. Name match (demo-reliable for Bratislava, Gilartovce, etc.)
+  const lower = placeName.toLowerCase();
+  for (const f of coverageData.features) {
+    const fname = f.properties.name.toLowerCase();
+    const idx = lower.indexOf(fname);
+    if (idx !== -1 && !/[a-záäčďéěíľĺňóôŕřšťúůýž]/i.test(lower[idx + fname.length] || '')) return f;
+  }
+  // 2. Proximity fallback (≤50 km)
+  let nearest = null, minDist = Infinity;
+  coverageData.features.forEach(f => {
+    const d = _distKm(lat, lng, f.geometry.coordinates[1], f.geometry.coordinates[0]);
+    if (d < minDist) { minDist = d; nearest = f; }
+  });
+  return minDist <= 50 ? nearest : { properties: { covered: true, info: 'Max. rýchlosť 1 000 Mbit/s.' } };
+}
+
+function applyCoverageFilter(hasOptika, addr) {
+  const bar = document.getElementById('coverage-filter-bar');
+  document.getElementById('coverage-filter-addr').textContent = addr;
+  bar.style.display = 'flex';
+  const xlExtra = document.querySelector('.plan[data-plan="xl-extra"]');
+  if (hasOptika) {
+    xlExtra.classList.remove('plan--unavailable');
+  } else {
+    xlExtra.classList.add('plan--unavailable');
+  }
+}
+
+function clearCoverageFilter() {
+  document.getElementById('coverage-filter-bar').style.display = 'none';
+  document.querySelector('.plan[data-plan="xl-extra"]').classList.remove('plan--unavailable');
+}
+
 function checkCoverage() {
   const addr = document.getElementById('addr-cov').value.trim();
   if (!addr) { document.getElementById('addr-cov').focus(); return; }
@@ -2673,23 +2733,42 @@ function checkCoverage() {
   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(addr)}.json?country=sk&language=sk&access_token=${MAPBOX_TOKEN}`)
     .then(r => r.json())
     .then(data => {
-      document.getElementById('addr-cov').style.borderColor = '';
-      if (data.features && data.features.length) {
-        const [lng, lat] = data.features[0].center;
-        if (addressMarker) addressMarker.remove();
-        addressMarker = new mapboxgl.Marker({ color: '#FF6600' })
-          .setLngLat([lng, lat])
-          .addTo(coverageMap);
-        coverageMap.flyTo({ center: [lng, lat], zoom: 13, duration: 1400 });
-      }
+      if (!data.features || !data.features.length) return;
+      const [lng, lat] = data.features[0].center;
+      const placeName = data.features[0].place_name;
+
+      if (addressMarker) addressMarker.remove();
+      addressMarker = new mapboxgl.Marker({ color: '#ff7900' })
+        .setLngLat([lng, lat])
+        .addTo(coverageMap);
+      coverageMap.flyTo({ center: [lng, lat], zoom: 13, duration: 1000 });
+
+      const match = _findCoverage(lat, lng, placeName);
+      const hasOptika = match.properties.covered;
+      const m = match.properties.info.match(/([\d\s]+Mbit\/s)/);
+      const speed = m ? m[1].trim() : '1 000 Mbit/s';
+
+      // Update success panel content
+      document.getElementById('cs-icon').textContent = hasOptika ? '✓' : '!';
+      document.getElementById('cs-title').textContent = hasOptika
+        ? 'Máte náskok! Na vašej adrese je dostupná blesková Optika.'
+        : 'Optika nie je dostupná vo vašej oblasti.';
+      document.getElementById('cs-desc').textContent = hasOptika
+        ? `Max. rýchlosť až do ${speed}. Nezabudnite v košíku použiť kód z e-mailu — zľava sa odpočíta automaticky.`
+        : 'Pre vašu adresu sú dostupné iné technológie pripojenia. Internet XL Extra vyžaduje optické vlákno.';
+      document.getElementById('cs-cta').onclick = function () {
+        document.getElementById('plans-anchor').scrollIntoView({ behavior: 'smooth' });
+        applyCoverageFilter(hasOptika, addr);
+      };
+
       const successEl = document.getElementById('coverageSuccess');
       successEl.classList.add('show');
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(() => successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 1000);
     })
     .catch(() => {
       const successEl = document.getElementById('coverageSuccess');
       successEl.classList.add('show');
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(() => successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 1000);
     });
 }
 
