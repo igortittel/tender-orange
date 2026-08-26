@@ -222,6 +222,11 @@
     background:#fff; border:1.5px solid var(--line); color:var(--ink);
   }
   .coverage-form .address-row button{ background:var(--orange); }
+  @media(max-width:719px){
+    .coverage-form .address-row{ flex-direction:column; }
+    .coverage-form .address-row input,
+    .coverage-form .address-row button{ width:100%; min-height:48px; padding:14px 16px; }
+  }
 
   .map-wrap{ border-radius:var(--radius); overflow:hidden; }
   #coverageMap{ width:100%; height:320px; }
@@ -285,8 +290,10 @@
   .opt{
     border:1.5px solid var(--line); border-radius:14px; padding:14px 12px; text-align:center; cursor:pointer; background:#fff;
     transition:border-color .15s ease, background .15s ease, transform .1s ease; font-size:14px; font-weight:600;
+    display:flex; align-items:center; justify-content:center;
   }
   .opt .ic{ font-size:22px; display:block; margin-bottom:6px; }
+  .opt .ic:empty{ display:none; margin:0; }
   .opt:hover{ border-color:var(--orange); background:var(--tint,#fff5f0); }
   .opt:active{ transform:scale(.97); }
 
@@ -658,16 +665,18 @@
   @media(min-width:480px){
     .hero-ctas{ flex-direction:row; align-items:center; flex-wrap:wrap; }
   }
+  .benefit-block{
+    margin-top:22px; padding-top:20px;
+  }
   .benefit-row{
-    display:flex; flex-wrap:wrap; gap:8px;
-    margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12);
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
   }
-  .benefit-chip{
-    display:inline-flex; align-items:center;
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-    border-radius:100px; padding:7px 14px; font-size:12px; color:#fff; font-weight:500;
-    white-space:nowrap;
+  .benefit-stat{
+    display:flex; flex-direction:column; gap:3px;
+    border-left:2px solid var(--orange); padding-left:12px;
   }
+  .benefit-stat b{ font-size:17px; font-weight:800; color:#fff; line-height:1.15; }
+  .benefit-stat span{ font-size:11.5px; color:rgba(255,255,255,.65); line-height:1.3; }
   .hero-img-m{
     display:block;
     width:calc(100% + 40px); margin:28px -20px 0;
@@ -677,7 +686,8 @@
     .hero-ctas{ align-items:stretch; flex-direction:column; padding-top:20px; margin-bottom:0; }
     .hero-ctas .cta-primary{ display:block; width:100%; text-align:center; }
     .cta-ghost-hero{ width:100%; text-align:center; padding:14px 22px; }
-    .benefit-row{ margin-top:0; padding:20px 0; border-top:none; }
+    .benefit-block{ margin-top:0; padding:20px 0; border-top:none; }
+    .benefit-row{ gap:14px 16px; }
   }
   @media(min-width:720px){
     .hero{
@@ -688,7 +698,8 @@
     }
     .hero-img-m{ display:none; }
     .hero-ctas .cta-primary{ width:auto; display:inline-block; }
-    .benefit-row{ margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12); }
+    .benefit-block{ margin-top:22px; padding-top:20px; width:fit-content; }
+    .benefit-row{ grid-template-columns:repeat(4,auto); gap:0 36px; }
   }
 
   /* ---------- MOBILE PLAN ACCORDION ---------- */
@@ -956,6 +967,9 @@
   .promo-bullet:last-child{ border-bottom:1px solid var(--line); }
   .promo-bullet b{ display:block; color:var(--ink); font-weight:700; font-size:14.5px; margin-bottom:3px; }
   .cta-inline{ display:inline-block !important; width:auto !important; padding:15px 32px !important; }
+  @media(max-width:719px){
+    .cta-inline{ display:block !important; width:100% !important; text-align:center; }
+  }
 
   /* ---------- FOOTER META ROW ---------- */
   .footer-meta{ max-width:1200px; margin:0 auto; padding:24px 0 32px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px; border-top:1px solid rgba(255,255,255,.07); }
@@ -1026,6 +1040,92 @@
     .footer-bottom{ padding:20px 0 32px; }
     #mobile-menu{ top:calc(36px + 57px); }
   }
+
+  /* ---- BENEFIT CARDS CAROUSEL ---- */
+  .benefit-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:16px; margin-bottom:28px;
+  }
+  .benefit-head .sec-head{ margin-bottom:0; }
+  .benefit-nav{ display:flex; gap:8px; flex-shrink:0; padding-bottom:4px; }
+  .bcarousel-btn{
+    width:40px; height:40px; border-radius:50%;
+    border:1.5px solid var(--line); background:#fff; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink); transition:border-color .15s, background .15s;
+  }
+  .bcarousel-btn:hover{ border-color:var(--orange); background:var(--tint); }
+  .bcarousel-btn svg{ display:block; }
+  .benefit-cards-grid{
+    display:flex; flex-direction:row; gap:12px;
+    overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding-bottom:12px;
+    scrollbar-width:none;
+  }
+  .benefit-cards-grid::-webkit-scrollbar{ display:none; }
+  @media(min-width:720px){
+    .benefit-cards-grid{ gap:16px; }
+  }
+  .bcard{
+    background:#fff; border:1.5px solid var(--line);
+    border-radius:var(--radius); padding:20px 14px 32px;
+    cursor:pointer; text-align:center;
+    transition:border-color .2s, box-shadow .2s;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+    position:relative;
+    width:158px; aspect-ratio:1; flex-shrink:0; scroll-snap-align:start;
+  }
+  @media(min-width:720px){
+    .bcard{ width:186px; }
+  }
+  .bcard:hover, .bcard:focus-visible{
+    border-color:rgba(255,121,0,.45);
+    box-shadow:0 4px 20px rgba(255,121,0,.1);
+    outline:none;
+  }
+  .bcard svg{ display:block; width:48px; height:48px; flex-shrink:0; }
+  .bcard-title{
+    font-size:13px; font-weight:700; color:var(--ink);
+    line-height:1.3; margin:0; word-break:keep-all;
+  }
+  .bcard::after{
+    content:'+';
+    position:absolute; bottom:10px; right:10px;
+    width:20px; height:20px; border-radius:50%;
+    background:var(--tint); color:var(--orange-deep);
+    font-size:14px; font-weight:700; line-height:20px; text-align:center;
+    transition:background .2s;
+  }
+  .bcard:hover::after{ background:var(--orange); color:#fff; }
+
+  /* ---- BENEFIT MODAL ---- */
+  .bmodal-overlay{
+    display:none; position:fixed; inset:0; z-index:9000;
+    background:rgba(0,0,0,.45);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .bmodal-overlay.open{ display:flex; }
+  .bmodal{
+    background:#fff; border-radius:22px;
+    padding:32px 28px; max-width:460px; width:100%;
+    position:relative; animation:fadeUp .22s ease;
+  }
+  .bmodal-iconwrap{
+    width:60px; height:60px; border-radius:16px;
+    background:var(--paper-dim);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .bmodal h3{ font-size:20px; font-weight:800; color:var(--ink); margin:0 0 10px; line-height:1.25; }
+  .bmodal p{ font-size:14px; color:var(--ink-soft); line-height:1.65; margin:0; }
+  .bmodal-close{
+    position:absolute; top:14px; right:14px;
+    background:var(--paper-dim); border:none; border-radius:50%;
+    width:32px; height:32px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:18px; line-height:1;
+    transition:background .15s;
+  }
+  .bmodal-close:hover{ background:var(--line); }
 </style>
 </head>
 <body>
@@ -1132,11 +1232,13 @@
       <a href="#challenge-anchor" class="cta-primary" style="text-decoration:none;" onclick="event.preventDefault();document.getElementById('challenge-anchor').scrollIntoView({behavior:'smooth'})">Chcem zľavu</a>
       <a href="#coverage-anchor" class="cta-ghost-hero" onclick="event.preventDefault();document.getElementById('coverage-anchor').scrollIntoView({behavior:'smooth'})">Overiť dostupnosť internetu</a>
     </div>
-    <div class="benefit-row">
-      <div class="benefit-chip">Do 14 dní môžete službu zadarmo zrušiť</div>
-      <div class="benefit-chip">Až do 200 € preplatíme pokutu za prenos</div>
-      <div class="benefit-chip">Wi&#8209;Fi router najrýchlejší na trhu</div>
-      <div class="benefit-chip">Inštalácia pri online objednávke zdarma</div>
+    <div class="benefit-block">
+      <div class="benefit-row">
+        <div class="benefit-stat"><b>14 dní</b><span>na vyskúšanie internetu</span></div>
+        <div class="benefit-stat"><b>Až 200 €</b><span>na preplatenie pokuty za prenos</span></div>
+        <div class="benefit-stat"><b>Wi&#8209;Fi 7</b><span>router ako jediný na trhu</span></div>
+        <div class="benefit-stat"><b>Až 2,5 Gbps</b><span>rýchlosť internetu</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1977,6 +2079,75 @@ document.addEventListener('DOMContentLoaded',function(){odoSel(0);});
   </div><!-- /sec-inner -->
 </section>
 
+<!-- BENEFIT CARDS -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="benefit-head">
+      <div class="sec-head">
+        <div class="eyebrow">Čo všetko získate</div>
+        <h2>Výhody, ktoré oceníte každý deň</h2>
+        <p>Kliknite na výhodu a zistite, čo konkrétne pre vás znamená.</p>
+      </div>
+      <div class="benefit-nav">
+        <button class="bcarousel-btn" id="bcarousel-prev" aria-label="Predchádzajúce">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="bcarousel-btn" id="bcarousel-next" aria-label="Nasledujúce">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="benefit-cards-grid" id="benefit-cards-grid">
+      <div class="bcard" onclick="openBmodal(0)" role="button" tabindex="0" aria-label="Inštalácia zadarmo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M6 22L21 9l15 13" stroke="#000" stroke-width="2"></path><path d="M10 22v17h22V22" stroke="#000" stroke-width="2"></path><path d="M17 39v-9h8v9" stroke="#000" stroke-width="2"></path><circle cx="36" cy="34" r="9" fill="#fff"></circle><circle cx="36" cy="34" r="8" stroke="#ff7900" stroke-width="2"></circle><path d="M33 38l6-8" stroke="#ff7900" stroke-width="2"></path><circle cx="33.5" cy="31.5" r="1.6" stroke="#ff7900" stroke-width="1.5"></circle><circle cx="38.5" cy="36.5" r="1.6" stroke="#ff7900" stroke-width="1.5"></circle></svg>
+        <p class="bcard-title">Inštalácia zadarmo</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(1)" role="button" tabindex="0" aria-label="Rýchlosť a stabilita">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 34a18 18 0 1132 0" stroke="#000" stroke-width="2"></path><path d="M24 34l9-12" stroke="#ff7900" stroke-width="2"></path><circle cx="24" cy="34" r="2.5" fill="#000"></circle><path d="M8 39h32" stroke="#000" stroke-width="2"></path></svg>
+        <p class="bcard-title">Rýchlosť a stabilita</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(2)" role="button" tabindex="0" aria-label="Pripojenie v každom kútiku domácnosti">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M9 26L24 13l15 13" stroke="#000" stroke-width="2"></path><path d="M13 26v14h22V26" stroke="#000" stroke-width="2"></path><path d="M17 30c4-4 10-4 14 0" stroke="#ff7900" stroke-width="2"></path><path d="M20.5 33.5c2-2 5-2 7 0" stroke="#ff7900" stroke-width="2"></path><circle cx="24" cy="37" r="1.8" fill="#ff7900"></circle></svg>
+        <p class="bcard-title">Pripojenie v každom kútiku</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(3)" role="button" tabindex="0" aria-label="Online ochrana doma">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"></path><path d="M16 24l7-6 7 6" stroke="#ff7900" stroke-width="2"></path><path d="M19 24v8h8v-8" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">Online ochrana doma</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(4)" role="button" tabindex="0" aria-label="Online ochrana detí">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"></path><circle cx="24" cy="20" r="4" stroke="#ff7900" stroke-width="2"></circle><path d="M17 33c1.5-4 4-6 7-6s5.5 2 7 6" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">Online ochrana detí</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(5)" role="button" tabindex="0" aria-label="Online ochrana PC">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M6 9h36v22H6z" stroke="#000" stroke-width="2"></path><path d="M17 39h14" stroke="#000" stroke-width="2"></path><path d="M24 13l8 2.9v5.7c0 5.1-3.4 8-8 9.7-4.6-1.7-8-4.6-8-9.7v-5.7z" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">Online ochrana PC</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(6)" role="button" tabindex="0" aria-label="Online ochrana Smart zariadení">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 12h20v16H8z" stroke="#000" stroke-width="2"></path><path d="M14 34h8" stroke="#000" stroke-width="2"></path><path d="M30 20h10v20H30z" stroke="#000" stroke-width="2"></path><path d="M33 36h4" stroke="#000" stroke-width="2"></path><path d="M14 20l4 4 6-7" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">Online ochrana Smart zariadení</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(7)" role="button" tabindex="0" aria-label="HBO Max na mesiac zadarmo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M5 10h38v24H5z" stroke="#000" stroke-width="2"></path><path d="M16 40h16" stroke="#000" stroke-width="2"></path><path d="M20 16.5l9 5.5-9 5.5z" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">HBO Max na mesiac zadarmo</p>
+      </div>
+      <div class="bcard" onclick="openBmodal(8)" role="button" tabindex="0" aria-label="Bezpečnostný balík ESET">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"></path><path d="M17 23.5l5 5 9-10" stroke="#ff7900" stroke-width="2"></path></svg>
+        <p class="bcard-title">Bezpečnostný balík ESET</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFIT MODAL -->
+<div class="bmodal-overlay" id="bmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="bmodal-title">
+  <div class="bmodal">
+    <button class="bmodal-close" onclick="closeBmodal()" aria-label="Zavrieť">&#215;</button>
+    <div class="bmodal-iconwrap" id="bmodal-iconwrap"></div>
+    <h3 id="bmodal-title"></h3>
+    <p id="bmodal-desc"></p>
+  </div>
+</div>
+
 <!-- 6. PROCES -->
 <section class="sec sec--dark">
   <div class="sec-inner">
@@ -2799,6 +2970,66 @@ function sendInlineChatMsg(){
     inlineAppendMsg(reply, 'bot');
   }, 700 + Math.random()*500);
 }
+
+/* ---- BENEFIT CARDS ---- */
+var BENEFITS=[
+  {title:'Inštalácia zadarmo',
+   desc:'Pri online objednávke za inštaláciu internetu neplatíte. Technik príde na dohodnutý termín, zapojí všetko a otestuje funkčnosť.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M6 22L21 9l15 13" stroke="#000" stroke-width="2"/><path d="M10 22v17h22V22" stroke="#000" stroke-width="2"/><path d="M17 39v-9h8v9" stroke="#000" stroke-width="2"/><circle cx="36" cy="34" r="9" fill="#fff"/><circle cx="36" cy="34" r="8" stroke="#ff7900" stroke-width="2"/><path d="M33 38l6-8" stroke="#ff7900" stroke-width="2"/><circle cx="33.5" cy="31.5" r="1.6" stroke="#ff7900" stroke-width="1.5"/><circle cx="38.5" cy="36.5" r="1.6" stroke="#ff7900" stroke-width="1.5"/></svg>'},
+  {title:'Rýchlosť a stabilita',
+   desc:'Pozerajte webové stránky, sledujte obľúbené filmy a seriály, hrajte hry online alebo pracujte z domu — bez výpadkov a bez zbytočného čakania.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 34a18 18 0 1132 0" stroke="#000" stroke-width="2"/><path d="M24 34l9-12" stroke="#ff7900" stroke-width="2"/><circle cx="24" cy="34" r="2.5" fill="#000"/><path d="M8 39h32" stroke="#000" stroke-width="2"/></svg>'},
+  {title:'Pripojenie v každom kútiku domácnosti',
+   desc:'Pokryte celú domácnosť zariadením Huawei OptiXstar K572 — Wi-Fi 7 router, ktorý je jediný svojho druhu na slovenskom trhu.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M9 26L24 13l15 13" stroke="#000" stroke-width="2"/><path d="M13 26v14h22V26" stroke="#000" stroke-width="2"/><path d="M17 30c4-4 10-4 14 0" stroke="#ff7900" stroke-width="2"/><path d="M20.5 33.5c2-2 5-2 7 0" stroke="#ff7900" stroke-width="2"/><circle cx="24" cy="37" r="1.8" fill="#ff7900"/></svg>'},
+  {title:'Online ochrana doma',
+   desc:'Služba je určená pre domácnosti s fixným pripojením na internet. Chráni všetky zariadenia vo vašej domácnosti pripojené k sieti.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"/><path d="M16 24l7-6 7 6" stroke="#ff7900" stroke-width="2"/><path d="M19 24v8h8v-8" stroke="#ff7900" stroke-width="2"/></svg>'},
+  {title:'Online ochrana detí',
+   desc:'Aplikácia je určená pre Android/iOS zariadenia vašich detí. Umožňuje filtrovanie obsahu, nastavenie časových limitov a sledovanie polohy.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"/><circle cx="24" cy="20" r="4" stroke="#ff7900" stroke-width="2"/><path d="M17 33c1.5-4 4-6 7-6s5.5 2 7 6" stroke="#ff7900" stroke-width="2"/></svg>'},
+  {title:'Online ochrana PC',
+   desc:'Aplikácia je určená pre zariadenia s operačným systémom Windows. Chráni pred vírusmi, malvérom a nebezpečnými webstránkami.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M6 9h36v22H6z" stroke="#000" stroke-width="2"/><path d="M17 39h14" stroke="#000" stroke-width="2"/><path d="M24 13l8 2.9v5.7c0 5.1-3.4 8-8 9.7-4.6-1.7-8-4.6-8-9.7v-5.7z" stroke="#ff7900" stroke-width="2"/></svg>'},
+  {title:'Online ochrana Smart zariadení',
+   desc:'Aplikácia je určená pre Android a iOS zariadenia. Chráni váš smartfón alebo tablet pred hrozbami pri prehliadaní internetu.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 12h20v16H8z" stroke="#000" stroke-width="2"/><path d="M14 34h8" stroke="#000" stroke-width="2"/><path d="M30 20h10v20H30z" stroke="#000" stroke-width="2"/><path d="M33 36h4" stroke="#000" stroke-width="2"/><path d="M14 20l4 4 6-7" stroke="#ff7900" stroke-width="2"/></svg>'},
+  {title:'HBO Max na mesiac zadarmo',
+   desc:'Sledujte so streamovacou službou HBO Max tisícky filmov, seriálov a dokumentárnych filmov. Prvý mesiac bez poplatku.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M5 10h38v24H5z" stroke="#000" stroke-width="2"/><path d="M16 40h16" stroke="#000" stroke-width="2"/><path d="M20 16.5l9 5.5-9 5.5z" stroke="#ff7900" stroke-width="2"/></svg>'},
+  {title:'Bezpečnostný balík ESET',
+   desc:'Bezpečnostný balík od ESETu chráni zariadenia pred vírusmi, ransomvérom a phishingovými útokmi. Spoľahlivá ochrana pre celú rodinu.',
+   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="#000" stroke-width="2"/><path d="M17 23.5l5 5 9-10" stroke="#ff7900" stroke-width="2"/></svg>'}
+];
+function openBmodal(i){
+  var b=BENEFITS[i];
+  document.getElementById('bmodal-title').textContent=b.title;
+  document.getElementById('bmodal-desc').textContent=b.desc;
+  document.getElementById('bmodal-iconwrap').innerHTML=b.icon;
+  document.getElementById('bmodal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBmodal(){
+  document.getElementById('bmodal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('bmodal-overlay').addEventListener('click',function(e){
+  if(e.target===e.currentTarget)closeBmodal();
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBmodal();});
+document.querySelectorAll('.bcard').forEach(function(c){
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});
+});
+(function(){
+  var grid=document.getElementById('benefit-cards-grid');
+  function scrollBy(dir){
+    var card=grid.querySelector('.bcard');
+    var step=(card.offsetWidth+16)*2;
+    grid.scrollBy({left:dir*step,behavior:'smooth'});
+  }
+  document.getElementById('bcarousel-prev').addEventListener('click',function(){scrollBy(-1);});
+  document.getElementById('bcarousel-next').addEventListener('click',function(){scrollBy(1);});
+})();
 </script>
 
 </body>
