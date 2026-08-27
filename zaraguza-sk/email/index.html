@@ -13,21 +13,19 @@
     a { color: inherit; text-decoration: none; }
     a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
 
-    /* ── Mobile overrides ── */
     @media only screen and (max-width: 600px) {
-      .wrap { width: 100% !important; }
-      .col-half {
-        display: block !important;
-        width: 100% !important;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        border-left: none !important;
-        border-right: none !important;
-      }
-      .col-half-dark { padding: 0 0 20px 14px !important; border-left: 2px solid #ff7900 !important; }
-      .col-half-dark + .col-half-dark { padding-top: 20px !important; border-top: 1px solid rgba(255,255,255,0.1) !important; }
-      .col-half-light { padding: 20px 0 0 0 !important; border-top: 1px solid #efefef !important; }
-      .stat-num { font-size: 24px !important; }
+      .wrap        { width: 100% !important; }
+      /* CTA: plná šírka na mobile */
+      .cta-td      { width: 100% !important; display: block !important; border-radius: 6px !important; }
+      .cta-a       { display: block !important; text-align: center !important; }
+      /* Benefit stĺpce: stackovanie */
+      .col-half    { display: block !important; width: 100% !important;
+                     padding-right: 0 !important; padding-left: 0 !important;
+                     border-left: none !important; border-right: none !important; }
+      .col-dark    { padding: 0 0 20px 14px !important; border-left: 2px solid #ff7900 !important; }
+      .col-dark + .col-dark { border-top: 1px solid rgba(255,255,255,0.12) !important; padding-top: 20px !important; }
+      .col-light   { padding: 20px 0 0 !important; border-top: 1px solid #efefef !important; }
+      .stat-num    { font-size: 24px !important; }
     }
   </style>
 </head>
@@ -35,28 +33,25 @@
 
   <!-- Preheader -->
   <div aria-hidden="true" style="display:none;max-height:0;overflow:hidden;color:#e8e8e8;font-size:1px;">
-    Zahrajte hokejovú výzvu, získajte zľavu až 120 € ročne a hrajte o zájazd na MS v hokeji pre 2 osoby.&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌
+    Orange fandí slovenským hokejistom — a pre vás sme pripravili internet šitý na mieru.&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌
   </div>
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
   <tr><td align="center" style="padding:20px 0;background-color:#e8e8e8;">
 
-  <!-- Wrapper -->
   <table class="wrap" role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
          style="max-width:600px;background:#ffffff;font-family:Arial,Helvetica,sans-serif;">
 
-    <!-- ══ HEADER ══ -->
+    <!-- ══ HEADER (tmavý) ══ -->
     <tr>
-      <td style="padding:16px 24px;background-color:#ffffff;border-bottom:3px solid #ff7900;">
-        <!-- Logo: v produkcii použiť absolútnu URL na CDN -->
+      <td style="padding:16px 24px;background-color:#111111;">
         <img src="../tender.lb.sk/logo.svg" width="36" height="36" alt="Orange Slovensko" />
       </td>
     </tr>
 
     <!-- ══ HERO FOTO ══ -->
     <tr>
-      <td style="padding:0;background-color:#111111;font-size:0;line-height:0;">
-        <!-- Alt opisuje obsah fotky pre screenreadery a keď sa obrázok nenačíta -->
+      <td style="padding:0;font-size:0;line-height:0;background-color:#111111;">
         <img src="../images/img-email.jpeg" width="600" alt="Hokejový fanúšik v drese Orange na zápase"
              style="width:100%;height:auto;display:block;" />
       </td>
@@ -64,7 +59,7 @@
 
     <!-- ══ HERO TEXT ══ -->
     <tr>
-      <td style="background-color:#111111;padding:32px 28px 36px;">
+      <td style="background-color:#111111;padding:32px 28px 40px;">
 
         <!-- Eyebrow -->
         <p style="margin:0 0 14px;padding:0;">
@@ -78,34 +73,34 @@
           Vybojujte si zľavu<br />a leťte na MS v&nbsp;hokeji!
         </h1>
 
-        <!-- Perex -->
-        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0 0 28px;padding:0;">
-          Zahrajte výzvu, získajte zľavový kód <strong style="color:#ffffff;font-weight:700;">až 120&nbsp;€</strong> a hrajte o zájazd na MS v hokeji pre 2 osoby.
+        <!-- Perex — biely text, podporuje kúpu internetu -->
+        <p style="font-size:15px;color:#ffffff;line-height:1.65;margin:0 0 28px;padding:0;">
+          Orange fandí slovenským hokejistom. Sledujte každý gól v 4K bez zaseknutia — pozreli sme vašu adresu a máme pre vás internet šitý na mieru.
         </p>
 
         <!-- Odmeny: 2 benefit-staty -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:32px;">
           <tr>
-            <td class="col-half col-half-dark" width="50%" valign="top"
-                style="border-left:2px solid #ff7900;padding-left:14px;padding-right:20px;padding-bottom:4px;">
+            <td class="col-half col-dark" width="50%" valign="top"
+                style="border-left:2px solid #ff7900;padding-left:14px;padding-right:20px;">
               <div style="font-size:19px;font-weight:900;color:#ffffff;line-height:1.1;margin-bottom:4px;">Zájazd na MS</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.4;">v hokeji pre 2 osoby</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4;">v hokeji pre 2 osoby</div>
             </td>
-            <td class="col-half col-half-dark" width="50%" valign="top"
-                style="border-left:2px solid #ff7900;padding-left:14px;padding-bottom:4px;">
+            <td class="col-half col-dark" width="50%" valign="top"
+                style="border-left:2px solid #ff7900;padding-left:14px;">
               <div style="font-size:19px;font-weight:900;color:#ffffff;line-height:1.1;margin-bottom:4px;">Až 120&nbsp;€</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.4;">ročne na internet</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4;">ročne na internet</div>
             </td>
           </tr>
         </table>
 
-        <!-- CTA primárny -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <!-- CTA: desktop = šírka textu + ľavé zarovnanie, mobile = plná šírka -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
           <tr>
-            <td style="background-color:#ff7900;border-radius:6px;text-align:center;">
-              <a href="#" target="_blank"
-                 style="display:block;font-size:16px;font-weight:900;color:#ffffff;text-decoration:none;padding:16px 28px;border-radius:6px;">
-                Zahrať hokejovú výzvu →
+            <td class="cta-td" style="background-color:#ff7900;border-radius:6px;">
+              <a class="cta-a" href="#" target="_blank"
+                 style="display:inline-block;font-size:16px;font-weight:900;color:#ffffff;text-decoration:none;padding:16px 32px;border-radius:6px;white-space:nowrap;">
+                Zahrať hokejovú výzvu
               </a>
             </td>
           </tr>
@@ -118,104 +113,77 @@
     <tr>
       <td style="background-color:#f5f5f5;padding:32px 28px;">
 
-        <p style="font-size:11px;font-weight:700;color:#ff7900;letter-spacing:1px;text-transform:uppercase;margin:0 0 6px;padding:0;">
-          Odporúčame práve vám
-        </p>
-        <h2 style="font-size:20px;font-weight:900;color:#111111;line-height:1.2;margin:0 0 8px;padding:0;">
-          Váš ideálny balík internetu
-        </h2>
-        <p style="font-size:13px;color:#777777;line-height:1.55;margin:0 0 20px;padding:0;">
-          Na základe vašich zvyklostí sme vybrali ten najvhodnejší. Zľavový kód uplatníte priamo v košíku.
+        <!-- Intro -->
+        <p style="font-size:11px;font-weight:700;color:#ff7900;letter-spacing:1px;text-transform:uppercase;margin:0 0 8px;padding:0;">Odporúčame práve vám</p>
+        <!-- CRM merge tag: {{ADDRESS}} -->
+        <p style="font-size:15px;color:#111111;line-height:1.55;margin:0 0 20px;padding:0;">
+          Na vašej adrese <strong>Mlynské nivy 16, Bratislava</strong> má Orange pokrytie ultrarýchlym optickým internetom.
         </p>
 
-        <!-- Karta -->
+        <!-- Produktová karta: Internet XL Extra — maximálne jednoduchá -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
                style="background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid #e2e2e2;">
 
-          <!-- Hlavička karty -->
+          <!-- Karta: hlavička -->
           <tr>
-            <td style="background-color:#ff7900;padding:14px 20px;">
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td>
-                    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:2px;">Favorit fanúšikov</div>
-                    <!-- CRM merge tag: {{PLAN_NAME}} -->
-                    <div style="font-size:20px;font-weight:900;color:#ffffff;">Internet L</div>
-                  </td>
-                  <td align="right" valign="middle">
-                    <!-- CRM merge tag: {{PLAN_SPEED}} -->
-                    <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);text-align:right;">600 / 150 Mbit/s</div>
-                  </td>
-                </tr>
-              </table>
+            <td style="background-color:#ff7900;padding:18px 24px;">
+              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Rýchlosť Martina Pospíšila</div>
+              <!-- CRM merge tag: {{PLAN_NAME}} -->
+              <div style="font-size:22px;font-weight:900;color:#ffffff;margin-bottom:4px;">Internet XL Extra</div>
+              <!-- CRM merge tag: {{PLAN_SPEED}} -->
+              <div style="font-size:13px;color:rgba(255,255,255,0.85);">2 500 / 1 000 Mbit/s</div>
             </td>
           </tr>
 
-          <!-- Telo karty -->
+          <!-- Karta: cena + CTA -->
           <tr>
-            <td style="padding:20px;">
-
-              <!-- Cena -->
-              <div style="font-size:11px;color:#bbbbbb;text-decoration:line-through;margin-bottom:2px;">22 €/mes</div>
+            <td style="padding:22px 24px;">
+              <div style="font-size:12px;color:#bbbbbb;text-decoration:line-through;margin-bottom:2px;">30 €/mes</div>
               <!-- CRM merge tag: {{PLAN_PRICE}} -->
-              <div style="font-size:32px;font-weight:900;color:#111111;line-height:1;margin-bottom:8px;">
-                od 15,01&nbsp;€<span style="font-size:14px;font-weight:400;color:#888888;">/mes</span>
+              <div style="font-size:36px;font-weight:900;color:#111111;line-height:1;margin-bottom:12px;">
+                23&nbsp;€<span style="font-size:14px;font-weight:400;color:#888888;">/mes</span>
               </div>
-              <span style="display:inline-block;background-color:rgba(255,121,0,0.09);border:1px solid rgba(255,121,0,0.22);border-radius:100px;padding:3px 11px;font-size:10px;font-weight:700;color:#f15e00;margin-bottom:16px;">
-                Online zľava
-              </span>
-
-              <!-- Benefity balíka -->
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:20px;">
-                <tr><td style="padding-bottom:8px;font-size:13px;color:#333333;line-height:1.4;"><span style="color:#ff7900;font-weight:900;margin-right:6px;">+</span>4 mesiace zadarmo</td></tr>
-                <tr><td style="padding-bottom:8px;font-size:13px;color:#333333;line-height:1.4;"><span style="color:#ff7900;font-weight:900;margin-right:6px;">+</span>Preplatenie pokuty do 120 €</td></tr>
-                <tr><td style="font-size:13px;color:#333333;line-height:1.4;"><span style="color:#ff7900;font-weight:900;margin-right:6px;">+</span>HBO Max 1 mesiac zadarmo</td></tr>
-              </table>
-
-              <!-- CTA karty -->
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <p style="font-size:12px;color:#999999;margin:0 0 22px;padding:0;line-height:1.5;">
+                Prémiová inštalácia zadarmo · Wi-Fi 7 router (1 €/mes.) · Viazanosť 24 mes.
+              </p>
+              <!-- CTA: desktop = šírka textu + ľavé zarovnanie, mobile = plná šírka -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                  <td style="background-color:#ff7900;border-radius:6px;text-align:center;">
-                    <a href="#" target="_blank"
-                       style="display:block;font-size:15px;font-weight:900;color:#ffffff;text-decoration:none;padding:14px 20px;border-radius:6px;">
-                      Vybrať Internet L
+                  <td class="cta-td" style="background-color:#ff7900;border-radius:6px;">
+                    <a class="cta-a" href="#" target="_blank"
+                       style="display:inline-block;font-size:15px;font-weight:900;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:6px;white-space:nowrap;">
+                      Vybrať Internet XL Extra
                     </a>
                   </td>
                 </tr>
               </table>
-
-              <p style="font-size:10px;color:#bbbbbb;margin:10px 0 0;padding:0;text-align:center;line-height:1.4;">
-                Zriadenie 20 € · Wi-Fi 7 router (1 €/mes.) · Viazanosť 24 mes.
-              </p>
-
             </td>
           </tr>
-        </table>
 
+        </table>
 
       </td>
     </tr>
 
-    <!-- ══ 4 BENEFITY INTERNETU ══ -->
+    <!-- ══ PREČO ORANGE INTERNET ══ -->
     <tr>
       <td style="background-color:#ffffff;padding:32px 28px 28px;">
 
         <h2 style="font-size:18px;font-weight:900;color:#111111;line-height:1.2;margin:0 0 4px;padding:0;">
           Prečo práve Orange internet?
         </h2>
-        <p style="font-size:13px;color:#888888;line-height:1.5;margin:0 0 24px;padding:0;">
+        <p style="font-size:13px;color:#888888;line-height:1.5;margin:0 0 0;padding:0;">
           Sledujte každý zápas v 4K, bez zaseknutia.
         </p>
 
-        <!-- 2×2 grid — každý riadok -->
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top:1px solid #efefef;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top:1px solid #efefef;margin-top:20px;">
           <tr>
-            <td class="col-half col-half-light" width="50%" valign="top"
+            <td class="col-half col-light" width="50%" valign="top"
                 style="padding:20px 20px 20px 0;border-right:1px solid #efefef;">
               <div class="stat-num" style="font-size:26px;font-weight:900;color:#111111;line-height:1;margin-bottom:5px;">14 dní</div>
               <div style="font-size:12px;color:#777777;line-height:1.4;">na vyskúšanie — bez záväzku</div>
             </td>
-            <td class="col-half col-half-light" width="50%" valign="top"
+            <td class="col-half col-light" width="50%" valign="top"
                 style="padding:20px 0 20px 20px;">
               <div class="stat-num" style="font-size:26px;font-weight:900;color:#111111;line-height:1;margin-bottom:5px;">Až 200&nbsp;€</div>
               <div style="font-size:12px;color:#777777;line-height:1.4;">na preplatenie pokuty za prenos</div>
@@ -225,12 +193,12 @@
             <td colspan="2" style="height:1px;background-color:#efefef;font-size:0;line-height:0;"></td>
           </tr>
           <tr>
-            <td class="col-half col-half-light" width="50%" valign="top"
+            <td class="col-half col-light" width="50%" valign="top"
                 style="padding:20px 20px 20px 0;border-right:1px solid #efefef;">
               <div class="stat-num" style="font-size:26px;font-weight:900;color:#111111;line-height:1;margin-bottom:5px;">Wi-Fi 7</div>
               <div style="font-size:12px;color:#777777;line-height:1.4;">router ako jediný na trhu</div>
             </td>
-            <td class="col-half col-half-light" width="50%" valign="top"
+            <td class="col-half col-light" width="50%" valign="top"
                 style="padding:20px 0 20px 20px;">
               <div class="stat-num" style="font-size:26px;font-weight:900;color:#111111;line-height:1;margin-bottom:5px;">Až 2,5 Gbps</div>
               <div style="font-size:12px;color:#777777;line-height:1.4;">rýchlosť — plynulý 4K stream</div>
@@ -244,8 +212,8 @@
     <!-- ══ DISCLAIMER ══ -->
     <tr>
       <td style="background-color:#f5f5f5;padding:14px 28px;border-top:1px solid #e8e8e8;">
-        <p style="font-size:10px;color:#bbbbbb;line-height:1.55;margin:0;padding:0;text-align:center;">
-          <span style="font-size:11px;">Súťaž prebieha do odvolania. Úplné pravidlá a podmienky zľavy na orange.sk. Viazanosť 24 mes.</span>
+        <p style="font-size:11px;color:#bbbbbb;line-height:1.55;margin:0;padding:0;text-align:center;">
+          Súťaž prebieha do odvolania. Úplné pravidlá a podmienky zľavy na orange.sk. Viazanosť 24 mes.
         </p>
       </td>
     </tr>
@@ -255,21 +223,20 @@
       <td style="background-color:#111111;padding:28px;text-align:center;">
         <img src="../tender.lb.sk/logo.svg" width="32" height="32" alt="Orange Slovensko"
              style="display:block;margin:0 auto 14px;" />
-        <p style="font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;margin:0 0 12px;padding:0;">
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;margin:0 0 12px;padding:0;">
           Orange Slovensko, a.s. · Metodova 8, 821 08 Bratislava
         </p>
         <p style="font-size:11px;margin:0;padding:0;line-height:1.6;">
           <a href="#" style="color:rgba(255,255,255,0.65);text-decoration:underline;">Odhlásiť sa</a>
-          <span style="color:rgba(255,255,255,0.3);">&nbsp;·&nbsp;</span>
+          <span style="color:rgba(255,255,255,0.25);">&nbsp;·&nbsp;</span>
           <a href="#" style="color:rgba(255,255,255,0.65);text-decoration:underline;">Pravidlá súťaže</a>
-          <span style="color:rgba(255,255,255,0.3);">&nbsp;·&nbsp;</span>
+          <span style="color:rgba(255,255,255,0.25);">&nbsp;·&nbsp;</span>
           <a href="#" style="color:rgba(255,255,255,0.65);text-decoration:underline;">Ochrana osobných údajov</a>
         </p>
       </td>
     </tr>
 
   </table>
-  <!-- /Wrapper -->
 
   </td></tr>
   </table>
