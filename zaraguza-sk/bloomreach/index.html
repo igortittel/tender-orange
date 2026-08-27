@@ -1238,28 +1238,44 @@
 
   /* Lojalitný blok */
   .br-loyalty-section{
-    background:var(--tint); border-top:3px solid var(--orange); padding:36px 20px; max-width:none;
+    background:#FAF8F6; border-top:3px solid var(--orange); padding:36px 20px; max-width:none;
   }
+  /* Mobile: stĺpec — Nadpis → Logo → Popis → CTA */
   .br-loyalty-inner{
-    max-width:560px; margin:0 auto; display:grid;
-    grid-template-columns:110px 1fr; gap:28px; align-items:center;
+    max-width:560px; margin:0 auto;
+    display:flex; flex-direction:column; gap:16px;
   }
-  @media(max-width:480px){
-    .br-loyalty-inner{ grid-template-columns:1fr; gap:16px; }
-    .br-loyalty-logo-col{ text-align:left; }
+  .br-loyalty-headline{
+    font-family:'Sora'; font-weight:800; font-size:20px; color:var(--ink); line-height:1.2;
+    order:1;
   }
-  .br-loyalty-logo-col{ display:flex; align-items:center; justify-content:center; }
-  .br-eset-logo{ width:100%; max-width:100px; display:block; }
-  .br-loyalty-years{ font-size:12px; color:var(--orange-deep); font-weight:700; margin-bottom:8px; letter-spacing:0.04em; text-transform:uppercase; }
-  .br-loyalty-years-num{ color:var(--orange-deep); }
-  .br-loyalty-content h2{
-    font-family:'Sora'; font-weight:800; font-size:17px; color:var(--ink);
-    margin-bottom:8px; line-height:1.35;
+  .br-loyalty-logo-col{ order:2; }
+  .br-loyalty-content{ order:3; display:flex; flex-direction:column; gap:14px; }
+  .br-eset-logo{ width:auto; max-width:100px; height:auto; display:block; }
+  .br-loyalty-content p{
+    font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;
   }
-  .br-loyalty-content > p{
-    font-size:13px; color:var(--ink-soft); line-height:1.55; margin-bottom:16px;
+  .br-loyalty-cta{ width:100%; }
+
+  /* Desktop (md+): 2 stĺpce — logo vľavo, nadpis+popis+cta vpravo */
+  @media(min-width:768px){
+    .br-loyalty-inner{
+      display:grid; grid-template-columns:120px 1fr; grid-template-rows:auto auto;
+      gap:0 32px; align-items:center;
+    }
+    .br-loyalty-headline{
+      grid-column:2; grid-row:1; order:unset; margin-bottom:10px;
+    }
+    .br-loyalty-logo-col{
+      grid-column:1; grid-row:1/3; order:unset;
+      display:flex; align-items:center; justify-content:flex-start;
+    }
+    .br-loyalty-content{
+      grid-column:2; grid-row:2; order:unset;
+    }
+    .br-eset-logo{ max-width:110px; }
+    .br-loyalty-cta{ width:auto; }
   }
-  .br-loyalty-cta{ width:auto; padding:12px 24px; font-size:14px; }
 
   /* Hockey — email highlight */
   .br-email-shown{ color:var(--orange-glow); font-weight:700; }
@@ -1405,13 +1421,12 @@
 <!-- Bloomreach: Lojalitný blok hneď pod hero -->
 <div class="br-loyalty-section">
   <div class="br-loyalty-inner">
+    <h2 class="br-loyalty-headline">Už 5 rokov s Orange</h2>
     <div class="br-loyalty-logo-col">
       <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/ESET_logo.png" alt="ESET" class="br-eset-logo" />
     </div>
     <div class="br-loyalty-content">
-      <p class="br-loyalty-years">Už <span class="br-loyalty-years-num">5 rokov</span> s Orange</p>
-      <h2>Ako verný zákazník získavate Bezpečnostný balík ESET na 12 mesiacov zadarmo pri aktivácii internetu.</h2>
-      <p>Služba sa automaticky pripočíta k vašej objednávke.</p>
+      <p>Ako verný zákazník získavate Bezpečnostný balík ESET na 12 mesiacov zadarmo pri aktivácii internetu. Služba sa automaticky pripočíta k vašej objednávke.</p>
       <button class="cta-primary br-loyalty-cta" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
     </div>
   </div>
