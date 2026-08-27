@@ -1277,6 +1277,13 @@
     .br-loyalty-cta{ width:auto; }
   }
 
+  /* Hockey — reward row ako hero benefit-stat */
+  .br-reward-row{
+    grid-template-columns:repeat(2, auto) !important;
+    gap:0 36px !important; margin:20px 0 24px; padding-top:20px;
+    border-top:1px solid rgba(255,255,255,0.12);
+  }
+
   /* Hockey — email highlight */
   .br-email-shown{ color:var(--orange-glow); font-weight:700; }
 
@@ -1498,9 +1505,9 @@
       <h2>Vybojujte si zľavu na internet a leťte na MS v hokeji!</h2>
       <p>Získajte okamžitú zľavu na bleskový Orange internet až do 120 € priamo do e-mailu a automaticky hrajte o exkluzívny zájazd na Majstrovstvá sveta v hokeji!</p>
 
-      <div class="reward-row">
-        <div class="reward-chip">Zájazd na MS v hokeji pre 2 osoby</div>
-        <div class="reward-chip">Zľava až 120 € ročne na internet</div>
+      <div class="benefit-row br-reward-row">
+        <div class="benefit-stat"><b>Zájazd na MS</b><span>v hokeji pre 2 osoby</span></div>
+        <div class="benefit-stat"><b>Až 120 €</b><span>zľava ročne na internet</span></div>
       </div>
     </div>
 
