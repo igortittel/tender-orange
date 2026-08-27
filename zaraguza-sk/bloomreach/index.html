@@ -1191,54 +1191,75 @@
   .sec--dark-br p[style*="ink-soft"]{ color:rgba(255,255,255,.55) !important; }
   .sec--dark-br .br-coverage-static > p{ color:rgba(255,255,255,.6); }
 
-  /* Love bar */
+  /* Love toggle bar */
   .br-love-bar{
-    background:linear-gradient(135deg, rgba(255,102,0,0.08) 0%, rgba(255,102,0,0.04) 100%);
-    border:1.5px solid rgba(255,102,0,0.3); border-radius:14px;
-    padding:14px 18px; margin-bottom:20px; display:flex; flex-direction:column; gap:6px;
+    background:linear-gradient(135deg, rgba(255,102,0,0.07) 0%, rgba(255,102,0,0.03) 100%);
+    border:1.5px solid rgba(255,102,0,0.28); border-radius:14px;
+    padding:14px 18px; margin-bottom:20px;
   }
-  .br-love-tag{
-    display:flex; align-items:center; justify-content:space-between;
-    font-size:14px; font-weight:600; color:var(--ink);
+  .br-love-top{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
   }
-  .br-love-remove{
-    background:none; border:none; cursor:pointer; font-size:18px;
-    color:var(--ink-soft); line-height:1; padding:0 2px; transition:color .15s;
+  .br-love-tag-col{ flex:1; }
+  .br-love-tag-title{ font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  .br-love-desc{ font-size:12px; color:var(--ink-soft); line-height:1.4; }
+  .br-love-toggle-status{
+    font-size:11.5px; color:#16a34a; font-weight:600; margin-top:10px;
+    padding-top:10px; border-top:1px solid rgba(255,102,0,0.15);
+    transition:color .2s;
   }
-  .br-love-remove:hover{ color:var(--ink); }
-  .br-love-desc{ font-size:12px; color:var(--ink-soft); line-height:1.5; }
+  .br-love-toggle-status.off{ color:var(--ink-soft); }
+
+  /* Toggle switch */
+  .br-toggle-switch{ position:relative; display:inline-block; width:44px; height:26px; flex-shrink:0; }
+  .br-toggle-switch input{ opacity:0; width:0; height:0; }
+  .br-toggle-slider{
+    position:absolute; cursor:pointer; inset:0; background:#ccc; border-radius:26px;
+    transition:background .2s;
+  }
+  .br-toggle-slider:before{
+    content:''; position:absolute; height:20px; width:20px; left:3px; bottom:3px;
+    background:#fff; border-radius:50%; transition:transform .2s;
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
+  }
+  .br-toggle-switch input:checked + .br-toggle-slider{ background:var(--orange); }
+  .br-toggle-switch input:checked + .br-toggle-slider:before{ transform:translateX(18px); }
+
+  /* Love price badge */
   .br-love-price{
     display:inline-flex; align-items:center; gap:5px;
     background:rgba(34,197,94,0.12); color:#16a34a;
     border:1px solid rgba(34,197,94,0.3); border-radius:100px;
     font-size:11.5px; font-weight:700; padding:4px 10px; margin-top:6px; margin-bottom:2px;
+    transition:opacity .2s;
   }
   .br-love-price span{ color:var(--ink-soft); font-weight:400; }
+  .br-love-price.hidden{ opacity:0; pointer-events:none; }
 
   /* Lojalitný blok */
   .br-loyalty-section{
-    background:var(--night); padding:44px 20px; max-width:none;
+    background:var(--tint); border-top:3px solid var(--orange); padding:36px 20px; max-width:none;
   }
   .br-loyalty-inner{
     max-width:560px; margin:0 auto; display:grid;
-    grid-template-columns:120px 1fr; gap:28px; align-items:center;
+    grid-template-columns:110px 1fr; gap:28px; align-items:center;
   }
   @media(max-width:480px){
-    .br-loyalty-inner{ grid-template-columns:1fr; gap:20px; }
-    .br-loyalty-logo-col{ text-align:center; }
+    .br-loyalty-inner{ grid-template-columns:1fr; gap:16px; }
+    .br-loyalty-logo-col{ text-align:left; }
   }
   .br-loyalty-logo-col{ display:flex; align-items:center; justify-content:center; }
-  .br-eset-logo{ width:100%; max-width:110px; filter:brightness(0) invert(1); display:block; }
-  .br-loyalty-years{ font-size:13px; color:rgba(255,255,255,.6); margin-bottom:6px; font-weight:500; }
-  .br-loyalty-years-num{ color:var(--orange-glow); font-weight:800; font-size:15px; }
+  .br-eset-logo{ width:100%; max-width:100px; display:block; }
+  .br-loyalty-years{ font-size:12px; color:var(--orange-deep); font-weight:700; margin-bottom:8px; letter-spacing:0.04em; text-transform:uppercase; }
+  .br-loyalty-years-num{ color:var(--orange-deep); }
   .br-loyalty-content h2{
-    font-family:'Sora'; font-weight:800; font-size:22px; color:#fff;
-    margin-bottom:10px; line-height:1.2;
+    font-family:'Sora'; font-weight:800; font-size:17px; color:var(--ink);
+    margin-bottom:8px; line-height:1.35;
   }
   .br-loyalty-content > p{
-    font-size:14px; color:rgba(255,255,255,.8); line-height:1.6; margin-bottom:20px;
+    font-size:13px; color:var(--ink-soft); line-height:1.55; margin-bottom:16px;
   }
-  .br-loyalty-cta{ width:auto; padding:14px 28px; }
+  .br-loyalty-cta{ width:auto; padding:12px 24px; font-size:14px; }
 
   /* Hockey — email highlight */
   .br-email-shown{ color:var(--orange-glow); font-weight:700; }
@@ -1377,6 +1398,21 @@
         <div class="benefit-stat"><b>Wi&#8209;Fi 7</b><span>router ako jediný na trhu</span></div>
         <div class="benefit-stat"><b>Až 2,5 Gbps</b><span>rýchlosť internetu</span></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bloomreach: Lojalitný blok hneď pod hero -->
+<div class="br-loyalty-section">
+  <div class="br-loyalty-inner">
+    <div class="br-loyalty-logo-col">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/ESET_logo.png" alt="ESET" class="br-eset-logo" />
+    </div>
+    <div class="br-loyalty-content">
+      <p class="br-loyalty-years">Už <span class="br-loyalty-years-num">5 rokov</span> s Orange</p>
+      <h2>Ako verný zákazník získavate Bezpečnostný balík ESET na 12 mesiacov zadarmo pri aktivácii internetu.</h2>
+      <p>Služba sa automaticky pripočíta k vašej objednávke.</p>
+      <button class="cta-primary br-loyalty-cta" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
     </div>
   </div>
 </div>
@@ -1532,13 +1568,19 @@
     <button class="coverage-filter-clear" onclick="clearCoverageFilter()" aria-label="Zrušiť filter adresy">×</button>
   </div>
 
-  <!-- Bloomreach: Love kalkulačka -->
+  <!-- Bloomreach: Love toggle -->
   <div class="br-love-bar" id="brLoveBar">
-    <div class="br-love-tag">
-      <span>Aktuálny paušál: <strong>Paušál XL</strong></span>
-      <button class="br-love-remove" onclick="removeLoveBar()" aria-label="Zrušiť Love zľavu">×</button>
+    <div class="br-love-top">
+      <div class="br-love-tag-col">
+        <div class="br-love-tag-title">Aktuálny paušál: <strong>Paušál XL</strong></div>
+        <div class="br-love-desc">Vaša cena Love: zľava 10 % pri kombinácii služieb Orange</div>
+      </div>
+      <label class="br-toggle-switch" aria-label="Zapnúť/vypnúť Love zľavu">
+        <input type="checkbox" id="brLoveToggle" checked onchange="toggleLovePrices(this.checked)">
+        <span class="br-toggle-slider"></span>
+      </label>
     </div>
-    <div class="br-love-desc">Vaša cena Love: zľava 10 % z každého balíka internetu pri kombinácii so službami Orange</div>
+    <div class="br-love-toggle-status" id="brLoveStatus">♥ Love zľava aktívna — porovnajte ceny prepnutím</div>
   </div>
 
   <div class="plans" id="brPlans">
@@ -1549,7 +1591,7 @@
         <div class="plan-mh-left">
           <div class="plan-badge">Rýchlosť Martina Pospíšila</div>
           <div class="plan-name2">Internet XL Extra</div>
-          <div class="plan-mh-meta">2 500 / 1 000 Mbit/s · 20,70 €/mes</div>
+          <div class="plan-mh-meta" data-base="2 500 / 1 000 Mbit/s · 23 €/mes" data-love="2 500 / 1 000 Mbit/s · 20,70 €/mes">2 500 / 1 000 Mbit/s · 20,70 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
@@ -1559,7 +1601,7 @@
         <div class="plan-speed2">2 500 / 1 000 Mbit/s</div>
         <div class="plan-price">
           <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">30 €/mes</div>
-          <div class="now">20,70 €<span>/mes</span></div>
+          <div class="now" data-base="23 €" data-love="20,70 €">20,70 €<span>/mes</span></div>
           <div class="br-love-price">♥ Vaša cena Love <span>ušetríte 2,30 €/mes</span></div>
         </div>
         <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;border:1px solid rgba(255,102,0,.25);">
@@ -1587,7 +1629,7 @@
         <div class="plan-mh-left">
           <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
           <div class="plan-name2">Internet XL</div>
-          <div class="plan-mh-meta">1 000 / 500 Mbit/s · od 17,25 €/mes</div>
+          <div class="plan-mh-meta" data-base="1 000 / 500 Mbit/s · od 19,17 €/mes" data-love="1 000 / 500 Mbit/s · od 17,25 €/mes">1 000 / 500 Mbit/s · od 17,25 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
@@ -1597,7 +1639,7 @@
         <div class="plan-speed2">1 000 / 500 Mbit/s</div>
         <div class="plan-price">
           <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">26 €/mes</div>
-          <div class="now" style="font-size:18px;">od 17,25 €<span>/mes</span></div>
+          <div class="now" style="font-size:18px;" data-base="od 19,17 €" data-love="od 17,25 €">od 17,25 €<span>/mes</span></div>
           <div class="br-love-price">♥ Vaša cena Love <span>ušetríte 1,92 €/mes</span></div>
           <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
         </div>
@@ -1622,7 +1664,7 @@
         <div class="plan-mh-left">
           <div class="plan-badge">Favorit fanúšikov</div>
           <div class="plan-name2">Internet L</div>
-          <div class="plan-mh-meta">600 / 150 Mbit/s · od 13,51 €/mes</div>
+          <div class="plan-mh-meta" data-base="600 / 150 Mbit/s · od 15,01 €/mes" data-love="600 / 150 Mbit/s · od 13,51 €/mes">600 / 150 Mbit/s · od 13,51 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
@@ -1632,7 +1674,7 @@
         <div class="plan-speed2">600 / 150 Mbit/s</div>
         <div class="plan-price">
           <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">22 €/mes</div>
-          <div class="now" style="font-size:18px;">od 13,51 €<span>/mes</span></div>
+          <div class="now" style="font-size:18px;" data-base="od 15,01 €" data-love="od 13,51 €">od 13,51 €<span>/mes</span></div>
           <div class="br-love-price">♥ Vaša cena Love <span>ušetríte 1,50 €/mes</span></div>
           <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
         </div>
@@ -1657,7 +1699,7 @@
         <div class="plan-mh-left">
           <div class="plan-badge plan-badge--empty" aria-hidden="true">—</div>
           <div class="plan-name2">Internet M</div>
-          <div class="plan-mh-meta">100 / 40 Mbit/s · od 11,70 €/mes</div>
+          <div class="plan-mh-meta" data-base="100 / 40 Mbit/s · od 13 €/mes" data-love="100 / 40 Mbit/s · od 11,70 €/mes">100 / 40 Mbit/s · od 11,70 €/mes</div>
         </div>
         <div class="plan-chevron" aria-hidden="true">›</div>
       </div>
@@ -1667,7 +1709,7 @@
         <div class="plan-speed2">100 / 40 Mbit/s</div>
         <div class="plan-price">
           <div class="was" style="font-size:12px;color:var(--ink-soft);text-decoration:line-through;">15 €/mes</div>
-          <div class="now" style="font-size:18px;">od 11,70 €<span>/mes</span></div>
+          <div class="now" style="font-size:18px;" data-base="od 13 €" data-love="od 11,70 €">od 11,70 €<span>/mes</span></div>
           <div class="br-love-price">♥ Vaša cena Love <span>ušetríte 1,30 €/mes</span></div>
           <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,102,0,.1);color:var(--orange-deep);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;margin-top:4px;border:1px solid rgba(255,102,0,.25);">Online zľava</div>
         </div>
@@ -1696,20 +1738,6 @@
   </div><!-- /sec-inner -->
 </section>
 
-<!-- Bloomreach: Lojalitný blok -->
-<div class="br-loyalty-section">
-  <div class="br-loyalty-inner">
-    <div class="br-loyalty-logo-col">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/ESET_logo.png" alt="ESET" class="br-eset-logo" />
-    </div>
-    <div class="br-loyalty-content">
-      <p class="br-loyalty-years">Už <span class="br-loyalty-years-num">5 rokov</span> s Orange</p>
-      <h2>Ste s nami 5 rokov.<br>Máte na to bonus.</h2>
-      <p>Ako verný zákazník získavate Bezpečnostný balík ESET na 12 mesiacov zadarmo pri aktivácii internetu. Služba sa automaticky pripočíta k vašej objednávke.</p>
-      <button class="cta-primary br-loyalty-cta" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
-    </div>
-  </div>
-</div>
 
 <!-- ========================================================
      KLIENTSKE VARIANTY ZOBRAZENIA BALÍČKOV (na výber)
@@ -3376,6 +3404,32 @@ function removeLoveBar(){
   var bar=document.getElementById('brLoveBar');
   if(bar){ bar.style.display='none'; }
   document.querySelectorAll('.br-love-price').forEach(function(el){ el.style.display='none'; });
+}
+
+function toggleLovePrices(on){
+  /* Prepni ceny v .now elementoch — zachovaj vnorený <span>/mes</span> */
+  document.querySelectorAll('.now[data-base][data-love]').forEach(function(el){
+    var val=el.getAttribute('data-'+(on?'love':'base'));
+    var span=el.querySelector('span');
+    el.textContent=val;
+    if(span){ el.appendChild(span); }
+  });
+  /* Prepni plan-mh-meta */
+  document.querySelectorAll('.plan-mh-meta[data-base][data-love]').forEach(function(el){
+    el.textContent=el.getAttribute('data-'+(on?'love':'base'));
+  });
+  /* Zobraz / skry love-price badges */
+  document.querySelectorAll('.br-love-price').forEach(function(el){
+    el.classList.toggle('hidden',!on);
+  });
+  /* Stav textu */
+  var status=document.getElementById('brLoveStatus');
+  if(status){
+    status.textContent=on
+      ?'♥ Love zľava aktívna — porovnajte ceny prepnutím'
+      :'Love zľava vypnutá — zobrazujú sa štandardné ceny';
+    status.classList.toggle('off',!on);
+  }
 }
 
 /* Hockey — zobraziť alternatívny email field */
