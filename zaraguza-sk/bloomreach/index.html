@@ -1251,7 +1251,7 @@
   }
   .br-loyalty-logo-col{ order:2; }
   .br-loyalty-content{ order:3; display:flex; flex-direction:column; gap:14px; }
-  .br-eset-logo{ width:auto; max-width:100px; height:auto; display:block; }
+  .br-eset-logo{ width:80px; height:80px; display:block; flex-shrink:0; }
   .br-loyalty-content p{
     font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;
   }
@@ -1421,12 +1421,18 @@
 <!-- Bloomreach: Lojalitný blok hneď pod hero -->
 <div class="br-loyalty-section">
   <div class="br-loyalty-inner">
-    <h2 class="br-loyalty-headline">Už 5 rokov s Orange</h2>
+    <h2 class="br-loyalty-headline">Ďakujeme, že ste už 5 rokov s Orange.</h2>
     <div class="br-loyalty-logo-col">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/ESET_logo.png" alt="ESET" class="br-eset-logo" />
+      <svg class="br-eset-logo" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z" stroke="var(--orange-deep)" stroke-width="2"/>
+        <circle cx="19.5" cy="21" r="3.4" stroke="var(--ink)" stroke-width="1.6"/>
+        <path d="M14.5 32c1-3.4 3-5.2 5-5.2s4 1.8 5 5.2" stroke="var(--ink)" stroke-width="1.6"/>
+        <circle cx="29" cy="23.5" r="2.6" stroke="var(--orange)" stroke-width="1.6"/>
+        <path d="M25 32.5c0.8-2.6 2.2-4 4-4s3.2 1.4 4 4" stroke="var(--orange)" stroke-width="1.6"/>
+      </svg>
     </div>
     <div class="br-loyalty-content">
-      <p>Ako verný zákazník získavate Bezpečnostný balík ESET na 12 mesiacov zadarmo pri aktivácii internetu. Služba sa automaticky pripočíta k vašej objednávke.</p>
+      <p><strong>Máme pre vás benefit Online ochranu detí.</strong> Aplikácia určená pre mobilné zariadenia vašich detí. Umožňuje filtrovanie obsahu, nastavenie časových limitov a sledovanie polohy. Túto službu získavate zadarmo k vybranému internetu od Orange.</p>
       <button class="cta-primary br-loyalty-cta" onclick="document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'})">Vybrať internet</button>
     </div>
   </div>
