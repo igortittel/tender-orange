@@ -2714,21 +2714,21 @@ function showGameResult(reaction){
   let mainText, subText, rewardText, rewardLabel, secondaryLabel, secondaryAction;
 
   if(reaction < 500){
-    mainText = 'Blesková odozva! Ste rýchlejší ako sused!';
-    subText = 'Toto bola blesková rýchlosť — presne taká, akú vám dáva Orange optický internet. S týmto typom pripojenia nestíha sused ani reagovať, kým vy už oslavujete gól.';
+    mainText = 'Blesková odozva!';
+    subText = 'Toto bola blesková rýchlosť — presne taká, akú vám dáva Orange optický internet. S ním budete kričať "Je tam!" medzi prvými.';
     rewardLabel = 'Vaša vybojovaná odmena:';
     rewardText = 'Zľava 120 € ročne na internet (-10 €/mes.)';
     secondaryLabel = 'Pozrieť akčné internetové balíčky →';
     secondaryAction = () => document.getElementById('plans-anchor').scrollIntoView({behavior:'smooth'});
   } else if(reaction <= 800){
-    mainText = 'Dobrý čas! Sused bol tentokrát o kúsok rýchlejší.';
+    mainText = 'Dobrý čas, ale nie najlepší.';
     subText = 'Vaša reakcia je solídna — ale s Orange optickým internetom môžete byť ešte ostrejší. Skúste to znova a vybojujte maximálnu zľavu.';
     rewardLabel = 'Vaša aktuálna odmena:';
     rewardText = 'Zľava 60 € ročne na internet (-5 €/mes.)';
     secondaryLabel = 'Skúsiť znova a vybojovať vyššiu zľavu';
     secondaryAction = resetGame;
   } else {
-    mainText = 'Sused vás tentokrát predbehol — ale to sa dá zmeniť!';
+    mainText = 'Uff, toto nebolo rýchle — ale to sa dá zmeniť!';
     subText = 'Každý má pomalší deň. Skúste to znova — a s Orange optickým internetom budete nabudúce o krok vpred.';
     rewardLabel = 'Vaša aktuálna odmena:';
     rewardText = 'Zľava 30 € ročne na internet (-2,50 €/mes.)';
